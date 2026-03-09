@@ -1,18 +1,19 @@
 /* =============================================================================
    Home Page — Editorial Redesign
    Fonts: Cormorant Garamond (display) · Inter (UI/body)
-   Palette: Near-black · White · Warm cream · Muted gold accent
+   Palette: Warm cream dominant · Near-black text · Muted gold accent
    ============================================================================= */
 
 /* --- Tokens ---------------------------------------------------------------- */
 
 :root {
-  --black:   #0d0d0b;
-  --white:   #ffffff;
-  --cream:   #f8f6f1;
-  --warm-gray: #e8e4dc;
+  --black:     #0d0d0b;
+  --white:     #ffffff;
+  --cream:     #f5f3ee;
+  --cream-mid: #eceae3;
+  --warm-gray: #d8d4ca;
   --mid-gray:  #8a8880;
-  --gold:    #b8a07a;   /* single restrained accent */
+  --gold:      #b8a07a;
 
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-ui:      'Inter', 'Helvetica Neue', Arial, sans-serif;
@@ -21,7 +22,7 @@
 /* --- Reset (home only) ----------------------------------------------------- */
 
 .page-home * { box-sizing: border-box; }
-.page-home { background: var(--black); }
+.page-home { background: var(--cream); }
 
 /* --- Scroll-reveal --------------------------------------------------------- */
 
@@ -46,14 +47,15 @@
   right: 0;
   z-index: 100;
   padding: 2rem 3rem;
-  transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
+  transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
 }
 
 .hn--scrolled {
-  background: rgba(13, 13, 11, 0.92);
+  background: rgba(245, 243, 238, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 1.25rem 3rem;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.08);
 }
 
 .hn__inner {
@@ -67,7 +69,7 @@
   font-size: 1.25rem;
   font-weight: 400;
   letter-spacing: 0.06em;
-  color: var(--white);
+  color: var(--black);
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -86,34 +88,33 @@
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
+  color: var(--mid-gray);
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.hn__link:hover { color: var(--white); }
+.hn__link:hover { color: var(--black); }
 
 /* --- Hero ------------------------------------------------------------------ */
 
 .hh {
   position: relative;
   min-height: 100svh;
-  background: var(--black);
+  background: var(--cream);
   display: flex;
   align-items: center;
   padding: 0 3rem;
   overflow: hidden;
 }
 
-/* Subtle grain texture */
-.hh::before {
+.hh::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-  background-size: 200px;
-  opacity: 0.4;
-  pointer-events: none;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--warm-gray);
 }
 
 .hh__inner {
@@ -143,7 +144,7 @@
   font-weight: 300;
   line-height: 0.95;
   letter-spacing: -0.02em;
-  color: var(--white);
+  color: var(--black);
   margin: 0 0 2.5rem;
   opacity: 0;
   animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
@@ -155,7 +156,7 @@
   font-weight: 300;
   line-height: 1.8;
   letter-spacing: 0.02em;
-  color: rgba(255,255,255,0.5);
+  color: var(--mid-gray);
   margin: 0 0 3rem;
   opacity: 0;
   animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
@@ -168,7 +169,7 @@
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--white);
+  color: var(--black);
   text-decoration: none;
   border-bottom: 1px solid var(--gold);
   padding-bottom: 0.3rem;
@@ -177,9 +178,7 @@
   animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
 }
 
-.hh__cta:hover {
-  color: var(--gold);
-}
+.hh__cta:hover { color: var(--gold); }
 
 .hh__scroll-hint {
   position: absolute;
@@ -198,14 +197,14 @@
   font-size: 0.65rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
+  color: var(--warm-gray);
   writing-mode: vertical-rl;
 }
 
 .hh__scroll-line {
   width: 1px;
   height: 60px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+  background: linear-gradient(to bottom, var(--warm-gray), transparent);
   animation: scrollLine 2s ease-in-out 1.5s infinite;
 }
 
@@ -214,6 +213,7 @@
 .hs {
   background: var(--white);
   padding: 8rem 3rem;
+  border-bottom: 1px solid var(--warm-gray);
 }
 
 .hs__inner {
@@ -244,9 +244,9 @@
 /* --- Advocate -------------------------------------------------------------- */
 
 .hav {
-  background: var(--cream);
+  background: var(--cream-mid);
   padding: 8rem 3rem;
-  border-top: 1px solid var(--warm-gray);
+  border-bottom: 1px solid var(--warm-gray);
 }
 
 .hav__inner {
@@ -304,8 +304,9 @@
 /* --- Services -------------------------------------------------------------- */
 
 .hsv {
-  background: var(--black);
+  background: var(--cream);
   padding: 8rem 3rem;
+  border-bottom: 1px solid var(--warm-gray);
 }
 
 .hsv__inner {
@@ -329,17 +330,15 @@
   gap: 2rem;
   align-items: start;
   padding: 2.5rem 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid var(--warm-gray);
   transition: border-color 0.3s;
 }
 
 .hsv__item:last-child {
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid var(--warm-gray);
 }
 
-.hsv__item:hover {
-  border-top-color: var(--gold);
-}
+.hsv__item:hover { border-top-color: var(--gold); }
 
 .hsv__num {
   font-family: var(--font-display);
@@ -347,14 +346,14 @@
   font-weight: 400;
   color: var(--gold);
   letter-spacing: 0.08em;
-  padding-top: 0.2rem;
+  padding-top: 0.3rem;
 }
 
 .hsv__title {
   font-family: var(--font-display);
   font-size: clamp(1.4rem, 2.5vw, 2rem);
   font-weight: 300;
-  color: var(--white);
+  color: var(--black);
   margin: 0 0 0.75rem;
   letter-spacing: -0.01em;
 }
@@ -364,7 +363,7 @@
   font-size: 0.85rem;
   font-weight: 300;
   line-height: 1.75;
-  color: rgba(255,255,255,0.45);
+  color: var(--mid-gray);
   margin: 0;
 }
 
@@ -374,7 +373,7 @@
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
+  color: var(--warm-gray);
   text-decoration: none;
   padding-top: 0.4rem;
   white-space: nowrap;
@@ -386,9 +385,9 @@
 /* --- Projects -------------------------------------------------------------- */
 
 .hpj {
-  background: var(--cream);
+  background: var(--white);
   padding: 8rem 3rem;
-  border-top: 1px solid var(--warm-gray);
+  border-bottom: 1px solid var(--warm-gray);
 }
 
 .hpj__inner { max-width: 1200px; margin: 0 auto; }
@@ -417,9 +416,9 @@
   letter-spacing: 0.06em;
   color: var(--black);
   text-decoration: none;
-  border-bottom: 1px solid currentColor;
+  border-bottom: 1px solid var(--warm-gray);
   padding-bottom: 0.1rem;
-  transition: color 0.2s;
+  transition: color 0.2s, border-color 0.2s;
 }
 
 .hpj__all:hover { color: var(--gold); border-color: var(--gold); }
@@ -430,12 +429,13 @@
   gap: 1.5rem;
 }
 
-.hpj__card { background: var(--white); }
+.hpj__card { background: var(--cream); }
 
 .hpj__img-wrap {
   aspect-ratio: 3 / 4;
   overflow: hidden;
   background: var(--warm-gray);
+  position: relative;
 }
 
 .hpj__img-wrap img {
@@ -448,13 +448,28 @@
 
 .hpj__card:hover .hpj__img-wrap img { transform: scale(1.04); }
 
+/* Placeholder: styled grey box with subtle label */
 .hpj__img-placeholder {
   width: 100%;
   height: 100%;
   background: var(--warm-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hpj__card-body { padding: 1.25rem; }
+.hpj__img-placeholder::after {
+  content: 'Photo';
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mid-gray);
+  opacity: 0.5;
+}
+
+.hpj__card-body { padding: 1.25rem 0.25rem; }
 
 .hpj__type {
   display: block;
@@ -469,7 +484,7 @@
 
 .hpj__title {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: var(--black);
   margin: 0 0 0.3rem;
@@ -485,8 +500,9 @@
 /* --- Testimonial ----------------------------------------------------------- */
 
 .htm {
-  background: var(--black);
+  background: var(--cream-mid);
   padding: 8rem 3rem;
+  border-bottom: 1px solid var(--warm-gray);
 }
 
 .htminner {
@@ -501,7 +517,7 @@
   font-weight: 300;
   font-style: italic;
   line-height: 1.5;
-  color: var(--white);
+  color: var(--black);
   border: none;
   padding: 0;
   margin: 0 0 2.5rem;
@@ -527,16 +543,15 @@
   font-family: var(--font-ui);
   font-size: 0.75rem;
   font-weight: 300;
-  color: rgba(255,255,255,0.3);
+  color: var(--mid-gray);
 }
 
 /* --- CTA ------------------------------------------------------------------- */
 
 .hct {
-  background: var(--white);
+  background: var(--cream);
   padding: 10rem 3rem;
   text-align: center;
-  border-top: 1px solid var(--warm-gray);
 }
 
 .hct__inner { max-width: 700px; margin: 0 auto; }
@@ -570,7 +585,7 @@
   text-decoration: none;
   border-bottom: 1px solid var(--gold);
   padding-bottom: 0.3rem;
-  transition: color 0.2s, border-color 0.2s;
+  transition: color 0.2s;
 }
 
 .hct__link:hover { color: var(--gold); }
@@ -578,9 +593,9 @@
 /* --- Footer ---------------------------------------------------------------- */
 
 .hft {
-  background: var(--black);
+  background: var(--cream-mid);
   padding: 2rem 3rem;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid var(--warm-gray);
 }
 
 .hft__inner {
@@ -595,19 +610,19 @@
   font-family: var(--font-ui);
   font-size: 0.75rem;
   font-weight: 300;
-  color: rgba(255,255,255,0.25);
+  color: var(--mid-gray);
   margin: 0;
 }
 
 .hft__admin {
   font-family: var(--font-ui);
   font-size: 0.7rem;
-  color: rgba(255,255,255,0.2);
+  color: var(--warm-gray);
   text-decoration: none;
   letter-spacing: 0.08em;
 }
 
-.hft__admin:hover { color: rgba(255,255,255,0.5); }
+.hft__admin:hover { color: var(--mid-gray); }
 
 /* --- Keyframes ------------------------------------------------------------- */
 
@@ -656,8 +671,6 @@
 
 @media (max-width: 600px) {
   .hn__list { display: none; }
-
   .hpj__grid { grid-template-columns: 1fr; }
-
   .hsv__item { grid-template-columns: 40px 1fr; }
 }
