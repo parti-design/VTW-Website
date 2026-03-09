@@ -2,8 +2,8 @@ title: "Severin Winter Consulting"
 description: >-
   Building consultant specializing in new construction, renovation, and
   restoration of historical barns and houses in the Hudson Valley, NY.
-url: "" # set to your GitHub Pages URL, e.g. https://username.github.io
-baseurl: "" # set to /repo-name if not using a custom domain
+url: "https://parti-design.github.io"
+baseurl: "/VTW-Website"
 
 author:
   name: Severin Winter
