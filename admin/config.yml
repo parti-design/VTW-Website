@@ -64,10 +64,11 @@ collections:
         name: contact
         file: _pages/contact.md
         fields:
-          - { label: Layout,      name: layout,      widget: hidden, default: page }
+          - { label: Layout,      name: layout,      widget: hidden, default: contact }
           - { label: Title,       name: title,       widget: string }
           - { label: Permalink,   name: permalink,   widget: hidden, default: /contact/ }
           - { label: Phone,       name: phone,       widget: string, required: false }
+          - { label: Email,       name: email,       widget: string, required: false }
           - { label: Description, name: description, widget: text,   required: false }
           - { label: Body,        name: body,        widget: markdown }
 

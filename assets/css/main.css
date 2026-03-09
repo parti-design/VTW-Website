@@ -784,34 +784,33 @@ pre code {
   font-style: italic;
 }
 
-/* --- Contact Layout ------------------------------------------------------- */
+/* --- Contact --------------------------------------------------------------- */
 
-.contact-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 4rem;
-  align-items: start;
+.contact-simple {
+  max-width: 560px;
 }
 
-.contact-intro__text {
+.contact-simple__body {
   font-size: 1.05rem;
   color: #444;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   line-height: 1.7;
 }
 
-.contact-phone,
-.contact-location {
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-  font-size: 0.9rem;
-  margin-bottom: 0.75rem;
+.contact-simple__details {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 1.25rem;
 }
 
-.contact-phone__label,
-.contact-location__label {
+.contact-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.contact-detail__label {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -819,92 +818,24 @@ pre code {
   color: #999;
 }
 
-.contact-phone a {
+.contact-detail__value {
   font-size: 1.1rem;
   font-weight: 600;
   color: #2c2419;
   text-decoration: none;
 }
 
-.contact-phone a:hover { color: #5a3e28; }
-
-.contact-location { color: #555; }
-
-/* --- Contact Form --------------------------------------------------------- */
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+a.contact-detail__value:hover {
+  color: #5a3e28;
+  text-decoration: underline;
 }
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.form-label {
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-  font-size: 0.825rem;
-  font-weight: 600;
-  color: #3a2c1e;
-  letter-spacing: 0.02em;
-}
-
-.form-optional {
-  font-weight: 400;
-  color: #999;
-}
-
-.form-input,
-.form-select,
-.form-textarea {
-  padding: 0.6rem 0.875rem;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 1rem;
-  color: #2c2c2c;
-  background: #fff;
-  border: 1px solid #c8b89a;
-  border-radius: 2px;
-  transition: border-color 0.15s, box-shadow 0.15s;
-  width: 100%;
-}
-
-.form-input:focus,
-.form-select:focus,
-.form-textarea:focus {
-  outline: none;
-  border-color: #5a3e28;
-  box-shadow: 0 0 0 3px rgba(90, 62, 40, 0.1);
-}
-
-.form-textarea { resize: vertical; line-height: 1.6; }
-
-.form-submit {
-  align-self: flex-start;
-  padding: 0.75rem 2rem;
-  background: #5a3e28;
-  color: #f0ece4;
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-
-.form-submit:hover { background: #3a2618; }
 
 /* --- Responsive (additions) ----------------------------------------------- */
 
 @media (max-width: 860px) {
   .services-grid { grid-template-columns: 1fr; gap: 1.25rem; }
   .project-grid { grid-template-columns: repeat(2, 1fr); }
-  .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
-  .article-item { grid-template-columns: 1fr; gap: 0.35rem; }
+.article-item { grid-template-columns: 1fr; gap: 0.35rem; }
 }
 
 @media (max-width: 640px) {
