@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>
+    {%- if page.title and page.title != site.title -%}
+      {{ page.title }} | {{ site.title }}
+    {%- else -%}
+      {{ site.title }}
+    {%- endif -%}
+  </title>
+
+  <meta name="description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | truncate: 160 }}" />
+
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}" />
+
+  {%- seo -%}
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a class="site-logo" href="{{ '/' | relative_url }}">
+          <span class="site-logo__name">{{ site.title }}</span>
+          {%- if site.author.name -%}
+            <span class="site-logo__tagline">Building Consultant &mdash; Hudson Valley, NY</span>
+          {%- endif -%}
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <ul class="site-nav__list">
+            {%- for link in site.nav_links -%}
+              <li class="site-nav__item">
+                <a class="site-nav__link{% if page.url == link.url %} site-nav__link--active{% endif %}"
+                   href="{{ link.url | relative_url }}">
+                  {{ link.title }}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main" id="main-content">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+        <p class="site-footer__copy">
+          &copy; {{ 'now' | date: "%Y" }} {{ site.author.name | default: site.title }}.
+          Hudson Valley, NY.
+        </p>
+        <p class="site-footer__admin">
+          <a href="{{ '/admin/' | relative_url }}">Site Admin</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

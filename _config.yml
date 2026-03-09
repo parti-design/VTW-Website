@@ -1,0 +1,73 @@
+title: "Severin Winter Consulting"
+description: >-
+  Building consultant specializing in new construction, renovation, and
+  restoration of historical barns and houses in the Hudson Valley, NY.
+url: "" # set to your GitHub Pages URL, e.g. https://username.github.io
+baseurl: "" # set to /repo-name if not using a custom domain
+
+author:
+  name: Severin Winter
+
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Markdown settings
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Permalink style
+permalink: /:year/:month/:day/:title/
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .bundle
+  - .sass-cache
+  - README.md
+  - agents.md
+
+# Include _wiki collection
+collections:
+  wiki:
+    output: true
+    permalink: /wiki/:name/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  - scope:
+      path: "_wiki"
+      type: "wiki"
+    values:
+      layout: "page"
+
+# Navigation
+nav_links:
+  - title: Home
+    url: /
+  - title: About
+    url: /about/
+  - title: Services
+    url: /services/
+  - title: Projects
+    url: /projects/
+  - title: Contact
+    url: /contact/

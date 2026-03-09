@@ -1,0 +1,87 @@
+backend:
+  name: github
+  repo: parti-design/VTW-Website
+  branch: main
+
+# Media library — images uploaded via CMS land here
+media_folder: assets/images
+public_folder: /assets/images
+
+# Site URL for live preview links in the CMS
+# site_url: https://your-domain.com
+
+collections:
+
+  # ---- Pages ---------------------------------------------------------------
+  - name: pages
+    label: Pages
+    label_singular: Page
+    files:
+
+      - label: Home
+        name: home
+        file: index.md
+        fields:
+          - { label: Layout,          name: layout,          widget: hidden, default: home }
+          - { label: Title,           name: title,           widget: string }
+          - { label: Subtitle,        name: subtitle,        widget: string,   required: false }
+          - { label: Description,     name: description,     widget: text,     required: false }
+          - { label: Hero Heading,    name: hero_heading,    widget: string,   required: false }
+          - { label: Hero Subheading, name: hero_subheading, widget: text,     required: false }
+          - { label: Body,            name: body,            widget: markdown }
+
+      - label: About
+        name: about
+        file: _pages/about.md
+        fields:
+          - { label: Layout,      name: layout,      widget: hidden, default: page }
+          - { label: Title,       name: title,       widget: string }
+          - { label: Permalink,   name: permalink,   widget: hidden, default: /about/ }
+          - { label: Description, name: description, widget: text,   required: false }
+          - { label: Body,        name: body,        widget: markdown }
+
+      - label: Services
+        name: services
+        file: _pages/services.md
+        fields:
+          - { label: Layout,      name: layout,      widget: hidden, default: page }
+          - { label: Title,       name: title,       widget: string }
+          - { label: Permalink,   name: permalink,   widget: hidden, default: /services/ }
+          - { label: Description, name: description, widget: text,   required: false }
+          - { label: Body,        name: body,        widget: markdown }
+
+      - label: Projects
+        name: projects
+        file: _pages/projects.md
+        fields:
+          - { label: Layout,      name: layout,      widget: hidden, default: page }
+          - { label: Title,       name: title,       widget: string }
+          - { label: Permalink,   name: permalink,   widget: hidden, default: /projects/ }
+          - { label: Description, name: description, widget: text,   required: false }
+          - { label: Body,        name: body,        widget: markdown }
+
+      - label: Contact
+        name: contact
+        file: _pages/contact.md
+        fields:
+          - { label: Layout,      name: layout,      widget: hidden, default: page }
+          - { label: Title,       name: title,       widget: string }
+          - { label: Permalink,   name: permalink,   widget: hidden, default: /contact/ }
+          - { label: Description, name: description, widget: text,   required: false }
+          - { label: Body,        name: body,        widget: markdown }
+
+  # ---- Posts / Updates -----------------------------------------------------
+  - name: posts
+    label: Posts
+    label_singular: Post
+    folder: _posts
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "{{year}}/{{month}}/{{day}}/{{slug}}/"
+    fields:
+      - { label: Layout, name: layout, widget: hidden, default: post }
+      - { label: Title,  name: title,  widget: string }
+      - { label: Date,   name: date,   widget: datetime }
+      - { label: Author, name: author, widget: string,   required: false, default: "Severin Winter" }
+      - { label: Description, name: description, widget: text, required: false }
+      - { label: Body,   name: body,   widget: markdown }

@@ -1,0 +1,16 @@
+# Jekyll build output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Bundler
+.bundle/
+vendor/
+
+# Local only — not published to GitHub
+_wiki/
+agents.md
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+{%- if page.hero_heading -%}
+<section class="hero">
+  <div class="container">
+    <h1 class="hero__heading">{{ page.hero_heading }}</h1>
+    {%- if page.hero_subheading -%}
+      <p class="hero__subheading">{{ page.hero_subheading }}</p>
+    {%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+
+<div class="home-wrapper">
+  <div class="container">
+
+    <div class="home-content">
+      {{ content }}
+    </div>
+
+    {%- if site.posts.size > 0 -%}
+    <section class="recent-posts">
+      <h2 class="recent-posts__heading">Recent Updates</h2>
+      <ul class="post-list">
+        {%- for post in site.posts limit:5 -%}
+          <li class="post-list__item">
+            <span class="post-list__date">{{ post.date | date: "%B %-d, %Y" }}</span>
+            <a class="post-list__link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </section>
+    {%- endif -%}
+
+  </div>
+</div>
