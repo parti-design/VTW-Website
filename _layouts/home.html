@@ -1,106 +1,224 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | truncate: 160 }}" />
 
-{%- if page.hero_heading -%}
-<section class="hero">
-  {%- if page.hero_image -%}
-  <div class="hero__image" style="background-image: url('{{ page.hero_image | relative_url }}')"></div>
-  {%- endif -%}
-  <div class="hero__overlay">
-    <div class="container">
-      <h1 class="hero__heading">{{ page.hero_heading }}</h1>
-      {%- if page.hero_subheading -%}
-        <p class="hero__subheading">{{ page.hero_subheading }}</p>
-      {%- endif -%}
-      <a class="hero__cta" href="{{ '/contact/' | relative_url }}">Start a conversation</a>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}" />
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}" />
+
+  {%- seo -%}
+</head>
+<body class="page-home">
+
+  <!-- ═══ NAV ═══════════════════════════════════════════════════════════════ -->
+  <header class="hn" id="hn">
+    <div class="hn__inner">
+      <a class="hn__logo" href="{{ '/' | relative_url }}">Severin Winter</a>
+      <nav class="hn__nav" aria-label="Main navigation">
+        <ul class="hn__list">
+          {%- for link in site.nav_links -%}
+            {%- unless link.title == "Home" -%}
+            <li>
+              <a class="hn__link" href="{{ link.url | relative_url }}">{{ link.title }}</a>
+            </li>
+            {%- endunless -%}
+          {%- endfor -%}
+        </ul>
+      </nav>
     </div>
-  </div>
-</section>
-{%- endif -%}
+  </header>
 
-{%- if page.intro_text -%}
-<section class="home-intro">
-  <div class="container">
-    <p class="home-intro__text">{{ page.intro_text }}</p>
-  </div>
-</section>
-{%- endif -%}
+  <main>
 
-<section class="home-services">
-  <div class="container">
-    <h2 class="section-heading">Services</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3 class="service-card__title">New Construction</h3>
-        <p class="service-card__text">Site evaluation, contractor vetting, budget planning, and construction oversight for new residential builds.</p>
-        <a class="service-card__link" href="{{ '/services/' | relative_url }}">Learn more &rarr;</a>
+    <!-- ═══ HERO ══════════════════════════════════════════════════════════════ -->
+    <section class="hh">
+      <div class="hh__inner">
+        <p class="hh__label">Hudson Valley &mdash; Building Consultant</p>
+        <h1 class="hh__heading">
+          Your advocate<br>on every<br>decision.
+        </h1>
+        <p class="hh__sub">
+          New construction. Renovation. Historical restoration.<br>
+          Independent counsel with no conflicts of interest.
+        </p>
+        <a class="hh__cta" href="{{ '/contact/' | relative_url }}">Start a conversation</a>
       </div>
-      <div class="service-card">
-        <h3 class="service-card__title">Renovation</h3>
-        <p class="service-card__text">Scope development, contractor selection, and owner's representation for major renovations of existing structures.</p>
-        <a class="service-card__link" href="{{ '/services/' | relative_url }}">Learn more &rarr;</a>
+      <div class="hh__scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="hh__scroll-line"></div>
       </div>
-      <div class="service-card">
-        <h3 class="service-card__title">Historical Restoration</h3>
-        <p class="service-card__text">Specialized advisory for the restoration of historic barns, farmhouses, and period structures in the Hudson Valley.</p>
-        <a class="service-card__link" href="{{ '/services/' | relative_url }}">Learn more &rarr;</a>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-{%- assign featured_projects = site.projects | where: "featured", true | limit: 3 -%}
-{%- if featured_projects.size > 0 -%}
-<section class="home-projects">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-heading">Selected Projects</h2>
-      <a class="section-link" href="{{ '/projects/' | relative_url }}">View all &rarr;</a>
-    </div>
-    <div class="project-grid project-grid--home">
-      {%- for project in featured_projects -%}
-      <article class="project-card">
-        {%- if project.photo -%}
-        <div class="project-card__image">
-          <img src="{{ project.photo | relative_url }}" alt="{{ project.title | escape }}" loading="lazy" />
+    <!-- ═══ STATEMENT ═════════════════════════════════════════════════════════ -->
+    <section class="hs" data-animate>
+      <div class="hs__inner">
+        <p class="hs__text">
+          Most people navigate their biggest financial decision without anyone truly in their corner.
+        </p>
+        <p class="hs__aside">That&rsquo;s where I come in.</p>
+      </div>
+    </section>
+
+    <!-- ═══ ADVOCATE ══════════════════════════════════════════════════════════ -->
+    <section class="hav" data-animate>
+      <div class="hav__inner">
+        <div class="hav__label-col">
+          <span class="hav__label">The difference</span>
         </div>
-        {%- endif -%}
-        <div class="project-card__body">
-          <span class="project-card__type">{{ project.type }}</span>
-          <h3 class="project-card__title">{{ project.title | escape }}</h3>
-          {%- if project.location -%}
-            <p class="project-card__location">{{ project.location }}</p>
+        <div class="hav__body">
+          <blockquote class="hav__quote">
+            &ldquo;I have no financial relationship with any contractor, supplier, or architect I recommend.
+            No markup on materials. No referral fees. My compensation comes from you &mdash;
+            and my obligation belongs entirely to your project.&rdquo;
+          </blockquote>
+          <cite class="hav__cite">Severin Winter</cite>
+          <p class="hav__context">
+            Forty years of building in the Hudson Valley. Now working exclusively as an independent advisor.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SERVICES ══════════════════════════════════════════════════════════ -->
+    <section class="hsv" data-animate>
+      <div class="hsv__inner">
+        <p class="hsv__header-label">What I do</p>
+
+        <div class="hsv__item" data-animate data-delay="0">
+          <span class="hsv__num">01</span>
+          <div class="hsv__content">
+            <h3 class="hsv__title">New Construction</h3>
+            <p class="hsv__desc">Site assessment, contractor vetting, budget planning, and construction oversight. From the first shovel to the final walkthrough.</p>
+          </div>
+          <a class="hsv__link" href="{{ '/services/' | relative_url }}">Learn more</a>
+        </div>
+
+        <div class="hsv__item" data-animate data-delay="100">
+          <span class="hsv__num">02</span>
+          <div class="hsv__content">
+            <h3 class="hsv__title">Renovation</h3>
+            <p class="hsv__desc">Scope development, contractor selection, and owner&rsquo;s representation throughout. Protecting your interests when it matters most.</p>
+          </div>
+          <a class="hsv__link" href="{{ '/services/' | relative_url }}">Learn more</a>
+        </div>
+
+        <div class="hsv__item" data-animate data-delay="200">
+          <span class="hsv__num">03</span>
+          <div class="hsv__content">
+            <h3 class="hsv__title">Historical Restoration</h3>
+            <p class="hsv__desc">Specialist advisory for barns, farmhouses, and period structures. Knowledge of traditional methods that most consultants simply don&rsquo;t have.</p>
+          </div>
+          <a class="hsv__link" href="{{ '/services/' | relative_url }}">Learn more</a>
+        </div>
+
+        <div class="hsv__item" data-animate data-delay="300">
+          <span class="hsv__num">04</span>
+          <div class="hsv__content">
+            <h3 class="hsv__title">Design &amp; Planning</h3>
+            <p class="hsv__desc">From concept to a buildable, budgeted plan. Working alongside your architect to make sure what is drawn can actually be built.</p>
+          </div>
+          <a class="hsv__link" href="{{ '/services/' | relative_url }}">Learn more</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ PROJECTS ══════════════════════════════════════════════════════════ -->
+    {%- assign featured_projects = site.projects | where: "featured", true | limit: 3 -%}
+    {%- if featured_projects.size > 0 -%}
+    <section class="hpj" data-animate>
+      <div class="hpj__inner">
+        <div class="hpj__header">
+          <p class="hpj__label">Selected work</p>
+          <a class="hpj__all" href="{{ '/projects/' | relative_url }}">View all &rarr;</a>
+        </div>
+        <div class="hpj__grid">
+          {%- for project in featured_projects -%}
+          <article class="hpj__card">
+            <div class="hpj__img-wrap">
+              {%- if project.photo -%}
+              <img src="{{ project.photo | relative_url }}" alt="{{ project.title | escape }}" loading="lazy" />
+              {%- else -%}
+              <div class="hpj__img-placeholder"></div>
+              {%- endif -%}
+            </div>
+            <div class="hpj__card-body">
+              <span class="hpj__type">{{ project.type }}</span>
+              <h3 class="hpj__title">{{ project.title }}</h3>
+              {%- if project.location -%}<p class="hpj__location">{{ project.location }}</p>{%- endif -%}
+            </div>
+          </article>
+          {%- endfor -%}
+        </div>
+      </div>
+    </section>
+    {%- endif -%}
+
+    <!-- ═══ TESTIMONIAL ═══════════════════════════════════════════════════════ -->
+    {%- assign featured_testimonial = site.data.testimonials.testimonials | where: "featured", true | first -%}
+    {%- if featured_testimonial -%}
+    <section class="htm" data-animate>
+      <div class="htminner">
+        <blockquote class="htm__quote">
+          &ldquo;{{ featured_testimonial.quote }}&rdquo;
+        </blockquote>
+        <footer class="htm__footer">
+          <span class="htm__name">{{ featured_testimonial.name }}</span>
+          {%- if featured_testimonial.project -%}
+          <span class="htm__project">{{ featured_testimonial.project }}</span>
           {%- endif -%}
-        </div>
-      </article>
-      {%- endfor -%}
+        </footer>
+      </div>
+    </section>
+    {%- endif -%}
+
+    <!-- ═══ CTA ═══════════════════════════════════════════════════════════════ -->
+    <section class="hct" data-animate>
+      <div class="hct__inner">
+        <h2 class="hct__heading">Let&rsquo;s start with<br>a conversation.</h2>
+        <p class="hct__sub">No obligation. Tell me about your project and where you are in the process.</p>
+        <a class="hct__link" href="{{ '/contact/' | relative_url }}">Get in touch &rarr;</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ════════════════════════════════════════════════════════════ -->
+  <footer class="hft">
+    <div class="hft__inner">
+      <p class="hft__copy">&copy; {{ 'now' | date: "%Y" }} Severin Winter. Hudson Valley, NY.</p>
+      <a class="hft__admin" href="{{ '/admin/' | relative_url }}">Admin</a>
     </div>
-  </div>
-</section>
-{%- endif -%}
+  </footer>
 
-{%- assign featured_testimonial = site.data.testimonials.testimonials | where: "featured", true | first -%}
-{%- if featured_testimonial -%}
-<section class="home-testimonial">
-  <div class="container">
-    <blockquote class="testimonial">
-      <p class="testimonial__quote">&ldquo;{{ featured_testimonial.quote }}&rdquo;</p>
-      <footer class="testimonial__footer">
-        <cite class="testimonial__name">{{ featured_testimonial.name }}</cite>
-        {%- if featured_testimonial.project -%}
-          <span class="testimonial__project">{{ featured_testimonial.project }}</span>
-        {%- endif -%}
-      </footer>
-    </blockquote>
-  </div>
-</section>
-{%- endif -%}
+  <!-- ═══ SCRIPTS ═══════════════════════════════════════════════════════════ -->
+  <script>
+    // Nav: become opaque on scroll
+    const nav = document.getElementById('hn');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('hn--scrolled', window.scrollY > 80);
+    }, { passive: true });
 
-<section class="home-cta">
-  <div class="container">
-    <h2 class="home-cta__heading">Ready to talk about your project?</h2>
-    <p class="home-cta__text">Whether you're planning a new build, tackling a renovation, or working on a historic structure, let's start with a conversation.</p>
-    <a class="btn btn--primary" href="{{ '/contact/' | relative_url }}">Get in touch</a>
-  </div>
-</section>
+    // Scroll-reveal animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => entry.target.classList.add('is-visible'), Number(delay));
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
