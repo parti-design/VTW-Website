@@ -35,11 +35,13 @@ exclude:
   - README.md
   - agents.md
 
-# Include _wiki collection
+# Collections
 collections:
   wiki:
     output: true
     permalink: /wiki/:name/
+  projects:
+    output: false
 
 # Default front matter
 defaults:
@@ -58,6 +60,11 @@ defaults:
       type: "wiki"
     values:
       layout: "page"
+  - scope:
+      path: "_projects"
+      type: "projects"
+    values:
+      layout: null
 
 # Navigation
 nav_links:
@@ -69,5 +76,9 @@ nav_links:
     url: /services/
   - title: Projects
     url: /projects/
+  - title: Articles
+    url: /articles/
+  - title: FAQ
+    url: /faq/
   - title: Contact
     url: /contact/

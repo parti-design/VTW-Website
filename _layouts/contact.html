@@ -1,0 +1,70 @@
+---
+layout: default
+---
+
+<div class="page-wrapper">
+  <div class="container">
+
+    <div class="contact-layout">
+
+      <div class="contact-intro">
+        <header class="page-header">
+          <h1 class="page-title">{{ page.title }}</h1>
+        </header>
+        <div class="contact-intro__text">
+          {{ content }}
+        </div>
+        {%- if page.phone and page.phone != "" -%}
+        <p class="contact-phone">
+          <span class="contact-phone__label">Phone</span>
+          <a href="tel:{{ page.phone | remove: ' ' | remove: '-' | remove: '(' | remove: ')' }}">{{ page.phone }}</a>
+        </p>
+        {%- endif -%}
+        <p class="contact-location">
+          <span class="contact-location__label">Based in</span>
+          Hudson Valley, NY
+        </p>
+      </div>
+
+      <div class="contact-form-wrapper">
+        <form class="contact-form" name="contact" method="POST" data-netlify="true" action="/contact/thanks/">
+          <input type="hidden" name="form-name" value="contact" />
+
+          <div class="form-group">
+            <label class="form-label" for="name">Name</label>
+            <input class="form-input" type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-input" type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="phone_contact">Phone <span class="form-optional">(optional)</span></label>
+            <input class="form-input" type="tel" id="phone_contact" name="phone_contact" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="project_type">Project type</label>
+            <select class="form-select" id="project_type" name="project_type">
+              <option value="">Select one…</option>
+              <option value="New Construction">New Construction</option>
+              <option value="Renovation">Renovation</option>
+              <option value="Historical Restoration">Historical Restoration</option>
+              <option value="Other">Other / Not sure yet</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">Tell me about your project</label>
+            <textarea class="form-textarea" id="message" name="message" rows="6" required></textarea>
+          </div>
+
+          <button class="form-submit" type="submit">Send Message</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

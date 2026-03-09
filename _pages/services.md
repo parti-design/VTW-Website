@@ -5,57 +5,76 @@ permalink: /services/
 description: "Building consulting services offered by Severin Winter in the Hudson Valley, NY."
 ---
 
-## Services
-
-Severin Winter offers building consulting services tailored to residential and light commercial clients in the Hudson Valley. Whether you are starting from scratch, renovating an existing structure, or preserving a piece of history, Severin brings the perspective of someone who has done the work himself.
+Severin Winter offers consulting, design, and planning services — not general contracting. He brings the knowledge and experience of a career contractor to an independent advisory role, working exclusively on behalf of the client.
 
 ---
 
-### New Construction
+## New Construction Consulting
 
-Guidance and representation for ground-up residential builds, including:
+Whether you are building a primary residence, a guest house, or a working farm structure, the decisions made early in a project have the largest impact on outcome and cost. Severin helps clients:
 
-- Site and design review for constructability
-- Contractor vetting and bid analysis
-- Construction oversight and milestone reviews
-- Budget tracking and cost management
-- Punch list and closeout support
-
----
-
-### Renovation
-
-Support for owners undertaking significant renovations:
-
-- Pre-purchase building assessments
-- Scope development and priority sequencing
-- Contractor selection and contract review
-- Construction administration on behalf of the owner
-- Value engineering — finding savings without compromising quality
+- Evaluate sites and assess buildability before committing
+- Review plans and specifications for constructability and value
+- Vet and select qualified contractors; analyze competing bids
+- Establish realistic budgets and contingency strategies
+- Provide oversight and milestone reviews through construction
+- Manage punch lists and closeout
 
 ---
 
-### Historical Restoration
+## Renovation Consulting
 
-Specialized knowledge of older structures, including barns, farmhouses, and other period buildings common to the Hudson Valley:
+Renovating an existing structure — especially an older one — carries risks that are difficult to anticipate without experience. Severin helps clients:
 
-- Structural assessment of timber-frame and masonry construction
-- Material selection consistent with historic character
-- Navigation of local historic preservation requirements
-- Coordination with preservation specialists and craftspeople
-- Documentation and research support
-
----
-
-### Advisory and Consulting
-
-Flexible engagements for clients who need informed perspective without full-service representation:
-
-- One-time site visits and written assessments
-- Second opinions on contractor proposals
-- Project review at critical decision points
-- Expert input for real estate due diligence
+- Assess existing conditions before purchase or before committing to a scope
+- Develop realistic renovation scopes and sequencing strategies
+- Select and vet contractors appropriate to the work
+- Represent the owner's interests during construction
+- Problem-solve unexpected conditions as they arise
+- Identify where to spend and where to save
 
 ---
 
-[Contact Severin](/contact/) to discuss your project and how he can help.
+## Historical Restoration & Preservation
+
+This is Severin's specialty. The Hudson Valley is home to some of the most distinctive historic domestic and agricultural architecture in the country — and restoring it well requires knowledge that most contractors simply don't have.
+
+Severin advises on:
+
+- Structural assessment and repair of timber-frame and masonry construction
+- Material selection consistent with the historic character of the structure
+- Traditional building methods and where modern approaches are and aren't appropriate
+- Navigation of local historic preservation requirements and review processes
+- Coordination with preservation specialists, conservators, and skilled craftspeople
+- Documentation, research, and nomination support
+
+---
+
+## Design & Planning
+
+For clients in the early stages of a project, Severin works with owners and their architects to develop projects from concept to a buildable, budgeted plan. This includes:
+
+- Programming and scope definition
+- Design review for constructability and cost
+- Phasing and scheduling strategy
+- Contractor procurement planning
+
+---
+
+## How It Works
+
+**1. Initial Conversation**
+A phone or in-person conversation to understand your project, your goals, and whether Severin can help. No obligation.
+
+**2. Site Visit**
+For most engagements, Severin visits the property to assess conditions, understand the context, and develop a clear picture of the scope and complexity.
+
+**3. Proposal**
+A written proposal outlining the scope of consulting services and the engagement structure — whether that is a fixed-fee assessment, an hourly advisory relationship, or full owner's representation.
+
+**4. Engagement**
+Work begins. The depth of ongoing involvement is calibrated to the project's needs and the client's preferences.
+
+---
+
+[Start a conversation](/contact/)

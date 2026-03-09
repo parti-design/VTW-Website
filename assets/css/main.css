@@ -392,6 +392,526 @@ pre code {
   }
 }
 
+/* --- Buttons -------------------------------------------------------------- */
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background 0.15s, color 0.15s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn--primary {
+  background: #5a3e28;
+  color: #f0ece4;
+}
+
+.btn--primary:hover {
+  background: #3a2618;
+  color: #f0ece4;
+}
+
+/* --- Hero (enhanced) ------------------------------------------------------ */
+
+.hero {
+  position: relative;
+  background: #3d2e1e;
+  color: #f0ece4;
+  overflow: hidden;
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
+}
+
+.hero__overlay {
+  position: relative;
+  padding: 5rem 0 4.5rem;
+  text-align: center;
+}
+
+.hero__cta {
+  display: inline-block;
+  margin-top: 1.75rem;
+  padding: 0.7rem 1.75rem;
+  background: #5a3e28;
+  color: #f0ece4;
+  text-decoration: none;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border-radius: 3px;
+  transition: background 0.15s;
+}
+
+.hero__cta:hover {
+  background: #c8b89a;
+  color: #1a1a1a;
+}
+
+/* --- Section Utilities ---------------------------------------------------- */
+
+.section-heading {
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1.75rem;
+  color: #2c2419;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+}
+
+.section-header .section-heading {
+  margin-bottom: 0;
+}
+
+.section-link {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.875rem;
+}
+
+/* --- Home Intro ----------------------------------------------------------- */
+
+.home-intro {
+  background: #f0ece4;
+  border-top: 1px solid #ddd6cc;
+  border-bottom: 1px solid #ddd6cc;
+  padding: 2.5rem 0;
+}
+
+.home-intro__text {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  color: #3a2c1e;
+}
+
+/* --- Home Services -------------------------------------------------------- */
+
+.home-services {
+  padding: 4rem 0;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.service-card {
+  padding: 1.75rem;
+  background: #fff;
+  border: 1px solid #ddd6cc;
+  border-top: 3px solid #5a3e28;
+  border-radius: 2px;
+}
+
+.service-card__title {
+  font-size: 1.1rem;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  color: #2c2419;
+}
+
+.service-card__text {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.service-card__link {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #5a3e28;
+}
+
+.service-card__link:hover {
+  text-decoration: underline;
+}
+
+/* --- Project Grid --------------------------------------------------------- */
+
+.home-projects {
+  padding: 4rem 0;
+  background: #f7f4f0;
+  border-top: 1px solid #ddd6cc;
+  border-bottom: 1px solid #ddd6cc;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: #fff;
+  border: 1px solid #ddd6cc;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.project-card__image {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #e8e2d8;
+}
+
+.project-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-card__image img {
+  transform: scale(1.03);
+}
+
+.project-card__body {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.project-card__type {
+  display: inline-block;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5a3e28;
+  margin-bottom: 0.4rem;
+}
+
+.project-card__title {
+  font-size: 1rem;
+  margin: 0 0 0.35rem;
+  color: #1a1a1a;
+}
+
+.project-card__location {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.8rem;
+  color: #888;
+  margin: 0 0 0.5rem;
+}
+
+.project-card__description {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.projects-empty {
+  color: #666;
+  font-style: italic;
+}
+
+/* --- Project Filters ------------------------------------------------------ */
+
+.project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  padding: 0.4rem 1rem;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  background: #fff;
+  border: 1px solid #c8b89a;
+  color: #5a3e28;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.filter-btn:hover,
+.filter-btn--active {
+  background: #5a3e28;
+  color: #f0ece4;
+  border-color: #5a3e28;
+}
+
+/* --- Testimonial ---------------------------------------------------------- */
+
+.home-testimonial {
+  padding: 4rem 0;
+  background: #2c2419;
+}
+
+.testimonial {
+  max-width: 680px;
+  margin: 0 auto;
+  border: none;
+  padding: 0;
+  text-align: center;
+  color: #f0ece4;
+  font-style: normal;
+}
+
+.testimonial__quote {
+  font-size: 1.35rem;
+  line-height: 1.65;
+  color: #f0ece4;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.testimonial__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.testimonial__name {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-style: normal;
+  color: #c8b89a;
+}
+
+.testimonial__project {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.8rem;
+  color: #8a7a68;
+}
+
+/* --- Home CTA ------------------------------------------------------------- */
+
+.home-cta {
+  padding: 5rem 0;
+  text-align: center;
+  background: #faf9f7;
+}
+
+.home-cta__heading {
+  font-size: 1.75rem;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  color: #2c2419;
+}
+
+.home-cta__text {
+  max-width: 560px;
+  margin: 0 auto 2rem;
+  color: #555;
+  font-size: 1.05rem;
+}
+
+/* --- Article List --------------------------------------------------------- */
+
+.article-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.article-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid #ddd6cc;
+}
+
+.article-item__date {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.8rem;
+  color: #999;
+  padding-top: 0.3rem;
+}
+
+.article-item__title {
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem;
+}
+
+.article-item__title a {
+  text-decoration: none;
+  color: #2c2419;
+}
+
+.article-item__title a:hover {
+  color: #5a3e28;
+  text-decoration: underline;
+}
+
+.article-item__excerpt {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0 0 0.75rem;
+  line-height: 1.6;
+}
+
+.article-item__link {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #5a3e28;
+}
+
+.articles-empty {
+  color: #666;
+  font-style: italic;
+}
+
+/* --- Contact Layout ------------------------------------------------------- */
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.contact-intro__text {
+  font-size: 1.05rem;
+  color: #444;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.contact-phone,
+.contact-location {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.contact-phone__label,
+.contact-location__label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+}
+
+.contact-phone a {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c2419;
+  text-decoration: none;
+}
+
+.contact-phone a:hover { color: #5a3e28; }
+
+.contact-location { color: #555; }
+
+/* --- Contact Form --------------------------------------------------------- */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-label {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #3a2c1e;
+  letter-spacing: 0.02em;
+}
+
+.form-optional {
+  font-weight: 400;
+  color: #999;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  padding: 0.6rem 0.875rem;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1rem;
+  color: #2c2c2c;
+  background: #fff;
+  border: 1px solid #c8b89a;
+  border-radius: 2px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #5a3e28;
+  box-shadow: 0 0 0 3px rgba(90, 62, 40, 0.1);
+}
+
+.form-textarea { resize: vertical; line-height: 1.6; }
+
+.form-submit {
+  align-self: flex-start;
+  padding: 0.75rem 2rem;
+  background: #5a3e28;
+  color: #f0ece4;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.form-submit:hover { background: #3a2618; }
+
+/* --- Responsive (additions) ----------------------------------------------- */
+
+@media (max-width: 860px) {
+  .services-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  .project-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .article-item { grid-template-columns: 1fr; gap: 0.35rem; }
+}
+
+@media (max-width: 640px) {
+  .project-grid { grid-template-columns: 1fr; }
+  .section-header { flex-direction: column; gap: 0.25rem; }
+}
+
 /* --- Print ---------------------------------------------------------------- */
 
 @media print {

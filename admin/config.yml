@@ -24,10 +24,10 @@ collections:
         fields:
           - { label: Layout,          name: layout,          widget: hidden, default: home }
           - { label: Title,           name: title,           widget: string }
-          - { label: Subtitle,        name: subtitle,        widget: string,   required: false }
-          - { label: Description,     name: description,     widget: text,     required: false }
           - { label: Hero Heading,    name: hero_heading,    widget: string,   required: false }
           - { label: Hero Subheading, name: hero_subheading, widget: text,     required: false }
+          - { label: Hero Image,      name: hero_image,      widget: image,    required: false }
+          - { label: Intro Text,      name: intro_text,      widget: text,     required: false }
           - { label: Body,            name: body,            widget: markdown }
 
       - label: About
@@ -50,13 +50,13 @@ collections:
           - { label: Description, name: description, widget: text,   required: false }
           - { label: Body,        name: body,        widget: markdown }
 
-      - label: Projects
-        name: projects
-        file: _pages/projects.md
+      - label: FAQ
+        name: faq
+        file: _pages/faq.md
         fields:
           - { label: Layout,      name: layout,      widget: hidden, default: page }
           - { label: Title,       name: title,       widget: string }
-          - { label: Permalink,   name: permalink,   widget: hidden, default: /projects/ }
+          - { label: Permalink,   name: permalink,   widget: hidden, default: /faq/ }
           - { label: Description, name: description, widget: text,   required: false }
           - { label: Body,        name: body,        widget: markdown }
 
@@ -67,21 +67,56 @@ collections:
           - { label: Layout,      name: layout,      widget: hidden, default: page }
           - { label: Title,       name: title,       widget: string }
           - { label: Permalink,   name: permalink,   widget: hidden, default: /contact/ }
+          - { label: Phone,       name: phone,       widget: string, required: false }
           - { label: Description, name: description, widget: text,   required: false }
           - { label: Body,        name: body,        widget: markdown }
 
-  # ---- Posts / Updates -----------------------------------------------------
+  # ---- Projects ------------------------------------------------------------
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: _projects
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title,       name: title,       widget: string }
+      - { label: Type,        name: type,        widget: select, options: ["New Construction", "Renovation", "Historical Restoration"] }
+      - { label: Photo,       name: photo,       widget: image }
+      - { label: Description, name: description, widget: text,   required: false }
+      - { label: Featured,    name: featured,    widget: boolean, default: false, hint: "Show on homepage" }
+      - { label: Year,        name: year,        widget: number, required: false }
+      - { label: Location,    name: location,    widget: string, required: false }
+
+  # ---- Posts / Articles ----------------------------------------------------
   - name: posts
-    label: Posts
-    label_singular: Post
+    label: Articles
+    label_singular: Article
     folder: _posts
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     preview_path: "{{year}}/{{month}}/{{day}}/{{slug}}/"
     fields:
-      - { label: Layout, name: layout, widget: hidden, default: post }
-      - { label: Title,  name: title,  widget: string }
-      - { label: Date,   name: date,   widget: datetime }
-      - { label: Author, name: author, widget: string,   required: false, default: "Severin Winter" }
-      - { label: Description, name: description, widget: text, required: false }
-      - { label: Body,   name: body,   widget: markdown }
+      - { label: Layout,      name: layout,      widget: hidden, default: post }
+      - { label: Title,       name: title,       widget: string }
+      - { label: Date,        name: date,        widget: datetime }
+      - { label: Author,      name: author,      widget: string,   required: false, default: "Severin Winter" }
+      - { label: Description, name: description, widget: text,     required: false }
+      - { label: Body,        name: body,        widget: markdown }
+
+  # ---- Testimonials --------------------------------------------------------
+  - name: testimonials
+    label: Testimonials
+    label_singular: Testimonial
+    files:
+      - label: Testimonials
+        name: testimonials
+        file: _data/testimonials.yml
+        fields:
+          - label: Testimonials
+            name: testimonials
+            widget: list
+            fields:
+              - { label: Quote,   name: quote,   widget: text }
+              - { label: Name,    name: name,    widget: string }
+              - { label: Project, name: project, widget: string, required: false }
+              - { label: Feature on homepage, name: featured, widget: boolean, default: false }

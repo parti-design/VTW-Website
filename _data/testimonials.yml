@@ -1,0 +1,7 @@
+testimonials:
+  - quote: >-
+      Placeholder testimonial — replace with a real quote from a client.
+      Severin helped us navigate a complex restoration project from start to finish.
+    name: "Client Name"
+    project: "Historical Barn Restoration, Columbia County"
+    featured: true

@@ -4,35 +4,103 @@ layout: default
 
 {%- if page.hero_heading -%}
 <section class="hero">
-  <div class="container">
-    <h1 class="hero__heading">{{ page.hero_heading }}</h1>
-    {%- if page.hero_subheading -%}
-      <p class="hero__subheading">{{ page.hero_subheading }}</p>
-    {%- endif -%}
+  {%- if page.hero_image -%}
+  <div class="hero__image" style="background-image: url('{{ page.hero_image | relative_url }}')"></div>
+  {%- endif -%}
+  <div class="hero__overlay">
+    <div class="container">
+      <h1 class="hero__heading">{{ page.hero_heading }}</h1>
+      {%- if page.hero_subheading -%}
+        <p class="hero__subheading">{{ page.hero_subheading }}</p>
+      {%- endif -%}
+      <a class="hero__cta" href="{{ '/contact/' | relative_url }}">Start a conversation</a>
+    </div>
   </div>
 </section>
 {%- endif -%}
 
-<div class="home-wrapper">
+{%- if page.intro_text -%}
+<section class="home-intro">
   <div class="container">
-
-    <div class="home-content">
-      {{ content }}
-    </div>
-
-    {%- if site.posts.size > 0 -%}
-    <section class="recent-posts">
-      <h2 class="recent-posts__heading">Recent Updates</h2>
-      <ul class="post-list">
-        {%- for post in site.posts limit:5 -%}
-          <li class="post-list__item">
-            <span class="post-list__date">{{ post.date | date: "%B %-d, %Y" }}</span>
-            <a class="post-list__link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-          </li>
-        {%- endfor -%}
-      </ul>
-    </section>
-    {%- endif -%}
-
+    <p class="home-intro__text">{{ page.intro_text }}</p>
   </div>
-</div>
+</section>
+{%- endif -%}
+
+<section class="home-services">
+  <div class="container">
+    <h2 class="section-heading">Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3 class="service-card__title">New Construction</h3>
+        <p class="service-card__text">Site evaluation, contractor vetting, budget planning, and construction oversight for new residential builds.</p>
+        <a class="service-card__link" href="{{ '/services/' | relative_url }}">Learn more &rarr;</a>
+      </div>
+      <div class="service-card">
+        <h3 class="service-card__title">Renovation</h3>
+        <p class="service-card__text">Scope development, contractor selection, and owner's representation for major renovations of existing structures.</p>
+        <a class="service-card__link" href="{{ '/services/' | relative_url }}">Learn more &rarr;</a>
+      </div>
+      <div class="service-card">
+        <h3 class="service-card__title">Historical Restoration</h3>
+        <p class="service-card__text">Specialized advisory for the restoration of historic barns, farmhouses, and period structures in the Hudson Valley.</p>
+        <a class="service-card__link" href="{{ '/services/' | relative_url }}">Learn more &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- assign featured_projects = site.projects | where: "featured", true | limit: 3 -%}
+{%- if featured_projects.size > 0 -%}
+<section class="home-projects">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-heading">Selected Projects</h2>
+      <a class="section-link" href="{{ '/projects/' | relative_url }}">View all &rarr;</a>
+    </div>
+    <div class="project-grid project-grid--home">
+      {%- for project in featured_projects -%}
+      <article class="project-card">
+        {%- if project.photo -%}
+        <div class="project-card__image">
+          <img src="{{ project.photo | relative_url }}" alt="{{ project.title | escape }}" loading="lazy" />
+        </div>
+        {%- endif -%}
+        <div class="project-card__body">
+          <span class="project-card__type">{{ project.type }}</span>
+          <h3 class="project-card__title">{{ project.title | escape }}</h3>
+          {%- if project.location -%}
+            <p class="project-card__location">{{ project.location }}</p>
+          {%- endif -%}
+        </div>
+      </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{%- assign featured_testimonial = site.data.testimonials.testimonials | where: "featured", true | first -%}
+{%- if featured_testimonial -%}
+<section class="home-testimonial">
+  <div class="container">
+    <blockquote class="testimonial">
+      <p class="testimonial__quote">&ldquo;{{ featured_testimonial.quote }}&rdquo;</p>
+      <footer class="testimonial__footer">
+        <cite class="testimonial__name">{{ featured_testimonial.name }}</cite>
+        {%- if featured_testimonial.project -%}
+          <span class="testimonial__project">{{ featured_testimonial.project }}</span>
+        {%- endif -%}
+      </footer>
+    </blockquote>
+  </div>
+</section>
+{%- endif -%}
+
+<section class="home-cta">
+  <div class="container">
+    <h2 class="home-cta__heading">Ready to talk about your project?</h2>
+    <p class="home-cta__text">Whether you're planning a new build, tackling a renovation, or working on a historic structure, let's start with a conversation.</p>
+    <a class="btn btn--primary" href="{{ '/contact/' | relative_url }}">Get in touch</a>
+  </div>
+</section>
