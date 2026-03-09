@@ -9,7 +9,6 @@ author:
   name: Severin Winter
 
 # Build settings
-theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
@@ -23,6 +22,10 @@ kramdown:
 
 # Permalink style
 permalink: /:year/:month/:day/:title/
+
+# Include non-standard directories
+include:
+  - _pages
 
 # Exclude from build
 exclude:
