@@ -2,33 +2,49 @@
 layout: default
 ---
 
-<div class="page-wrapper">
-  <div class="container">
+{%- assign latest_post = site.posts.first -%}
 
-    <header class="page-header">
-      <h1 class="page-title">{{ page.title }}</h1>
-      <p class="page-subtitle">Insights and observations on building in the Hudson Valley.</p>
+<section class="ip ip--articles">
+  <div class="ip__inner ip__inner--wide">
+    <header class="ip__head">
+      <p class="ip__label">Field Notes</p>
+      <h1 class="ip__title">{{ page.title }}</h1>
+      <p class="ip__subtitle">Insights and observations on building in the Hudson Valley.</p>
     </header>
 
     {%- if site.posts.size > 0 -%}
+      {%- if latest_post -%}
+      <article class="article-feature">
+        <p class="article-feature__kicker">Latest</p>
+        <h2 class="article-feature__title">
+          <a href="{{ latest_post.url | relative_url }}">{{ latest_post.title | escape }}</a>
+        </h2>
+        <p class="article-feature__meta">{{ latest_post.date | date: "%B %-d, %Y" }}</p>
+        {%- if latest_post.description -%}
+        <p class="article-feature__excerpt">{{ latest_post.description }}</p>
+        {%- elsif latest_post.excerpt -%}
+        <p class="article-feature__excerpt">{{ latest_post.excerpt | strip_html | truncate: 240 }}</p>
+        {%- endif -%}
+        <a class="article-feature__link" href="{{ latest_post.url | relative_url }}">Read article</a>
+      </article>
+      {%- endif -%}
+
     <div class="article-list">
-      {%- for post in site.posts -%}
+      {%- for post in site.posts offset: 1 -%}
       <article class="article-item">
-        <div class="article-item__meta">
-          <time class="article-item__date" datetime="{{ post.date | date_to_xmlschema }}">
-            {{ post.date | date: "%B %-d, %Y" }}
-          </time>
-        </div>
+        <time class="article-item__date" datetime="{{ post.date | date_to_xmlschema }}">
+          {{ post.date | date: "%B %-d, %Y" }}
+        </time>
         <div class="article-item__body">
           <h2 class="article-item__title">
             <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
           </h2>
           {%- if post.description -%}
-            <p class="article-item__excerpt">{{ post.description }}</p>
+          <p class="article-item__excerpt">{{ post.description }}</p>
           {%- elsif post.excerpt -%}
-            <p class="article-item__excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
+          <p class="article-item__excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
           {%- endif -%}
-          <a class="article-item__link" href="{{ post.url | relative_url }}">Read more &rarr;</a>
+          <a class="article-item__link" href="{{ post.url | relative_url }}">Read more</a>
         </div>
       </article>
       {%- endfor -%}
@@ -36,6 +52,5 @@ layout: default
     {%- else -%}
     <p class="articles-empty">Articles coming soon.</p>
     {%- endif -%}
-
   </div>
-</div>
+</section>

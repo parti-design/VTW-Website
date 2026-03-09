@@ -40,6 +40,7 @@
 
     <!-- ═══ HERO ══════════════════════════════════════════════════════════════ -->
     <section class="hh">
+      <div class="hh__photo" aria-hidden="true"></div>
       <div class="hh__inner">
         <p class="hh__label">Hudson Valley &mdash; Building Consultant</p>
         <h1 class="hh__heading">
@@ -65,10 +66,12 @@
         </p>
         <p class="hs__aside">That&rsquo;s where I come in.</p>
       </div>
+      <div class="hs__photo" aria-hidden="true"></div>
     </section>
 
     <!-- ═══ ADVOCATE ══════════════════════════════════════════════════════════ -->
     <section class="hav" data-animate>
+      <div class="hav__photo" aria-hidden="true"></div>
       <div class="hav__inner">
         <div class="hav__label-col">
           <span class="hav__label">The difference</span>
@@ -142,10 +145,11 @@
         </div>
         <div class="hpj__grid">
           {%- for project in featured_projects -%}
+          {%- assign project_cover = project.cover_image | default: project.photo -%}
           <article class="hpj__card">
             <div class="hpj__img-wrap">
-              {%- if project.photo -%}
-              <img src="{{ project.photo | relative_url }}" alt="{{ project.title | escape }}" loading="lazy" />
+              {%- if project_cover -%}
+              <img src="{{ project_cover | relative_url }}" alt="{{ project.title | escape }}" loading="lazy" />
               {%- else -%}
               <div class="hpj__img-placeholder"></div>
               {%- endif -%}
@@ -163,19 +167,38 @@
     {%- endif -%}
 
     <!-- ═══ TESTIMONIAL ═══════════════════════════════════════════════════════ -->
-    {%- assign featured_testimonial = site.data.testimonials.testimonials | where: "featured", true | first -%}
-    {%- if featured_testimonial -%}
+    {%- assign featured_testimonials = site.data.testimonials.testimonials | where: "featured", true -%}
+    {%- if featured_testimonials.size > 0 -%}
     <section class="htm" data-animate>
-      <div class="htminner">
-        <blockquote class="htm__quote">
-          &ldquo;{{ featured_testimonial.quote }}&rdquo;
-        </blockquote>
-        <footer class="htm__footer">
-          <span class="htm__name">{{ featured_testimonial.name }}</span>
-          {%- if featured_testimonial.project -%}
-          <span class="htm__project">{{ featured_testimonial.project }}</span>
-          {%- endif -%}
-        </footer>
+      <div class="htminner" data-testimonial-slider>
+        <div class="htm__viewport">
+          <div class="htm__track">
+            {%- for testimonial in featured_testimonials -%}
+            <article class="htm__slide">
+              <blockquote class="htm__quote">
+                &ldquo;{{ testimonial.quote }}&rdquo;
+              </blockquote>
+              <footer class="htm__footer">
+                <span class="htm__name">{{ testimonial.name }}</span>
+                {%- if testimonial.project -%}
+                <span class="htm__project">{{ testimonial.project }}</span>
+                {%- endif -%}
+              </footer>
+            </article>
+            {%- endfor -%}
+          </div>
+        </div>
+        {%- if featured_testimonials.size > 1 -%}
+        <div class="htm__controls">
+          <button class="htm__btn" type="button" data-testimonial-prev aria-label="Previous testimonial">&larr;</button>
+          <div class="htm__dots">
+            {%- for testimonial in featured_testimonials -%}
+            <button class="htm__dot{% if forloop.first %} is-active{% endif %}" type="button" data-testimonial-to="{{ forloop.index0 }}" aria-label="Go to testimonial {{ forloop.index }}"></button>
+            {%- endfor -%}
+          </div>
+          <button class="htm__btn" type="button" data-testimonial-next aria-label="Next testimonial">&rarr;</button>
+        </div>
+        {%- endif -%}
       </div>
     </section>
     {%- endif -%}
@@ -218,6 +241,49 @@
     }, { threshold: 0.12 });
 
     document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+    // Testimonial slider
+    document.querySelectorAll('[data-testimonial-slider]').forEach((slider) => {
+      const track = slider.querySelector('.htm__track');
+      const slides = Array.from(slider.querySelectorAll('.htm__slide'));
+      const dots = Array.from(slider.querySelectorAll('[data-testimonial-to]'));
+      const prev = slider.querySelector('[data-testimonial-prev]');
+      const next = slider.querySelector('[data-testimonial-next]');
+      let index = 0;
+      let intervalId;
+
+      if (!track || slides.length <= 1) return;
+
+      const goTo = (newIndex) => {
+        index = (newIndex + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        slides.forEach((slide, slideIndex) => {
+          slide.classList.toggle('is-active', slideIndex === index);
+        });
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle('is-active', dotIndex === index);
+        });
+      };
+
+      const restartAuto = () => {
+        window.clearInterval(intervalId);
+        intervalId = window.setInterval(() => goTo(index + 1), 6000);
+      };
+
+      prev?.addEventListener('click', () => { goTo(index - 1); restartAuto(); });
+      next?.addEventListener('click', () => { goTo(index + 1); restartAuto(); });
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          goTo(Number(dot.dataset.testimonialTo));
+          restartAuto();
+        });
+      });
+
+      window.addEventListener('resize', () => goTo(index));
+      goTo(index);
+      restartAuto();
+    });
   </script>
 
 </body>

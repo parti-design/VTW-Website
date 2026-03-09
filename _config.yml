@@ -44,7 +44,8 @@ collections:
     output: true
     permalink: /wiki/:name/
   projects:
-    output: false
+    output: true
+    permalink: /projects/:slug/
 
 # Default front matter
 defaults:
@@ -67,7 +68,7 @@ defaults:
       path: "_projects"
       type: "projects"
     values:
-      layout: null
+      layout: "project"
 
 # Navigation
 nav_links:

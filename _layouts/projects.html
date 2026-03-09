@@ -2,11 +2,15 @@
 layout: default
 ---
 
-<div class="page-wrapper">
-  <div class="container">
-
-    <header class="page-header">
-      <h1 class="page-title">{{ page.title }}</h1>
+{%- assign projects = site.projects | sort: "year" | reverse -%}
+<section class="ip ip--projects">
+  <div class="ip__inner ip__inner--wide">
+    <header class="ip__head ip__head--split">
+      <div>
+        <p class="ip__label">Selected Work</p>
+        <h1 class="ip__title">{{ page.title }}</h1>
+        <p class="ip__subtitle">A representative sample of project types and contexts from around the Hudson Valley.</p>
+      </div>
     </header>
 
     <div class="project-filters" data-filter-group>
@@ -16,24 +20,26 @@ layout: default
       <button class="filter-btn" data-filter="Historical Restoration">Historical Restoration</button>
     </div>
 
-    {%- assign projects = site.projects | sort: "year" | reverse -%}
     {%- if projects.size > 0 -%}
     <div class="project-grid" id="project-grid">
       {%- for project in projects -%}
+      {%- assign project_cover = project.cover_image | default: project.photo -%}
       <article class="project-card" data-type="{{ project.type }}">
-        {%- if project.photo -%}
-        <div class="project-card__image">
-          <img src="{{ project.photo | relative_url }}" alt="{{ project.title | escape }}" loading="lazy" />
-        </div>
+        {%- if project_cover -%}
+        <a class="project-card__image" href="{{ project.url | relative_url }}">
+          <img src="{{ project_cover | relative_url }}" alt="{{ project.title | escape }}" loading="lazy" />
+        </a>
+        {%- else -%}
+        <a class="project-card__image project-card__image--placeholder" href="{{ project.url | relative_url }}" aria-label="View {{ project.title | escape }}"></a>
         {%- endif -%}
         <div class="project-card__body">
           <span class="project-card__type">{{ project.type }}</span>
-          <h2 class="project-card__title">{{ project.title | escape }}</h2>
+          <h2 class="project-card__title"><a href="{{ project.url | relative_url }}">{{ project.title | escape }}</a></h2>
           {%- if project.location -%}
-            <p class="project-card__location">{{ project.location }}</p>
+          <p class="project-card__location">{{ project.location }}</p>
           {%- endif -%}
           {%- if project.description -%}
-            <p class="project-card__description">{{ project.description }}</p>
+          <p class="project-card__description">{{ project.description }}</p>
           {%- endif -%}
         </div>
       </article>
@@ -42,21 +48,20 @@ layout: default
     {%- else -%}
     <p class="projects-empty">Project documentation coming soon. <a href="{{ '/contact/' | relative_url }}">Contact Severin</a> to learn more about his experience.</p>
     {%- endif -%}
-
   </div>
-</div>
+</section>
 
 <script>
   const filterBtns = document.querySelectorAll('.filter-btn');
   const cards = document.querySelectorAll('.project-card');
 
-  filterBtns.forEach(btn => {
+  filterBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('filter-btn--active'));
+      filterBtns.forEach((item) => item.classList.remove('filter-btn--active'));
       btn.classList.add('filter-btn--active');
       const filter = btn.dataset.filter;
-      cards.forEach(card => {
-        card.style.display = (filter === 'all' || card.dataset.type === filter) ? '' : 'none';
+      cards.forEach((card) => {
+        card.style.display = filter === 'all' || card.dataset.type === filter ? '' : 'none';
       });
     });
   });

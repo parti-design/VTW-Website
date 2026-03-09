@@ -2,35 +2,40 @@
 layout: default
 ---
 
-<div class="post-wrapper">
-  <div class="container">
-
+<section class="ip ip--post">
+  <div class="ip__inner ip__inner--wide">
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      <header class="ip__head">
+        <p class="ip__label">Articles</p>
+        <h1 class="ip__title" itemprop="name headline">{{ page.title | escape }}</h1>
+        <div class="ip-post__title-rule" aria-hidden="true"></div>
+      </header>
 
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
-        <p class="post-meta">
-          <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-            {{ page.date | date: "%B %-d, %Y" }}
-          </time>
-          {%- if page.author -%}
-            &nbsp;&middot;&nbsp;
+      <div class="ip-post">
+        <aside class="ip-post__meta">
+          <p class="ip__meta">
+            <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+              {{ page.date | date: "%B %-d, %Y" }}
+            </time>
+            {%- if page.author -%}
+            <span>&middot;</span>
             <span itemprop="author" itemscope itemtype="http://schema.org/Person">
               <span itemprop="name">{{ page.author }}</span>
             </span>
-          {%- endif -%}
-        </p>
-      </header>
+            {%- endif -%}
+          </p>
+        </aside>
 
-      <div class="post-content" itemprop="articleBody">
-        {{ content }}
+        <div class="ip-post__main">
+          <div class="ip__content" itemprop="articleBody">
+            {{ content }}
+          </div>
+
+          <footer class="ip__foot">
+            <a class="ip__back" href="{{ '/articles/' | relative_url }}">Back to articles</a>
+          </footer>
+        </div>
       </div>
-
-      <footer class="post-footer">
-        <a class="post-back-link" href="{{ '/' | relative_url }}">&larr; Back to home</a>
-      </footer>
-
     </article>
-
   </div>
-</div>
+</section>

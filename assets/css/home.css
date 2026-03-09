@@ -119,11 +119,37 @@
 
 .hh__inner {
   position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
   padding-top: 8rem;
   padding-bottom: 6rem;
+}
+
+/* Hero floating photo — right edge, behind heading text */
+.hh__photo {
+  position: absolute;
+  top: 8rem;
+  right: 0;
+  width: 44%;
+  bottom: 0;
+  background: var(--warm-gray);
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hh__photo::after {
+  content: 'Photo';
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mid-gray);
+  opacity: 0.5;
 }
 
 .hh__label {
@@ -214,11 +240,41 @@
   background: var(--white);
   padding: 8rem 3rem;
   border-bottom: 1px solid var(--warm-gray);
+  position: relative;
+  overflow: hidden;
 }
 
 .hs__inner {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Statement floating photo — right edge, behind large text */
+.hs__photo {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36%;
+  height: 90%;
+  background: var(--warm-gray);
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hs__photo::after {
+  content: 'Photo';
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mid-gray);
+  opacity: 0.5;
 }
 
 .hs__text {
@@ -247,6 +303,8 @@
   background: var(--cream-mid);
   padding: 8rem 3rem;
   border-bottom: 1px solid var(--warm-gray);
+  position: relative;
+  overflow: hidden;
 }
 
 .hav__inner {
@@ -256,6 +314,33 @@
   grid-template-columns: 200px 1fr;
   gap: 4rem;
   align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+/* Advocate floating photo — left edge, behind quote */
+.hav__photo {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 28%;
+  height: 88%;
+  background: var(--warm-gray);
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hav__photo::after {
+  content: 'Photo';
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mid-gray);
+  opacity: 0.5;
 }
 
 .hav__label {
@@ -506,9 +591,32 @@
 }
 
 .htminner {
-  max-width: 800px;
+  max-width: 980px;
   margin: 0 auto;
   text-align: center;
+}
+
+.htm__viewport {
+  overflow: hidden;
+  padding: 0;
+}
+
+.htm__track {
+  display: flex;
+  gap: 0;
+  transition: transform 0.35s ease;
+}
+
+.htm__slide {
+  flex: 0 0 100%;
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.htm__slide.is-active {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .htm__quote {
@@ -544,6 +652,49 @@
   font-size: 0.75rem;
   font-weight: 300;
   color: var(--mid-gray);
+}
+
+.htm__controls {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.htm__btn {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--warm-gray);
+  background: transparent;
+  color: var(--mid-gray);
+  cursor: pointer;
+}
+
+.htm__btn:hover {
+  color: var(--black);
+  border-color: var(--black);
+}
+
+.htm__dots {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.htm__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--mid-gray);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.htm__dot.is-active {
+  background: var(--black);
+  border-color: var(--black);
 }
 
 /* --- CTA ------------------------------------------------------------------- */
@@ -652,6 +803,11 @@
   .hh { padding: 0 1.5rem; }
   .hh__scroll-hint { right: 1.5rem; }
 
+  /* Hide floating editorial photos on smaller screens */
+  .hh__photo,
+  .hs__photo,
+  .hav__photo { display: none; }
+
   .hs  { padding: 5rem 1.5rem; }
   .hav { padding: 5rem 1.5rem; }
   .hsv { padding: 5rem 1.5rem; }
@@ -667,10 +823,20 @@
   .hsv__link { display: none; }
 
   .hpj__grid { grid-template-columns: 1fr 1fr; }
+
+  .htm__viewport { padding: 0; }
+  .htm__slide { flex-basis: 100%; }
 }
 
 @media (max-width: 600px) {
   .hn__list { display: none; }
   .hpj__grid { grid-template-columns: 1fr; }
   .hsv__item { grid-template-columns: 40px 1fr; }
+
+  .htm__viewport { padding: 0; }
+  .htm__slide {
+    flex-basis: 100%;
+    opacity: 1;
+    transform: none;
+  }
 }

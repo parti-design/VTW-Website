@@ -1,0 +1,91 @@
+---
+layout: default
+---
+
+<section class="ip ip--project">
+  <div class="ip__inner ip__inner--wide">
+    <article class="project-page">
+      <header class="ip__head">
+        <p class="ip__label">{{ page.type | default: "Project" }}</p>
+        <h1 class="ip__title">{{ page.title }}</h1>
+        <p class="ip__meta">
+          {%- if page.location -%}<span>{{ page.location }}</span>{%- endif -%}
+          {%- if page.year -%}
+          {%- if page.location -%}<span>&middot;</span>{%- endif -%}
+          <span>{{ page.year }}</span>
+          {%- endif -%}
+        </p>
+      </header>
+
+      {%- assign gallery_images = page.gallery -%}
+      {%- if gallery_images and gallery_images.size > 0 -%}
+      <section class="project-slider" aria-label="Project image carousel" data-project-slider>
+        <div class="project-slider__viewport">
+          <div class="project-slider__track">
+            {%- for image in gallery_images -%}
+            {%- assign image_path = image.image | default: image -%}
+            <figure class="project-slider__slide">
+              <img src="{{ image_path | relative_url }}" alt="{{ page.title | escape }} image {{ forloop.index }}" loading="lazy" />
+            </figure>
+            {%- endfor -%}
+          </div>
+        </div>
+
+        {%- if gallery_images.size > 1 -%}
+        <div class="project-slider__controls">
+          <button class="project-slider__btn" type="button" data-slide-prev aria-label="Previous image">&larr;</button>
+          <div class="project-slider__dots">
+            {%- for image in gallery_images -%}
+            <button class="project-slider__dot{% if forloop.first %} is-active{% endif %}" type="button" data-slide-to="{{ forloop.index0 }}" aria-label="Go to image {{ forloop.index }}"></button>
+            {%- endfor -%}
+          </div>
+          <button class="project-slider__btn" type="button" data-slide-next aria-label="Next image">&rarr;</button>
+        </div>
+        {%- endif -%}
+      </section>
+      {%- endif -%}
+
+      <div class="project-page__body ip__content">
+        {%- assign body_text = content | strip -%}
+        {%- if body_text != "" -%}
+          {{ content }}
+        {%- elsif page.description -%}
+          <p>{{ page.description }}</p>
+        {%- endif -%}
+      </div>
+
+      <footer class="ip__foot">
+        <a class="ip__back" href="{{ '/projects/' | relative_url }}">Back to projects</a>
+      </footer>
+    </article>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('[data-project-slider]').forEach((slider) => {
+    const track = slider.querySelector('.project-slider__track');
+    const slides = Array.from(slider.querySelectorAll('.project-slider__slide'));
+    const dots = Array.from(slider.querySelectorAll('[data-slide-to]'));
+    const prev = slider.querySelector('[data-slide-prev]');
+    const next = slider.querySelector('[data-slide-next]');
+    let index = 0;
+
+    if (!track || slides.length <= 1) return;
+
+    const goTo = (newIndex) => {
+      index = (newIndex + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle('is-active', dotIndex === index);
+      });
+    };
+
+    prev?.addEventListener('click', () => goTo(index - 1));
+    next?.addEventListener('click', () => goTo(index + 1));
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        goTo(Number(dot.dataset.slideTo));
+      });
+    });
+  });
+</script>

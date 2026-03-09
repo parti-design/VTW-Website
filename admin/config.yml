@@ -79,14 +79,21 @@ collections:
     folder: _projects
     create: true
     slug: "{{slug}}"
+    preview_path: "projects/{{slug}}/"
     fields:
       - { label: Title,       name: title,       widget: string }
       - { label: Type,        name: type,        widget: select, options: ["New Construction", "Renovation", "Historical Restoration"] }
-      - { label: Photo,       name: photo,       widget: image }
+      - { label: Cover Image, name: cover_image, widget: image, required: false }
+      - label: Gallery
+        name: gallery
+        widget: list
+        required: false
+        field: { label: Image, name: image, widget: image }
       - { label: Description, name: description, widget: text,   required: false }
       - { label: Featured,    name: featured,    widget: boolean, default: false, hint: "Show on homepage" }
       - { label: Year,        name: year,        widget: number, required: false }
       - { label: Location,    name: location,    widget: string, required: false }
+      - { label: Body,        name: body,        widget: markdown, required: false }
 
   # ---- Posts / Articles ----------------------------------------------------
   - name: posts

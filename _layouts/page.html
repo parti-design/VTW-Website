@@ -2,21 +2,29 @@
 layout: default
 ---
 
-<div class="page-wrapper">
-  <div class="container">
-
-    <header class="page-header">
+<section class="ip ip--generic ip--{{ page.title | slugify }}">
+  <div class="ip__inner">
+    <header class="ip__head">
+      <p class="ip__label">Hudson Valley Building Consulting</p>
       {%- if page.title -%}
-        <h1 class="page-title">{{ page.title }}</h1>
+      <h1 class="ip__title">{{ page.title }}</h1>
       {%- endif -%}
       {%- if page.subtitle -%}
-        <p class="page-subtitle">{{ page.subtitle }}</p>
+      <p class="ip__subtitle">{{ page.subtitle }}</p>
+      {%- elsif page.description -%}
+      <p class="ip__subtitle">{{ page.description }}</p>
       {%- endif -%}
     </header>
 
-    <div class="page-content">
+    <div class="ip__content">
       {{ content }}
     </div>
 
+    {%- if page.url == '/about/' or page.url == '/services/' or page.url == '/faq/' -%}
+    <footer class="ip__cta">
+      <p class="ip__cta-text">Have a project in mind and want a grounded second set of eyes?</p>
+      <a class="ip__cta-link" href="{{ '/contact/' | relative_url }}">Start a conversation</a>
+    </footer>
+    {%- endif -%}
   </div>
-</div>
+</section>

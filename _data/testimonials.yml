@@ -1,7 +1,22 @@
 testimonials:
   - quote: >-
-      Placeholder testimonial — replace with a real quote from a client.
-      Severin helped us navigate a complex restoration project from start to finish.
-    name: "Client Name"
-    project: "Historical Barn Restoration, Columbia County"
+      We were new to managing a renovation at this scale, and Severin brought
+      immediate clarity. His guidance on scope and contractor decisions saved
+      us from costly mistakes and kept the project steady.
+    name: "Homeowner"
+    project: "Farmhouse Renovation, Dutchess County"
+    featured: true
+  - quote: >-
+      On our historic barn project, Severin gave us practical advice at every
+      critical decision point. He helped us protect the character of the
+      building while still moving the work forward efficiently.
+    name: "Property Owner"
+    project: "Barn Restoration, Columbia County"
+    featured: true
+  - quote: >-
+      From planning through final punch list, he represented our interests with
+      total independence. We always felt we had someone experienced in our
+      corner who understood both the technical and budget realities.
+    name: "Client"
+    project: "New Residence, Ulster County"
     featured: true

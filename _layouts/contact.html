@@ -2,15 +2,26 @@
 layout: default
 ---
 
-<div class="page-wrapper">
-  <div class="container">
+<section class="ip ip--contact">
+  <div class="ip__inner ip__inner--wide">
+    <header class="ip__head ip__head--split">
+      <div>
+        <p class="ip__label">Start A Conversation</p>
+        <h1 class="ip__title">{{ page.title }}</h1>
+        <p class="ip__subtitle">Tell me where you are in the process and what decisions are ahead of you.</p>
+      </div>
+      <aside class="contact-note" aria-label="Response information">
+        <p class="contact-note__label">What to include</p>
+        <ul class="contact-note__list">
+          <li>Project location and type</li>
+          <li>Current phase and timeline</li>
+          <li>Where you want outside guidance</li>
+        </ul>
+      </aside>
+    </header>
+
     <div class="contact-simple">
-
-      <header class="page-header">
-        <h1 class="page-title">{{ page.title }}</h1>
-      </header>
-
-      <div class="contact-simple__body">
+      <div class="contact-simple__body ip__content">
         {{ content }}
       </div>
 
@@ -21,18 +32,19 @@ layout: default
           <a class="contact-detail__value" href="tel:{{ page.phone | remove: ' ' | remove: '-' | remove: '(' | remove: ')' }}">{{ page.phone }}</a>
         </div>
         {%- endif -%}
+
         {%- if page.email and page.email != "" -%}
         <div class="contact-detail">
           <span class="contact-detail__label">Email</span>
           <a class="contact-detail__value" href="mailto:{{ page.email }}">{{ page.email }}</a>
         </div>
         {%- endif -%}
+
         <div class="contact-detail">
           <span class="contact-detail__label">Based in</span>
           <span class="contact-detail__value">Hudson Valley, NY</span>
         </div>
       </div>
-
     </div>
   </div>
-</div>
+</section>
