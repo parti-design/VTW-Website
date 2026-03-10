@@ -472,6 +472,19 @@ body {
   max-width: 980px;
 }
 
+.project-cover {
+  margin: 0 0 1.8rem;
+  background: #eceae3;
+  border: 1px solid #d8d4ca;
+}
+
+.project-cover img {
+  display: block;
+  width: 100%;
+  height: clamp(340px, 56vw, 620px);
+  object-fit: cover;
+}
+
 .project-slider {
   margin-bottom: 2rem;
 }
@@ -543,6 +556,99 @@ body {
 
 .project-page__body {
   max-width: 760px;
+}
+
+.project-gallery {
+  margin-top: 2.4rem;
+}
+
+.project-gallery__title {
+  margin: 0 0 1rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.7rem, 4vw, 2.2rem);
+  font-weight: 400;
+}
+
+.project-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.project-gallery__item {
+  margin: 0;
+  border: 1px solid #d8d4ca;
+  padding: 0;
+  background: #eceae3;
+  cursor: pointer;
+}
+
+.project-gallery__item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.project-lightbox {
+  width: min(96vw, 1200px);
+  max-height: 92vh;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.project-lightbox::backdrop {
+  background: rgba(13, 13, 11, 0.84);
+}
+
+.project-lightbox__frame {
+  margin: 0;
+  border: 1px solid #d8d4ca;
+  background: #eceae3;
+}
+
+.project-lightbox__frame img {
+  display: block;
+  width: 100%;
+  height: min(86vh, 900px);
+  object-fit: contain;
+  background: #11110f;
+}
+
+.project-lightbox__close,
+.project-lightbox__nav {
+  position: absolute;
+  border: 1px solid #d8d4ca;
+  background: #f5f3ee;
+  color: #0d0d0b;
+  cursor: pointer;
+}
+
+.project-lightbox__close {
+  top: -2.4rem;
+  right: 0;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.45rem;
+  line-height: 1;
+}
+
+.project-lightbox__nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.project-lightbox__nav--prev {
+  left: -2.8rem;
+}
+
+.project-lightbox__nav--next {
+  right: -2.8rem;
 }
 
 .article-feature {
@@ -777,6 +883,18 @@ a.contact-detail__value:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .project-gallery__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-lightbox__nav--prev {
+    left: 0.4rem;
+  }
+
+  .project-lightbox__nav--next {
+    right: 0.4rem;
+  }
+
   .article-item {
     grid-template-columns: 1fr;
     gap: 0.45rem;
@@ -789,6 +907,10 @@ a.contact-detail__value:hover {
 
 @media (max-width: 600px) {
   .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-gallery__grid {
     grid-template-columns: 1fr;
   }
 

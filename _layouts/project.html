@@ -18,31 +18,15 @@ layout: default
       </header>
 
       {%- assign gallery_images = page.gallery -%}
-      {%- if gallery_images and gallery_images.size > 0 -%}
-      <section class="project-slider" aria-label="Project image carousel" data-project-slider>
-        <div class="project-slider__viewport">
-          <div class="project-slider__track">
-            {%- for image in gallery_images -%}
-            {%- assign image_path = image.image | default: image -%}
-            <figure class="project-slider__slide">
-              <img src="{{ image_path | relative_url }}" alt="{{ page.title | escape }} image {{ forloop.index }}" loading="lazy" />
-            </figure>
-            {%- endfor -%}
-          </div>
-        </div>
-
-        {%- if gallery_images.size > 1 -%}
-        <div class="project-slider__controls">
-          <button class="project-slider__btn" type="button" data-slide-prev aria-label="Previous image">&larr;</button>
-          <div class="project-slider__dots">
-            {%- for image in gallery_images -%}
-            <button class="project-slider__dot{% if forloop.first %} is-active{% endif %}" type="button" data-slide-to="{{ forloop.index0 }}" aria-label="Go to image {{ forloop.index }}"></button>
-            {%- endfor -%}
-          </div>
-          <button class="project-slider__btn" type="button" data-slide-next aria-label="Next image">&rarr;</button>
-        </div>
-        {%- endif -%}
-      </section>
+      {%- assign cover_path = page.cover_image | default: page.photo -%}
+      {%- if cover_path == nil and gallery_images and gallery_images.size > 0 -%}
+        {%- assign cover_source = gallery_images | first -%}
+        {%- assign cover_path = cover_source.image | default: cover_source -%}
+      {%- endif -%}
+      {%- if cover_path -%}
+      <figure class="project-cover">
+        <img src="{{ cover_path | relative_url }}" alt="{{ page.title | escape }} cover image" loading="eager" />
+      </figure>
       {%- endif -%}
 
       <div class="project-page__body ip__content">
@@ -54,6 +38,37 @@ layout: default
         {%- endif -%}
       </div>
 
+      {%- if gallery_images and gallery_images.size > 0 -%}
+      <section class="project-gallery" aria-label="Project photo gallery" data-project-lightbox>
+        <h2 class="project-gallery__title">Gallery</h2>
+        <div class="project-gallery__grid">
+          {%- for image in gallery_images -%}
+          {%- assign image_path = image.image | default: image -%}
+          {%- if image_path != cover_path -%}
+          <button
+            class="project-gallery__item"
+            type="button"
+            data-lightbox-index="{{ forloop.index0 }}"
+            data-lightbox-src="{{ image_path | relative_url }}"
+            aria-label="Open image {{ forloop.index }}"
+          >
+            <img src="{{ image_path | relative_url }}" alt="{{ page.title | escape }} image {{ forloop.index }}" loading="lazy" />
+          </button>
+          {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <dialog class="project-lightbox" data-lightbox>
+          <button class="project-lightbox__close" type="button" data-lightbox-close aria-label="Close gallery">&times;</button>
+          <button class="project-lightbox__nav project-lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Previous image">&larr;</button>
+          <figure class="project-lightbox__frame">
+            <img src="" alt="" data-lightbox-image />
+          </figure>
+          <button class="project-lightbox__nav project-lightbox__nav--next" type="button" data-lightbox-next aria-label="Next image">&rarr;</button>
+        </dialog>
+      </section>
+      {%- endif -%}
+
       <footer class="ip__foot">
         <a class="ip__back" href="{{ '/projects/' | relative_url }}">Back to projects</a>
       </footer>
@@ -62,30 +77,40 @@ layout: default
 </section>
 
 <script>
-  document.querySelectorAll('[data-project-slider]').forEach((slider) => {
-    const track = slider.querySelector('.project-slider__track');
-    const slides = Array.from(slider.querySelectorAll('.project-slider__slide'));
-    const dots = Array.from(slider.querySelectorAll('[data-slide-to]'));
-    const prev = slider.querySelector('[data-slide-prev]');
-    const next = slider.querySelector('[data-slide-next]');
+  document.querySelectorAll('[data-project-lightbox]').forEach((gallery) => {
+    const thumbs = Array.from(gallery.querySelectorAll('[data-lightbox-src]'));
+    const lightbox = gallery.querySelector('[data-lightbox]');
+    const lightboxImage = gallery.querySelector('[data-lightbox-image]');
+    const close = gallery.querySelector('[data-lightbox-close]');
+    const prev = gallery.querySelector('[data-lightbox-prev]');
+    const next = gallery.querySelector('[data-lightbox-next]');
     let index = 0;
 
-    if (!track || slides.length <= 1) return;
+    if (!lightbox || !lightboxImage || thumbs.length === 0) return;
 
-    const goTo = (newIndex) => {
-      index = (newIndex + slides.length) % slides.length;
-      track.style.transform = `translateX(-${index * 100}%)`;
-      dots.forEach((dot, dotIndex) => {
-        dot.classList.toggle('is-active', dotIndex === index);
-      });
+    const show = (nextIndex) => {
+      index = (nextIndex + thumbs.length) % thumbs.length;
+      const thumb = thumbs[index];
+      lightboxImage.src = thumb.dataset.lightboxSrc;
+      lightboxImage.alt = thumb.querySelector('img')?.alt || '';
     };
 
-    prev?.addEventListener('click', () => goTo(index - 1));
-    next?.addEventListener('click', () => goTo(index + 1));
-    dots.forEach((dot) => {
-      dot.addEventListener('click', () => {
-        goTo(Number(dot.dataset.slideTo));
+    thumbs.forEach((thumb, thumbIndex) => {
+      thumb.addEventListener('click', () => {
+        show(thumbIndex);
+        lightbox.showModal();
       });
+    });
+
+    prev?.addEventListener('click', () => show(index - 1));
+    next?.addEventListener('click', () => show(index + 1));
+    close?.addEventListener('click', () => lightbox.close());
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) lightbox.close();
+    });
+    lightbox.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') show(index - 1);
+      if (event.key === 'ArrowRight') show(index + 1);
     });
   });
 </script>

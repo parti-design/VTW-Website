@@ -1,0 +1,46 @@
+---
+title: "Y. H. Apartment Renovation"
+type: "Renovation"
+cover_image: "/assets/images/projects/y-h-apartment-renovation/01-P1210942.jpg"
+gallery:
+  - image: "/assets/images/projects/y-h-apartment-renovation/01-P1210942.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/02-P1210877_1.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/03-P1210869.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/04-P1210920.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/05-P1210923-1.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/06-P1210924.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/07-P1210907.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/08-P1210911.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/09-P1210912.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/10-P1210915.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/11-P1210876.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/12-P1210897.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/13-P1210901.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/14-P1210949.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/15-P1210927.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/16-P1210926.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/17-P1210899.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/18-P1210948.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/19-P1210925.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/20-P1210883.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/21-P1210884-1.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/22-P1210878.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/23-P1210934.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/24-P1210935.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/25-P1210936.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/26-P1210894.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/27-P1210937.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/28-P1210938.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/29-P1210940.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/30-P1210941.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/31-P1210945.jpg"
+  - image: "/assets/images/projects/y-h-apartment-renovation/32-P1210947.jpg"
+description: "Imported from Severin's prior project archive at synchrobuild.com."
+featured: false
+year: 2017
+location: "Hudson Valley, NY"
+source_url: "https://www.synchrobuild.com/work/y-h-apartment-renovation/"
+---
+
+
+Project imported from the previous Synchrobuild portfolio.
