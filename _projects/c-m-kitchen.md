@@ -1,7 +1,7 @@
 ---
 title: C. M. Kitchen
 type: Renovation
-cover_image: /assets/images/projects/s-sc-kitchen/18-IMG_0035.jpg
+cover_image: /assets/images/projects/c-m-kitchen/01-CM1073.jpg
 description: Imported from Severin's prior project archive at synchrobuild.com.
 featured: false
 year: 2017
