@@ -24,10 +24,22 @@ collections:
         fields:
           - { label: Layout,          name: layout,          widget: hidden, default: home }
           - { label: Title,           name: title,           widget: string }
+          - { label: Hero Label,      name: hero_label,      widget: string,   required: false }
           - { label: Hero Heading,    name: hero_heading,    widget: string,   required: false }
           - { label: Hero Subheading, name: hero_subheading, widget: text,     required: false }
           - { label: Hero Image,      name: hero_image,      widget: image,    required: false }
-          - { label: Intro Text,      name: intro_text,      widget: text,     required: false }
+          - { label: Hero CTA Text,   name: hero_cta_text,   widget: string,   required: false }
+          - { label: Statement Text,  name: statement_text,  widget: text,     required: false }
+          - { label: Statement Aside, name: statement_aside, widget: string,   required: false }
+          - { label: Statement Image, name: statement_image, widget: image,    required: false }
+          - { label: Advocate Label,  name: advocate_label,  widget: string,   required: false }
+          - { label: Advocate Quote,  name: advocate_quote,  widget: text,     required: false }
+          - { label: Advocate Name,   name: advocate_name,   widget: string,   required: false }
+          - { label: Advocate Context, name: advocate_context, widget: text,   required: false }
+          - { label: Advocate Image,  name: advocate_image,  widget: image,    required: false }
+          - { label: Footer CTA Heading, name: home_cta_heading, widget: text, required: false }
+          - { label: Footer CTA Subheading, name: home_cta_sub, widget: text,  required: false }
+          - { label: Footer CTA Link Text, name: home_cta_link_text, widget: string, required: false }
           - { label: Body,            name: body,            widget: markdown }
 
       - label: About
@@ -67,8 +79,11 @@ collections:
           - { label: Layout,      name: layout,      widget: hidden, default: contact }
           - { label: Title,       name: title,       widget: string }
           - { label: Permalink,   name: permalink,   widget: hidden, default: /contact/ }
-          - { label: Phone,       name: phone,       widget: string, required: false }
-          - { label: Email,       name: email,       widget: string, required: false }
+          - { label: Phone Area Code, name: phone_area, widget: string, required: false, hint: "First 3 digits" }
+          - { label: Phone Prefix, name: phone_prefix, widget: string, required: false, hint: "Middle 3 digits" }
+          - { label: Phone Line Number, name: phone_line, widget: string, required: false, hint: "Last 4 digits" }
+          - { label: Email User,  name: email_user,  widget: string, required: false, hint: "Text before the @ sign" }
+          - { label: Email Domain, name: email_domain, widget: string, required: false, hint: "Text after the @ sign" }
           - { label: Description, name: description, widget: text,   required: false }
           - { label: Body,        name: body,        widget: markdown }
 

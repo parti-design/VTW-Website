@@ -5,7 +5,18 @@ permalink: /services/
 description: "Building consulting services offered by Severin Winter in the Hudson Valley, NY."
 ---
 
-Severin Winter offers consulting, design, and planning services — not general contracting. He brings the knowledge and experience of a career contractor to an independent advisory role, working exclusively on behalf of the client.
+Severin Winter offers consulting, design, and planning services. He brings the knowledge and experience of a career contractor to an independent advisory role, working exclusively on behalf of the client.
+
+---
+
+## Design & Planning
+
+For clients in the early stages of a project, Severin works with owners and their architects to develop projects from concept to a buildable, budgeted plan. This includes:
+
+- Programming and scope definition
+- Design review for constructability and cost
+- Phasing and scheduling strategy
+- Contractor procurement planning
 
 ---
 
@@ -37,7 +48,7 @@ Renovating an existing structure — especially an older one — carries risks t
 
 ## Historical Restoration & Preservation
 
-This is Severin's specialty. The Hudson Valley is home to some of the most distinctive historic domestic and agricultural architecture in the country — and restoring it well requires knowledge that most contractors simply don't have.
+This is Severin's specialty. The Hudson Valley is home to historic domestic and agricultural architecture — and restoring it well requires knowledge that most contractors simply don't have.
 
 Severin advises on:
 
@@ -50,14 +61,9 @@ Severin advises on:
 
 ---
 
-## Design & Planning
+## Billing
 
-For clients in the early stages of a project, Severin works with owners and their architects to develop projects from concept to a buildable, budgeted plan. This includes:
-
-- Programming and scope definition
-- Design review for constructability and cost
-- Phasing and scheduling strategy
-- Contractor procurement planning
+Severin keeps track of his time and bills at an hourly rate. Billing is straightforward and tied to the actual scope of involvement, whether that is an initial assessment, periodic advisory work, or ongoing owner's representation through a project.
 
 ---
 
@@ -74,7 +80,3 @@ A written proposal outlining the scope of consulting services and the engagement
 
 **4. Engagement**
 Work begins. The depth of ongoing involvement is calibrated to the project's needs and the client's preferences.
-
----
-
-[Start a conversation](/contact/)

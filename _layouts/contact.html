@@ -2,6 +2,23 @@
 layout: default
 ---
 
+{%- assign email_user = page.email_user | default: "" -%}
+{%- assign email_domain = page.email_domain | default: "" -%}
+{%- assign phone_area = page.phone_area | default: "" -%}
+{%- assign phone_prefix = page.phone_prefix | default: "" -%}
+{%- assign phone_line = page.phone_line | default: "" -%}
+{%- if phone_area == "" and phone_prefix == "" and phone_line == "" and page.phone and page.phone != "" -%}
+  {%- assign phone_digits = page.phone | remove: ' ' | remove: '-' | remove: '(' | remove: ')' | remove: '.' -%}
+  {%- assign phone_area = phone_digits | slice: 0, 3 -%}
+  {%- assign phone_prefix = phone_digits | slice: 3, 3 -%}
+  {%- assign phone_line = phone_digits | slice: 6, 4 -%}
+{%- endif -%}
+{%- if email_user == "" and page.email and page.email != "" -%}
+  {%- assign email_parts = page.email | split: '@' -%}
+  {%- assign email_user = email_parts[0] | default: "" -%}
+  {%- assign email_domain = email_parts[1] | default: "" -%}
+{%- endif -%}
+
 <section class="ip ip--contact">
   <div class="ip__inner ip__inner--wide">
     <header class="ip__head ip__head--split">
@@ -26,17 +43,36 @@ layout: default
       </div>
 
       <div class="contact-simple__details">
-        {%- if page.phone and page.phone != "" -%}
+        {%- if phone_area != "" and phone_prefix != "" and phone_line != "" -%}
         <div class="contact-detail">
           <span class="contact-detail__label">Phone</span>
-          <a class="contact-detail__value" href="tel:{{ page.phone | remove: ' ' | remove: '-' | remove: '(' | remove: ')' }}">{{ page.phone }}</a>
+          <a
+            class="contact-detail__value"
+            href="#"
+            data-phone-link
+            data-area-rev="{{ phone_area | split: '' | reverse | join: '' }}"
+            data-prefix-rev="{{ phone_prefix | split: '' | reverse | join: '' }}"
+            data-line-rev="{{ phone_line | split: '' | reverse | join: '' }}"
+          >Phone available with JavaScript enabled</a>
+          <noscript>
+            <span class="contact-detail__value">Please email to request the phone number.</span>
+          </noscript>
         </div>
         {%- endif -%}
 
-        {%- if page.email and page.email != "" -%}
+        {%- if email_user != "" and email_domain != "" -%}
         <div class="contact-detail">
           <span class="contact-detail__label">Email</span>
-          <a class="contact-detail__value" href="mailto:{{ page.email }}">{{ page.email }}</a>
+          <a
+            class="contact-detail__value"
+            href="#"
+            data-email-link
+            data-user-rev="{{ email_user | split: '' | reverse | join: '' }}"
+            data-domain-rev="{{ email_domain | split: '' | reverse | join: '' }}"
+          >Email available with JavaScript enabled</a>
+          <noscript>
+            <span class="contact-detail__value">Please call to request the email address.</span>
+          </noscript>
         </div>
         {%- endif -%}
 
@@ -48,3 +84,27 @@ layout: default
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('[data-phone-link]').forEach((link) => {
+    const area = (link.dataset.areaRev || '').split('').reverse().join('');
+    const prefix = (link.dataset.prefixRev || '').split('').reverse().join('');
+    const line = (link.dataset.lineRev || '').split('').reverse().join('');
+    if (!area || !prefix || !line) return;
+
+    const phoneLabel = `${area} ${prefix} ${line}`;
+    const phoneHref = `${area}${prefix}${line}`;
+    link.href = `tel:${phoneHref}`;
+    link.textContent = phoneLabel;
+  });
+
+  document.querySelectorAll('[data-email-link]').forEach((link) => {
+    const user = (link.dataset.userRev || '').split('').reverse().join('');
+    const domain = (link.dataset.domainRev || '').split('').reverse().join('');
+    if (!user || !domain) return;
+
+    const email = `${user}@${domain}`;
+    link.href = `mailto:${email}`;
+    link.textContent = email;
+  });
+</script>

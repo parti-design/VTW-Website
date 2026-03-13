@@ -3,7 +3,7 @@ layout: default
 ---
 
 <section class="ip ip--generic ip--{{ page.title | slugify }}">
-  <div class="ip__inner">
+  <div class="ip__inner ip__inner--wide">
     <header class="ip__head">
       <p class="ip__label">Hudson Valley Building Consulting</p>
       {%- if page.title -%}
@@ -19,12 +19,5 @@ layout: default
     <div class="ip__content">
       {{ content }}
     </div>
-
-    {%- if page.url == '/about/' or page.url == '/services/' or page.url == '/faq/' -%}
-    <footer class="ip__cta">
-      <p class="ip__cta-text">Have a project in mind and want a grounded second set of eyes?</p>
-      <a class="ip__cta-link" href="{{ '/contact/' | relative_url }}">Start a conversation</a>
-    </footer>
-    {%- endif -%}
   </div>
 </section>

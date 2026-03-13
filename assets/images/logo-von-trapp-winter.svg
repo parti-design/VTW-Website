@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-labelledby="title desc">
+  <title id="title">Von Trapp Winter logo</title>
+  <desc id="desc">A simplified tree icon above the words Von Trapp Winter.</desc>
+  <defs>
+    <style>
+      .mark {
+        fill: none;
+        stroke: #2c2419;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 6;
+      }
+      .accent {
+        stroke: #b8a07a;
+        stroke-linecap: round;
+        stroke-width: 4;
+      }
+      .wordmark {
+        fill: #2c2419;
+        font-family: Georgia, "Times New Roman", serif;
+        text-anchor: middle;
+      }
+      .wordmark--top {
+        font-size: 18px;
+        letter-spacing: 0.2em;
+      }
+      .wordmark--bottom {
+        font-size: 24px;
+        letter-spacing: 0.18em;
+      }
+    </style>
+  </defs>
+
+  <g transform="translate(110 16)">
+    <path class="mark" d="M0 8 -33 42h20l-26 34h18l-22 31h86l-22-31h18L13 42h20z" />
+    <path class="mark" d="M0 107v24" />
+    <path class="accent" d="M-36 139h72" />
+  </g>
+
+  <text class="wordmark wordmark--top" x="110" y="184">VON TRAPP</text>
+  <text class="wordmark wordmark--bottom" x="110" y="208">WINTER</text>
+</svg>

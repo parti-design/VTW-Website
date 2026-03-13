@@ -17,11 +17,26 @@
   {%- seo -%}
 </head>
 <body class="page-home">
+  {%- assign hero_label = page.hero_label | default: "Hudson Valley &mdash; Building Consultant" -%}
+  {%- assign hero_heading = page.hero_heading | default: "Your advocate&#10;on every&#10;decision." -%}
+  {%- assign hero_subheading = page.hero_subheading | default: "New construction. Renovation. Historical restoration.&#10;Independent counsel with no conflicts of interest." -%}
+  {%- assign hero_cta_text = page.hero_cta_text | default: "Start a conversation" -%}
+  {%- assign statement_text = page.statement_text | default: "Most people navigate their biggest financial decision without anyone truly in their corner." -%}
+  {%- assign statement_aside = page.statement_aside | default: "That&rsquo;s where I come in." -%}
+  {%- assign advocate_label = page.advocate_label | default: "The difference" -%}
+  {%- assign advocate_quote = page.advocate_quote | default: "I have no financial relationship with any contractor, supplier, or architect I recommend. No markup on materials. No referral fees. My compensation comes from you &mdash; and my obligation belongs entirely to your project." -%}
+  {%- assign advocate_name = page.advocate_name | default: "Severin Winter" -%}
+  {%- assign advocate_context = page.advocate_context | default: "Forty years of building in the Hudson Valley. Now working exclusively as an independent advisor." -%}
+  {%- assign cta_heading = page.home_cta_heading | default: "Let&rsquo;s start with&#10;a conversation." -%}
+  {%- assign cta_sub = page.home_cta_sub | default: "No obligation. Tell me about your project and where you are in the process." -%}
+  {%- assign cta_link_text = page.home_cta_link_text | default: "Get in touch &rarr;" -%}
 
   <!-- ═══ NAV ═══════════════════════════════════════════════════════════════ -->
   <header class="hn" id="hn">
     <div class="hn__inner">
-      <a class="hn__logo" href="{{ '/' | relative_url }}">Severin Winter</a>
+      <a class="hn__logo" href="{{ '/' | relative_url }}" aria-label="Von Trapp Winter">
+        <img class="hn__logo-mark" src="{{ '/assets/images/logo-von-trapp-winter.svg' | relative_url }}" alt="Von Trapp Winter" />
+      </a>
       <nav class="hn__nav" aria-label="Main navigation">
         <ul class="hn__list">
           {%- for link in site.nav_links -%}
@@ -40,17 +55,16 @@
 
     <!-- ═══ HERO ══════════════════════════════════════════════════════════════ -->
     <section class="hh">
-      <div class="hh__photo" aria-hidden="true"></div>
+      <div class="hh__photo{% if page.hero_image %} has-image{% endif %}"{% if page.hero_image %} style="background-image: url('{{ page.hero_image | relative_url }}');"{% endif %} aria-hidden="true"></div>
       <div class="hh__inner">
-        <p class="hh__label">Hudson Valley &mdash; Building Consultant</p>
+        <p class="hh__label">{{ hero_label }}</p>
         <h1 class="hh__heading">
-          Your advocate<br>on every<br>decision.
+          {{ hero_heading | newline_to_br }}
         </h1>
         <p class="hh__sub">
-          New construction. Renovation. Historical restoration.<br>
-          Independent counsel with no conflicts of interest.
+          {{ hero_subheading | newline_to_br }}
         </p>
-        <a class="hh__cta" href="{{ '/contact/' | relative_url }}">Start a conversation</a>
+        <a class="hh__cta" href="{{ '/contact/' | relative_url }}">{{ hero_cta_text }}</a>
       </div>
       <div class="hh__scroll-hint" aria-hidden="true">
         <span>Scroll</span>
@@ -62,29 +76,27 @@
     <section class="hs" data-animate>
       <div class="hs__inner">
         <p class="hs__text">
-          Most people navigate their biggest financial decision without anyone truly in their corner.
+          {{ statement_text }}
         </p>
-        <p class="hs__aside">That&rsquo;s where I come in.</p>
+        <p class="hs__aside">{{ statement_aside }}</p>
       </div>
-      <div class="hs__photo" aria-hidden="true"></div>
+      <div class="hs__photo{% if page.statement_image %} has-image{% endif %}"{% if page.statement_image %} style="background-image: url('{{ page.statement_image | relative_url }}');"{% endif %} aria-hidden="true"></div>
     </section>
 
     <!-- ═══ ADVOCATE ══════════════════════════════════════════════════════════ -->
     <section class="hav" data-animate>
-      <div class="hav__photo" aria-hidden="true"></div>
+      <div class="hav__photo{% if page.advocate_image %} has-image{% endif %}"{% if page.advocate_image %} style="background-image: url('{{ page.advocate_image | relative_url }}');"{% endif %} aria-hidden="true"></div>
       <div class="hav__inner">
         <div class="hav__label-col">
-          <span class="hav__label">The difference</span>
+          <span class="hav__label">{{ advocate_label }}</span>
         </div>
         <div class="hav__body">
           <blockquote class="hav__quote">
-            &ldquo;I have no financial relationship with any contractor, supplier, or architect I recommend.
-            No markup on materials. No referral fees. My compensation comes from you &mdash;
-            and my obligation belongs entirely to your project.&rdquo;
+            &ldquo;{{ advocate_quote }}&rdquo;
           </blockquote>
-          <cite class="hav__cite">Severin Winter</cite>
+          <cite class="hav__cite">{{ advocate_name }}</cite>
           <p class="hav__context">
-            Forty years of building in the Hudson Valley. Now working exclusively as an independent advisor.
+            {{ advocate_context }}
           </p>
         </div>
       </div>
@@ -98,8 +110,8 @@
         <div class="hsv__item" data-animate data-delay="0">
           <span class="hsv__num">01</span>
           <div class="hsv__content">
-            <h3 class="hsv__title">New Construction</h3>
-            <p class="hsv__desc">Site assessment, contractor vetting, budget planning, and construction oversight. From the first shovel to the final walkthrough.</p>
+            <h3 class="hsv__title">Design &amp; Planning</h3>
+            <p class="hsv__desc">From concept to a buildable, budgeted plan. Working alongside your architect to make sure what is drawn can actually be built.</p>
           </div>
           <a class="hsv__link" href="{{ '/services/' | relative_url }}">Learn more</a>
         </div>
@@ -107,8 +119,8 @@
         <div class="hsv__item" data-animate data-delay="100">
           <span class="hsv__num">02</span>
           <div class="hsv__content">
-            <h3 class="hsv__title">Renovation</h3>
-            <p class="hsv__desc">Scope development, contractor selection, and owner&rsquo;s representation throughout. Protecting your interests when it matters most.</p>
+            <h3 class="hsv__title">New Construction</h3>
+            <p class="hsv__desc">Site assessment, contractor vetting, budget planning, and construction oversight. From the first shovel to the final walkthrough.</p>
           </div>
           <a class="hsv__link" href="{{ '/services/' | relative_url }}">Learn more</a>
         </div>
@@ -116,8 +128,8 @@
         <div class="hsv__item" data-animate data-delay="200">
           <span class="hsv__num">03</span>
           <div class="hsv__content">
-            <h3 class="hsv__title">Historical Restoration</h3>
-            <p class="hsv__desc">Specialist advisory for barns, farmhouses, and period structures. Knowledge of traditional methods that most consultants simply don&rsquo;t have.</p>
+            <h3 class="hsv__title">Renovation</h3>
+            <p class="hsv__desc">Scope development, contractor selection, and owner&rsquo;s representation throughout. Protecting your interests when it matters most.</p>
           </div>
           <a class="hsv__link" href="{{ '/services/' | relative_url }}">Learn more</a>
         </div>
@@ -125,8 +137,8 @@
         <div class="hsv__item" data-animate data-delay="300">
           <span class="hsv__num">04</span>
           <div class="hsv__content">
-            <h3 class="hsv__title">Design &amp; Planning</h3>
-            <p class="hsv__desc">From concept to a buildable, budgeted plan. Working alongside your architect to make sure what is drawn can actually be built.</p>
+            <h3 class="hsv__title">Historical Restoration</h3>
+            <p class="hsv__desc">Specialist advisory for barns, farmhouses, and period structures. Grounded knowledge of traditional methods and how to apply them with care.</p>
           </div>
           <a class="hsv__link" href="{{ '/services/' | relative_url }}">Learn more</a>
         </div>
@@ -206,9 +218,9 @@
     <!-- ═══ CTA ═══════════════════════════════════════════════════════════════ -->
     <section class="hct" data-animate>
       <div class="hct__inner">
-        <h2 class="hct__heading">Let&rsquo;s start with<br>a conversation.</h2>
-        <p class="hct__sub">No obligation. Tell me about your project and where you are in the process.</p>
-        <a class="hct__link" href="{{ '/contact/' | relative_url }}">Get in touch &rarr;</a>
+        <h2 class="hct__heading">{{ cta_heading | newline_to_br }}</h2>
+        <p class="hct__sub">{{ cta_sub }}</p>
+        <a class="hct__link" href="{{ '/contact/' | relative_url }}">{{ cta_link_text }}</a>
       </div>
     </section>
 

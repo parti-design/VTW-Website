@@ -65,13 +65,20 @@
 }
 
 .hn__logo {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  color: var(--black);
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
-  text-transform: uppercase;
+}
+
+.hn__logo-mark {
+  display: block;
+  width: 96px;
+  height: auto;
+  transition: width 0.3s ease;
+}
+
+.hn--scrolled .hn__logo-mark {
+  width: 82px;
 }
 
 .hn__list {
@@ -125,6 +132,7 @@
   width: 100%;
   padding-top: 8rem;
   padding-bottom: 6rem;
+  padding-right: min(34rem, 42%);
 }
 
 /* Hero floating photo — right edge, behind heading text */
@@ -141,6 +149,14 @@
   justify-content: center;
 }
 
+.hh__photo.has-image,
+.hs__photo.has-image,
+.hav__photo.has-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .hh__photo::after {
   content: 'Photo';
   font-family: var(--font-ui);
@@ -150,6 +166,12 @@
   text-transform: uppercase;
   color: var(--mid-gray);
   opacity: 0.5;
+}
+
+.hh__photo.has-image::after,
+.hs__photo.has-image::after,
+.hav__photo.has-image::after {
+  content: '';
 }
 
 .hh__label {
@@ -172,6 +194,7 @@
   letter-spacing: -0.02em;
   color: var(--black);
   margin: 0 0 2.5rem;
+  max-width: 7ch;
   opacity: 0;
   animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
 }
@@ -184,6 +207,7 @@
   letter-spacing: 0.02em;
   color: var(--mid-gray);
   margin: 0 0 3rem;
+  max-width: 28rem;
   opacity: 0;
   animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
 }
@@ -247,6 +271,7 @@
 .hs__inner {
   max-width: 1200px;
   margin: 0 auto;
+  padding-right: min(28rem, 34%);
   position: relative;
   z-index: 1;
 }
@@ -285,7 +310,7 @@
   letter-spacing: -0.01em;
   color: var(--black);
   margin: 0 0 1.5rem;
-  max-width: 820px;
+  max-width: 18ch;
 }
 
 .hs__aside {
@@ -295,6 +320,7 @@
   font-style: italic;
   color: var(--gold);
   margin: 0;
+  max-width: 18rem;
 }
 
 /* --- Advocate -------------------------------------------------------------- */
@@ -314,8 +340,13 @@
   grid-template-columns: 200px 1fr;
   gap: 4rem;
   align-items: start;
+  padding-left: min(20rem, 24%);
   position: relative;
   z-index: 1;
+}
+
+.hav__body {
+  max-width: 42rem;
 }
 
 /* Advocate floating photo — left edge, behind quote */
@@ -351,6 +382,7 @@
   text-transform: uppercase;
   color: var(--mid-gray);
   padding-top: 0.5rem;
+  padding-left: 2.5rem;
 }
 
 .hav__quote {
@@ -799,8 +831,11 @@
   .hn { padding: 1.5rem 1.5rem; }
   .hn--scrolled { padding: 1rem 1.5rem; }
   .hn__list { gap: 1.5rem; }
+  .hn__logo-mark { width: 82px; }
+  .hn--scrolled .hn__logo-mark { width: 74px; }
 
   .hh { padding: 0 1.5rem; }
+  .hh__inner { padding-right: 0; }
   .hh__scroll-hint { right: 1.5rem; }
 
   /* Hide floating editorial photos on smaller screens */
@@ -809,6 +844,7 @@
   .hav__photo { display: none; }
 
   .hs  { padding: 5rem 1.5rem; }
+  .hs__inner { padding-right: 0; }
   .hav { padding: 5rem 1.5rem; }
   .hsv { padding: 5rem 1.5rem; }
   .hpj { padding: 5rem 1.5rem; }
@@ -816,7 +852,7 @@
   .hct { padding: 6rem 1.5rem; }
   .hft { padding: 1.75rem 1.5rem; }
 
-  .hav__inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .hav__inner { grid-template-columns: 1fr; gap: 1.5rem; padding-left: 0; }
   .hav__label { display: none; }
 
   .hsv__item { grid-template-columns: 50px 1fr; gap: 1.25rem; }
@@ -830,6 +866,7 @@
 
 @media (max-width: 600px) {
   .hn__list { display: none; }
+  .hn__logo-mark { width: 74px; }
   .hpj__grid { grid-template-columns: 1fr; }
   .hsv__item { grid-template-columns: 40px 1fr; }
 

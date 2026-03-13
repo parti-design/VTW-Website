@@ -21,7 +21,9 @@
 
   <header class="hn" id="hn">
     <div class="hn__inner">
-      <a class="hn__logo" href="{{ '/' | relative_url }}">Severin Winter</a>
+      <a class="hn__logo" href="{{ '/' | relative_url }}" aria-label="Von Trapp Winter">
+        <img class="hn__logo-mark" src="{{ '/assets/images/logo-von-trapp-winter.svg' | relative_url }}" alt="Von Trapp Winter" />
+      </a>
       <nav class="hn__nav" aria-label="Main navigation">
         <ul class="hn__list">
           {%- for link in site.nav_links -%}
@@ -39,6 +41,17 @@
   <main class="im" id="main-content">
     {{ content }}
   </main>
+
+  {%- unless page.url == '/contact/' -%}
+  <section class="ip ip--site-cta">
+    <div class="ip__inner ip__inner--wide">
+      <div class="ip__cta">
+        <p class="ip__cta-text">Have a project in mind and want a grounded second set of eyes?</p>
+        <a class="ip__cta-link" href="{{ '/contact/' | relative_url }}">Start a conversation</a>
+      </div>
+    </div>
+  </section>
+  {%- endunless -%}
 
   <footer class="hft">
     <div class="hft__inner">
