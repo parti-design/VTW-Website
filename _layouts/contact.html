@@ -19,67 +19,62 @@ layout: default
   {%- assign email_domain = email_parts[1] | default: "" -%}
 {%- endif -%}
 
-<section class="ip ip--contact">
-  <div class="ip__inner ip__inner--wide">
-    <header class="ip__head ip__head--split">
-      <div>
-        <p class="ip__label">Start A Conversation</p>
-        <h1 class="ip__title">{{ page.title }}</h1>
-        <p class="ip__subtitle">Tell me where you are in the process and what decisions are ahead of you.</p>
+<!-- ═══ OPENING ═══ -->
+<section class="cmast">
+  <div class="cmast__inner">
+    <p class="cmast__kicker">Start a conversation</p>
+    <h1 class="cmast__lead">Tell me where you are &mdash; and what decisions are <em>ahead.</em></h1>
+    <div class="cmast__intro">
+      {{ content }}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GUIDANCE + DETAILS ═══ -->
+<section class="cbody" data-animate>
+  <div class="cbody__inner">
+    <div class="cbody__guide">
+      <p class="cbody__label">What to include</p>
+      <ul class="cbody__list">
+        <li>Project location and type</li>
+        <li>Current phase and timeline</li>
+        <li>Where you want outside guidance</li>
+      </ul>
+    </div>
+
+    <div class="cbody__details">
+      {%- if phone_area != "" and phone_prefix != "" and phone_line != "" -%}
+      <div class="cdetail">
+        <span class="cdetail__label">Phone</span>
+        <a
+          class="cdetail__value"
+          href="#"
+          data-phone-link
+          data-area-rev="{{ phone_area | split: '' | reverse | join: '' }}"
+          data-prefix-rev="{{ phone_prefix | split: '' | reverse | join: '' }}"
+          data-line-rev="{{ phone_line | split: '' | reverse | join: '' }}"
+        >Available with JavaScript enabled</a>
+        <noscript><span class="cdetail__value">Please email to request the phone number.</span></noscript>
       </div>
-      <aside class="contact-note" aria-label="Response information">
-        <p class="contact-note__label">What to include</p>
-        <ul class="contact-note__list">
-          <li>Project location and type</li>
-          <li>Current phase and timeline</li>
-          <li>Where you want outside guidance</li>
-        </ul>
-      </aside>
-    </header>
+      {%- endif -%}
 
-    <div class="contact-simple">
-      <div class="contact-simple__body ip__content">
-        {{ content }}
+      {%- if email_user != "" and email_domain != "" -%}
+      <div class="cdetail">
+        <span class="cdetail__label">Email</span>
+        <a
+          class="cdetail__value"
+          href="#"
+          data-email-link
+          data-user-rev="{{ email_user | split: '' | reverse | join: '' }}"
+          data-domain-rev="{{ email_domain | split: '' | reverse | join: '' }}"
+        >Available with JavaScript enabled</a>
+        <noscript><span class="cdetail__value">Please call to request the email address.</span></noscript>
       </div>
+      {%- endif -%}
 
-      <div class="contact-simple__details">
-        {%- if phone_area != "" and phone_prefix != "" and phone_line != "" -%}
-        <div class="contact-detail">
-          <span class="contact-detail__label">Phone</span>
-          <a
-            class="contact-detail__value"
-            href="#"
-            data-phone-link
-            data-area-rev="{{ phone_area | split: '' | reverse | join: '' }}"
-            data-prefix-rev="{{ phone_prefix | split: '' | reverse | join: '' }}"
-            data-line-rev="{{ phone_line | split: '' | reverse | join: '' }}"
-          >Phone available with JavaScript enabled</a>
-          <noscript>
-            <span class="contact-detail__value">Please email to request the phone number.</span>
-          </noscript>
-        </div>
-        {%- endif -%}
-
-        {%- if email_user != "" and email_domain != "" -%}
-        <div class="contact-detail">
-          <span class="contact-detail__label">Email</span>
-          <a
-            class="contact-detail__value"
-            href="#"
-            data-email-link
-            data-user-rev="{{ email_user | split: '' | reverse | join: '' }}"
-            data-domain-rev="{{ email_domain | split: '' | reverse | join: '' }}"
-          >Email available with JavaScript enabled</a>
-          <noscript>
-            <span class="contact-detail__value">Please call to request the email address.</span>
-          </noscript>
-        </div>
-        {%- endif -%}
-
-        <div class="contact-detail">
-          <span class="contact-detail__label">Based in</span>
-          <span class="contact-detail__value">Hudson Valley, NY</span>
-        </div>
+      <div class="cdetail">
+        <span class="cdetail__label">Based in</span>
+        <span class="cdetail__value">Hudson Valley, NY</span>
       </div>
     </div>
   </div>
@@ -91,20 +86,15 @@ layout: default
     const prefix = (link.dataset.prefixRev || '').split('').reverse().join('');
     const line = (link.dataset.lineRev || '').split('').reverse().join('');
     if (!area || !prefix || !line) return;
-
-    const phoneLabel = `${area} ${prefix} ${line}`;
-    const phoneHref = `${area}${prefix}${line}`;
-    link.href = `tel:${phoneHref}`;
-    link.textContent = phoneLabel;
+    link.href = `tel:${area}${prefix}${line}`;
+    link.textContent = `${area} ${prefix} ${line}`;
   });
 
   document.querySelectorAll('[data-email-link]').forEach((link) => {
     const user = (link.dataset.userRev || '').split('').reverse().join('');
     const domain = (link.dataset.domainRev || '').split('').reverse().join('');
     if (!user || !domain) return;
-
-    const email = `${user}@${domain}`;
-    link.href = `mailto:${email}`;
-    link.textContent = email;
+    link.href = `mailto:${user}@${domain}`;
+    link.textContent = `${user}@${domain}`;
   });
 </script>

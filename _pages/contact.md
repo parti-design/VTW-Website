@@ -2,6 +2,7 @@
 layout: contact
 title: "Contact"
 permalink: /contact/
+body_class: page-editorial
 description: "Contact Severin Winter, building consultant in the Hudson Valley, NY."
 phone_area: "845"
 phone_prefix: "749"

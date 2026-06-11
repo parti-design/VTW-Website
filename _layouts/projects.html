@@ -2,67 +2,82 @@
 layout: default
 ---
 
-{%- assign projects = site.projects | sort: "year" | reverse -%}
-<section class="ip ip--projects">
-  <div class="ip__inner ip__inner--wide">
-    <header class="ip__head ip__head--split">
-      <div>
-        <p class="ip__label">Selected Work</p>
-        <h1 class="ip__title">{{ page.title }}</h1>
-        <p class="ip__subtitle">A representative sample of project types and contexts from around the Hudson Valley.</p>
-      </div>
-    </header>
+{%- comment -%} Curated magazine rhythm: slug:size, in display order {%- endcomment -%}
+{%- assign order = "c-m-residence:feature,p-f-nyc-residence:tall,k-m-apartment-renovation:third,y-h-apartment-renovation:third,k-m-deck:third,c-m-kitchen:tall,f-s-barn:feature,triform-office:feature,r-b-barn-studio-addition:tall,k-m-kitchen-renovation-2:third,s-sc-kitchen:third,hvs-bus-shelter:third,j-j-barn-restoration:tall,m-p-house-addition:feature,blue-heron-farms:feature,me-k-potting-shed:tall" | split: "," -%}
+{%- assign total = site.projects | size -%}
 
-    <div class="project-filters" data-filter-group>
-      <button class="filter-btn filter-btn--active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="New Construction">New Construction</button>
-      <button class="filter-btn" data-filter="Renovation">Renovation</button>
-      <button class="filter-btn" data-filter="Historical Restoration">Historical Restoration</button>
+<!-- ═══ MASTHEAD ═══ -->
+<section class="iepm">
+  <div class="iepm__inner">
+    <div>
+      <p class="iepm__label">Selected Work</p>
+      <h1 class="iepm__title">{{ page.title | default: "Projects" }}</h1>
     </div>
+    <div>
+      <p class="iepm__sub">{{ page.subtitle | default: "A representative sample of project types and contexts from around the Hudson Valley &mdash; new construction, renovation, and the restoration of historic barns and houses." }}</p>
+      <p class="iepm__count"><strong>{{ total }}</strong> &nbsp;selected projects &nbsp;&middot;&nbsp; Hudson Valley, NY</p>
+    </div>
+  </div>
+</section>
 
-    {%- if projects.size > 0 -%}
-    <div class="project-grid" id="project-grid">
-      {%- for project in projects -%}
-      {%- assign project_cover = project.cover_image | default: project.photo -%}
-      <article class="project-card" data-type="{{ project.type }}">
-        {%- if project_cover -%}
-        <a class="project-card__image" href="{{ project.url | relative_url }}">
-          <img src="{{ project_cover | relative_url }}" alt="{{ project.title | escape }}" loading="lazy" />
+<!-- ═══ FILTERS ═══ -->
+<section class="ief">
+  <div class="ief__inner" data-filter-group>
+    <button class="ief__btn ief__btn--active" data-filter="all">All</button>
+    <button class="ief__btn" data-filter="New Construction">New Construction</button>
+    <button class="ief__btn" data-filter="Renovation">Renovation</button>
+    <button class="ief__btn" data-filter="Historical Restoration">Historical Restoration</button>
+    <span class="ief__count" id="filter-count">{{ total }} projects</span>
+  </div>
+</section>
+
+<!-- ═══ MAGAZINE GRID ═══ -->
+<section class="iemag">
+  <div class="iemag__inner" id="project-grid">
+    {%- for entry in order -%}
+      {%- assign parts = entry | split: ":" -%}
+      {%- assign slug = parts[0] -%}
+      {%- assign size = parts[1] -%}
+      {%- assign seg = slug | append: "/" -%}
+      {%- assign project = site.projects | where_exp: "p", "p.url contains seg" | first -%}
+      {%- if project -%}
+      {%- assign cover = project.cover_image | default: project.photo -%}
+      <article class="iemag__card iemag__card--{{ size }}" data-type="{{ project.type }}">
+        <a class="iemag__imgwrap" href="{{ project.url | relative_url }}">
+          {%- if cover -%}<img src="{{ cover | relative_url }}" alt="{{ project.title | escape }}" loading="lazy" />{%- endif -%}
+          {%- if project.featured -%}<span class="iemag__tag">Featured</span>{%- endif -%}
         </a>
-        {%- else -%}
-        <a class="project-card__image project-card__image--placeholder" href="{{ project.url | relative_url }}" aria-label="View {{ project.title | escape }}"></a>
-        {%- endif -%}
-        <div class="project-card__body">
-          <span class="project-card__type">{{ project.type }}</span>
-          <h2 class="project-card__title"><a href="{{ project.url | relative_url }}">{{ project.title | escape }}</a></h2>
-          {%- if project.location -%}
-          <p class="project-card__location">{{ project.location }}</p>
-          {%- endif -%}
-          {%- if project.description -%}
-          <p class="project-card__description">{{ project.description }}</p>
-          {%- endif -%}
+        <div class="iemag__body">
+          <div>
+            <p class="iemag__type">{{ project.type }}</p>
+            <h2 class="iemag__title"><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h2>
+          </div>
+          {%- if project.location -%}<p class="iemag__loc">{{ project.location }}</p>{%- endif -%}
         </div>
       </article>
-      {%- endfor -%}
-    </div>
-    {%- else -%}
-    <p class="projects-empty">Project documentation coming soon. <a href="{{ '/contact/' | relative_url }}">Contact Severin</a> to learn more about his experience.</p>
-    {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
   </div>
 </section>
 
 <script>
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.project-card');
-
-  filterBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach((item) => item.classList.remove('filter-btn--active'));
-      btn.classList.add('filter-btn--active');
-      const filter = btn.dataset.filter;
-      cards.forEach((card) => {
-        card.style.display = filter === 'all' || card.dataset.type === filter ? '' : 'none';
+  (function () {
+    const btns = document.querySelectorAll('.ief__btn');
+    const cards = Array.from(document.querySelectorAll('.iemag__card'));
+    const countEl = document.getElementById('filter-count');
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        btns.forEach((b) => b.classList.remove('ief__btn--active'));
+        btn.classList.add('ief__btn--active');
+        const f = btn.dataset.filter;
+        let shown = 0;
+        cards.forEach((card) => {
+          const match = f === 'all' || card.dataset.type === f;
+          card.hidden = !match;
+          if (match) shown++;
+        });
+        if (countEl) countEl.textContent = shown + (shown === 1 ? ' project' : ' projects');
       });
     });
-  });
+  })();
 </script>

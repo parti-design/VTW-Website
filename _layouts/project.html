@@ -44,7 +44,6 @@ layout: default
         <div class="project-gallery__grid">
           {%- for image in gallery_images -%}
           {%- assign image_path = image.image | default: image -%}
-          {%- if image_path != cover_path -%}
           <button
             class="project-gallery__item"
             type="button"
@@ -54,7 +53,6 @@ layout: default
           >
             <img src="{{ image_path | relative_url }}" alt="{{ page.title | escape }} image {{ forloop.index }}" loading="lazy" />
           </button>
-          {%- endif -%}
           {%- endfor -%}
         </div>
 

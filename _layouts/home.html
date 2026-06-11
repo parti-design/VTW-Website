@@ -156,7 +156,7 @@
         <div class="hpj__grid">
           {%- for project in featured_projects -%}
           {%- assign project_cover = project.cover_image | default: project.photo -%}
-          <article class="hpj__card">
+          <a class="hpj__card" href="{{ project.url | relative_url }}">
             <div class="hpj__img-wrap">
               {%- if project_cover -%}
               <img src="{{ project_cover | relative_url }}" alt="{{ project.title | escape }}" loading="lazy" />
@@ -169,7 +169,7 @@
               <h3 class="hpj__title">{{ project.title }}</h3>
               {%- if project.location -%}<p class="hpj__location">{{ project.location }}</p>{%- endif -%}
             </div>
-          </article>
+          </a>
           {%- endfor -%}
         </div>
       </div>

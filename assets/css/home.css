@@ -544,7 +544,12 @@
   gap: 1.5rem;
 }
 
-.hpj__card { background: var(--cream); }
+.hpj__card {
+  background: var(--cream);
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
 
 .hpj__img-wrap {
   aspect-ratio: 3 / 4;

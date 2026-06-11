@@ -252,10 +252,13 @@ body {
 }
 
 .ip--site-cta {
-  padding-top: 0;
+  padding-top: 5.5rem;
   padding-bottom: 5.5rem;
   border-bottom: 0;
 }
+
+/* Drop the trailing hairline of the last content section sitting above the CTA */
+.page-editorial .im > section:last-child { border-bottom: 0; }
 
 .ip--site-cta .ip__cta {
   position: relative;
@@ -949,6 +952,7 @@ a.contact-detail__value:hover {
   }
 
   .ip--site-cta {
+    padding-top: 4.5rem;
     padding-bottom: 4.5rem;
   }
 

@@ -13,11 +13,13 @@
 
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
   <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/interior-editorial.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/editorial-pages.css' | relative_url }}" />
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}" />
 
   {%- seo -%}
 </head>
-<body class="page-interior">
+<body class="{{ page.body_class | default: 'page-interior' }}">
 
   <header class="hn" id="hn">
     <div class="hn__inner">
@@ -66,6 +68,17 @@
       };
       syncNav();
       window.addEventListener('scroll', syncNav, { passive: true });
+    }
+
+    // Scroll-reveal for editorial sections
+    const revealEls = document.querySelectorAll('[data-animate]');
+    if (revealEls.length) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+      revealEls.forEach((el) => io.observe(el));
     }
   </script>
 
