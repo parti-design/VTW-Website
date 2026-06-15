@@ -35,7 +35,12 @@
   <header class="hn" id="hn">
     <div class="hn__inner">
       <a class="hn__logo" href="{{ '/' | relative_url }}">Von Trapp Winter</a>
-      <nav class="hn__nav" aria-label="Main navigation">
+      <button class="hn__toggle" id="hn-toggle" type="button" aria-expanded="false" aria-controls="hn-nav" aria-label="Open menu">
+        <span class="hn__toggle-bar"></span>
+        <span class="hn__toggle-bar"></span>
+        <span class="hn__toggle-bar"></span>
+      </button>
+      <nav class="hn__nav" id="hn-nav" aria-label="Main navigation">
         <ul class="hn__list">
           {%- for link in site.nav_links -%}
             {%- unless link.title == "Home" -%}
@@ -239,6 +244,30 @@
     window.addEventListener('scroll', () => {
       nav.classList.toggle('hn--scrolled', window.scrollY > 80);
     }, { passive: true });
+
+    // Mobile menu toggle
+    const navToggle = document.getElementById('hn-toggle');
+    const navMenu = document.getElementById('hn-nav');
+    if (navToggle && navMenu) {
+      const setMenu = (open) => {
+        navToggle.setAttribute('aria-expanded', String(open));
+        navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        navMenu.classList.toggle('is-open', open);
+        document.body.classList.toggle('nav-open', open);
+      };
+      navToggle.addEventListener('click', () => {
+        setMenu(navToggle.getAttribute('aria-expanded') !== 'true');
+      });
+      navMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMenu(false));
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setMenu(false);
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 760) setMenu(false);
+      });
+    }
 
     // Scroll-reveal animation
     const observer = new IntersectionObserver((entries) => {

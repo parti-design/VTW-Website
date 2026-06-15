@@ -100,6 +100,45 @@
 
 .hn__link:hover { color: var(--black); }
 
+/* Mobile menu toggle — hidden on desktop, shown via the responsive blocks */
+.hn__toggle {
+  display: none;
+  position: relative;
+  z-index: 120;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: -0.5rem -0.5rem -0.5rem 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.hn__toggle-bar {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--black);
+  transition: transform 0.3s ease, opacity 0.25s ease;
+}
+
+.hn__toggle[aria-expanded="true"] .hn__toggle-bar:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.hn__toggle[aria-expanded="true"] .hn__toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+.hn__toggle[aria-expanded="true"] .hn__toggle-bar:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* Lock background scroll while the mobile menu overlay is open */
+body.nav-open { overflow: hidden; }
+
 /* --- Hero ------------------------------------------------------------------ */
 
 .hh {
@@ -836,18 +875,48 @@
   .hn__list { gap: 1.5rem; }
   .hn__logo { font-size: 1.65rem; }
 
-  .hh { padding: 0 1.5rem; }
-  .hh__inner { padding-right: 0; }
-  .hh__scroll-hint { right: 1.5rem; }
-
-  /* Hide floating editorial photos on smaller screens */
-  .hh__photo,
-  .hs__photo,
-  .hav__photo { display: none; }
+  /* Hero: stack the editorial photo beneath the text instead of floating it */
+  .hh {
+    flex-direction: column;
+    justify-content: center;
+    min-height: auto;
+    padding: 7.5rem 1.5rem 3.5rem;
+  }
+  .hh__inner {
+    order: 1;
+    padding-top: 1rem;
+    padding-bottom: 0;
+    padding-right: 0;
+  }
+  .hh__photo {
+    position: static;
+    order: 2;
+    width: 100%;
+    height: 62vw;
+    max-height: 360px;
+    margin-top: 2rem;
+  }
+  .hh__scroll-hint { display: none; }
 
   .hs  { padding: 5rem 1.5rem; }
   .hs__inner { padding-right: 0; }
+  /* Statement & advocate photos reflow into the content column on mobile */
+  .hs__photo {
+    position: static;
+    transform: none;
+    width: 100%;
+    height: 60vw;
+    max-height: 340px;
+    margin-top: 2.5rem;
+  }
   .hav { padding: 5rem 1.5rem; }
+  .hav__photo {
+    position: static;
+    width: 100%;
+    height: 60vw;
+    max-height: 340px;
+    margin-bottom: 2.5rem;
+  }
   .hsv { padding: 5rem 1.5rem; }
   .hpj { padding: 5rem 1.5rem; }
   .htm { padding: 5rem 1.5rem; }
@@ -867,7 +936,6 @@
 }
 
 @media (max-width: 600px) {
-  .hn__list { display: none; }
   .hn__logo { font-size: 1.45rem; }
   .hpj__grid { grid-template-columns: 1fr; }
   .hsv__item { grid-template-columns: 40px 1fr; }
@@ -878,4 +946,48 @@
     opacity: 1;
     transform: none;
   }
+}
+
+/* --- Mobile navigation overlay --------------------------------------------- */
+
+@media (max-width: 760px) {
+  .hn__toggle { display: inline-flex; }
+
+  /* Full-screen takeover menu, toggled open via .is-open */
+  .hn__nav {
+    position: fixed;
+    inset: 0;
+    z-index: 110;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(245, 243, 238, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+  }
+
+  .hn__nav.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hn__list {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.25rem;
+  }
+
+  .hn__link {
+    font-size: 1.05rem;
+    letter-spacing: 0.12em;
+    color: var(--black);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hn__nav,
+  .hn__toggle-bar { transition: none; }
 }
