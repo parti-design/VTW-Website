@@ -8,7 +8,7 @@ phone_area: "845"
 phone_prefix: "749"
 phone_line: "7077"
 email_user: "severin"
-email_domain: "severinwinter.com"
+email_domain: "vontrappwinter.com"
 ---
 
 Whether you have a specific project in mind or are still at the exploratory stage, I welcome the conversation. There's no obligation in reaching out.
