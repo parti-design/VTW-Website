@@ -2,11 +2,10 @@
 title: C. M. Kitchen
 type: Renovation
 cover_image: "/assets/images/projects-final/c-m-kitchen/02-CM1071.jpg"
-description: Imported from Severin's prior project archive at synchrobuild.com.
+description: Imported from the previous website.
 featured: false
 year: 2017
 location: Hudson Valley, NY
-source_url: https://www.synchrobuild.com/work/c-m-kitchen/
 gallery:
   - image: "/assets/images/projects-final/c-m-kitchen/24-CM1124.jpg"
   - image: "/assets/images/projects-final/c-m-kitchen/22-CM1114.jpg"
@@ -16,4 +15,4 @@ gallery:
   - image: "/assets/images/projects-final/c-m-kitchen/01-CM1073.jpg"
 ---
 
-Project imported from the previous Synchrobuild portfolio.
+Imported from the previous website.

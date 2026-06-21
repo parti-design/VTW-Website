@@ -2,11 +2,10 @@
 title: F. S. Barn
 type: Historical Restoration
 cover_image: "/assets/images/projects-final/f-s-barn/54-07-68.jpg"
-description: Imported from Severin's prior project archive at synchrobuild.com.
+description: Imported from the previous website.
 featured: true
 year: 2017
 location: Hudson Valley, NY
-source_url: https://www.synchrobuild.com/work/f-s-barn/
 gallery:
   - image: "/assets/images/projects-final/f-s-barn/56-IMG_0120.jpg"
   - image: "/assets/images/projects-final/f-s-barn/55-IMG_0366.jpg"
@@ -26,4 +25,4 @@ gallery:
   - image: "/assets/images/projects-final/f-s-barn/01-IMG_0480.jpg"
 ---
 
-Project imported from the previous Synchrobuild portfolio.
+Imported from the previous website.

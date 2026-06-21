@@ -25,12 +25,11 @@ gallery:
   - image: "/assets/images/projects-final/triform-office/15-P1220750.jpg"
   - image: "/assets/images/projects-final/triform-office/08-P1220712.jpg"
   - image: "/assets/images/projects-final/triform-office/02-P1210749-1.jpg"
-description: "Imported from Severin's prior project archive at synchrobuild.com."
+description: "Imported from the previous website."
 featured: true
 year: 2017
 location: "Hudson Valley, NY"
-source_url: "https://www.synchrobuild.com/work/triform-office/"
 ---
 
 
-Project imported from the previous Synchrobuild portfolio.
+Imported from the previous website.

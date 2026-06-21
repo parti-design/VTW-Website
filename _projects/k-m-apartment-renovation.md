@@ -12,12 +12,11 @@ gallery:
   - image: "/assets/images/projects-final/k-m-apartment-renovation/03-IMG_0387.jpg"
   - image: "/assets/images/projects-final/k-m-apartment-renovation/02-IMG_0378.jpg"
   - image: "/assets/images/projects-final/k-m-apartment-renovation/01-IMG_0379.jpg"
-description: "Imported from Severin's prior project archive at synchrobuild.com."
+description: "Imported from the previous website."
 featured: false
 year: 2017
 location: "Hudson Valley, NY"
-source_url: "https://www.synchrobuild.com/work/k-m-apartment-renovation/"
 ---
 
 
-Project imported from the previous Synchrobuild portfolio.
+Imported from the previous website.

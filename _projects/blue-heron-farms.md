@@ -2,11 +2,10 @@
 title: Blue Heron Farms
 type: Historical Restoration
 cover_image: "/assets/images/projects-final/blue-heron-farms/10-Bloom-7.jpg"
-description: Imported from Severin's prior project archive at synchrobuild.com.
+description: Imported from the previous website.
 featured: false
 year: 2017
 location: Hudson Valley, NY
-source_url: https://www.synchrobuild.com/work/blue-heron-farms/
 gallery:
   - image: "/assets/images/projects-final/blue-heron-farms/12-Bloom-11.jpg"
   - image: "/assets/images/projects-final/blue-heron-farms/11-Bloom-10.jpg"
@@ -16,4 +15,4 @@ gallery:
   - image: "/assets/images/projects-final/blue-heron-farms/02-Bloom-14.jpg"
 ---
 
-Project imported from the previous Synchrobuild portfolio.
+Imported from the previous website.

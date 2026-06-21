@@ -2,11 +2,10 @@
 title: S. SC. Kitchen
 type: Renovation
 cover_image: "/assets/images/projects-final/s-sc-kitchen/01-IMG_0032.jpg"
-description: Imported from Severin's prior project archive at synchrobuild.com.
+description: Imported from the previous website.
 featured: false
 year: 2017
 location: Hudson Valley, NY
-source_url: https://www.synchrobuild.com/work/s-sc-kitchen/
 gallery:
   - image: "/assets/images/projects-final/s-sc-kitchen/18-IMG_0035.jpg"
   - image: "/assets/images/projects-final/s-sc-kitchen/15-IMG_0058.jpg"
@@ -17,4 +16,4 @@ gallery:
   - image: "/assets/images/projects-final/s-sc-kitchen/01-IMG_0032.jpg"
 ---
 
-Project imported from the previous Synchrobuild portfolio.
+Imported from the previous website.
