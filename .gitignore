@@ -10,6 +10,7 @@ vendor/
 # Local only — not published to GitHub
 _wiki/
 agents.md
+notes/
 
 # OS
 .DS_Store
