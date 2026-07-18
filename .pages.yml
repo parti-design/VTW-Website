@@ -1,0 +1,152 @@
+# Pages CMS / Grove configuration for the Von Trapp Winter (Severin Winter Consulting) site.
+# Mirrors the previous Decap CMS setup. Jekyll ignores dotfiles, so this never ships to the build.
+
+media:
+  input: assets/images
+  output: /assets/images
+
+content:
+  # ---- Pages -------------------------------------------------------------
+  - name: home
+    label: Home
+    type: file
+    path: index.md
+    format: yaml-frontmatter
+    fields:
+      - { name: layout, label: Layout, type: string, hidden: true, default: home }
+      - { name: title, label: Title, type: string }
+      - { name: description, label: Meta description, type: text, required: false }
+      - { name: hero_label, label: Hero label, type: string, required: false }
+      - { name: hero_heading, label: Hero heading, type: string, required: false }
+      - { name: hero_subheading, label: Hero subheading, type: text, required: false }
+      - { name: hero_image, label: Hero image, type: image, required: false }
+      - { name: hero_cta_text, label: Hero CTA text, type: string, required: false }
+      - { name: statement_text, label: Statement text, type: text, required: false }
+      - { name: statement_aside, label: Statement aside, type: string, required: false }
+      - { name: statement_image, label: Statement image, type: image, required: false }
+      - { name: advocate_label, label: Advocate label, type: string, required: false }
+      - { name: advocate_quote, label: Advocate quote, type: text, required: false }
+      - { name: advocate_name, label: Advocate name, type: string, required: false }
+      - { name: advocate_context, label: Advocate context, type: text, required: false }
+      - { name: advocate_image, label: Advocate image, type: image, required: false }
+      - { name: home_cta_heading, label: Footer CTA heading, type: text, required: false }
+      - { name: home_cta_sub, label: Footer CTA subheading, type: text, required: false }
+      - { name: home_cta_link_text, label: Footer CTA link text, type: string, required: false }
+      - { name: body, label: Body, type: rich-text }
+
+  - name: about
+    label: About
+    type: file
+    path: _pages/about.md
+    format: yaml-frontmatter
+    fields:
+      - { name: layout, label: Layout, type: string, hidden: true, default: page }
+      - { name: title, label: Title, type: string }
+      - { name: permalink, label: Permalink, type: string, hidden: true, default: /about/ }
+      - { name: description, label: Meta description, type: text, required: false }
+      - { name: body, label: Body, type: rich-text }
+
+  - name: services
+    label: Services
+    type: file
+    path: _pages/services.md
+    format: yaml-frontmatter
+    fields:
+      - { name: layout, label: Layout, type: string, hidden: true, default: page }
+      - { name: title, label: Title, type: string }
+      - { name: permalink, label: Permalink, type: string, hidden: true, default: /services/ }
+      - { name: description, label: Meta description, type: text, required: false }
+      - { name: body, label: Body, type: rich-text }
+
+  - name: faq
+    label: FAQ
+    type: file
+    path: _pages/faq.md
+    format: yaml-frontmatter
+    fields:
+      - { name: layout, label: Layout, type: string, hidden: true, default: page }
+      - { name: title, label: Title, type: string }
+      - { name: permalink, label: Permalink, type: string, hidden: true, default: /faq/ }
+      - { name: description, label: Meta description, type: text, required: false }
+      - { name: body, label: Body, type: rich-text }
+
+  - name: contact
+    label: Contact
+    type: file
+    path: _pages/contact.md
+    format: yaml-frontmatter
+    fields:
+      - { name: layout, label: Layout, type: string, hidden: true, default: contact }
+      - { name: title, label: Title, type: string }
+      - { name: permalink, label: Permalink, type: string, hidden: true, default: /contact/ }
+      - { name: phone_area, label: Phone area code, type: string, required: false, description: "First 3 digits" }
+      - { name: phone_prefix, label: Phone prefix, type: string, required: false, description: "Middle 3 digits" }
+      - { name: phone_line, label: Phone line number, type: string, required: false, description: "Last 4 digits" }
+      - { name: email_user, label: Email user, type: string, required: false, description: "Text before the @ sign" }
+      - { name: email_domain, label: Email domain, type: string, required: false, description: "Text after the @ sign" }
+      - { name: description, label: Meta description, type: text, required: false }
+      - { name: body, label: Body, type: rich-text }
+
+  # ---- Projects ----------------------------------------------------------
+  - name: projects
+    label: Projects
+    type: collection
+    path: _projects
+    format: yaml-frontmatter
+    filename: "{fields.title}.md"
+    view:
+      fields: [title, type, year, location, featured]
+      primary: title
+    fields:
+      - { name: title, label: Title, type: string }
+      - name: type
+        label: Type
+        type: select
+        options:
+          values: ["New Construction", "Renovation", "Historical Restoration"]
+      - { name: cover_image, label: Cover image, type: image, required: false }
+      - { name: gallery, label: Gallery, type: object, list: true, required: false, fields: [{ name: image, label: Image, type: image }] }
+      - { name: description, label: Description, type: text, required: false }
+      - { name: featured, label: Featured, type: boolean, default: false, description: "Show on homepage" }
+      - { name: year, label: Year, type: number, required: false }
+      - { name: location, label: Location, type: string, required: false }
+      - { name: body, label: Body, type: rich-text, required: false }
+
+  # ---- Articles ----------------------------------------------------------
+  - name: posts
+    label: Articles
+    type: collection
+    path: _posts
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{fields.title}.md"
+    view:
+      fields: [title, date, author]
+      primary: title
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - { name: layout, label: Layout, type: string, hidden: true, default: post }
+      - { name: title, label: Title, type: string }
+      - { name: date, label: Date, type: date, options: { time: true } }
+      - { name: author, label: Author, type: string, required: false, default: "Severin Winter" }
+      - { name: description, label: Description, type: text, required: false }
+      - { name: body, label: Body, type: rich-text }
+
+  # ---- Testimonials ------------------------------------------------------
+  - name: testimonials
+    label: Testimonials
+    type: file
+    path: _data/testimonials.yml
+    format: yaml
+    fields:
+      - name: testimonials
+        label: Testimonials
+        type: object
+        list: true
+        fields:
+          - { name: quote, label: Quote, type: text }
+          - { name: name, label: Name, type: string }
+          - { name: project, label: Project, type: string, required: false }
+          - { name: featured, label: Feature on homepage, type: boolean, default: false }
