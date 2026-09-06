@@ -13,11 +13,7 @@ gallery:
   - image: "/assets/images/projects-final/k-m-deck/03-IMG_0002-1.jpg"
   - image: "/assets/images/projects-final/k-m-deck/02-P1010337.jpg"
   - image: "/assets/images/projects-final/k-m-deck/01-IMG_0067-3-1.jpg"
-description: "Imported from the previous website."
 featured: false
 year: 2017
 location: "Hudson Valley, NY"
 ---
-
-
-Imported from the previous website.

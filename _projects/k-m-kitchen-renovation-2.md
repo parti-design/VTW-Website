@@ -13,11 +13,7 @@ gallery:
   - image: "/assets/images/projects-final/k-m-kitchen-renovation-2/03-P1180601.jpg"
   - image: "/assets/images/projects-final/k-m-kitchen-renovation-2/02-P1180397.jpg"
   - image: "/assets/images/projects-final/k-m-kitchen-renovation-2/01-P1180405.jpg"
-description: "Imported from the previous website."
 featured: false
 year: 2017
 location: "Hudson Valley, NY"
 ---
-
-
-Imported from the previous website.

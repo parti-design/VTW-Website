@@ -2,7 +2,6 @@
 title: F. S. Barn
 type: Historical Restoration
 cover_image: "/assets/images/projects-final/f-s-barn/54-07-68.jpg"
-description: Imported from the previous website.
 featured: true
 year: 2017
 location: Hudson Valley, NY
@@ -24,5 +23,3 @@ gallery:
   - image: "/assets/images/projects-final/f-s-barn/02-IMG_0130_1.jpg"
   - image: "/assets/images/projects-final/f-s-barn/01-IMG_0480.jpg"
 ---
-
-Imported from the previous website.

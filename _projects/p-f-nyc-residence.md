@@ -29,11 +29,7 @@ gallery:
   - image: "/assets/images/projects-final/p-f-nyc-residence/03-Flah_9.jpg"
   - image: "/assets/images/projects-final/p-f-nyc-residence/02-Flah_23.jpg"
   - image: "/assets/images/projects-final/p-f-nyc-residence/01-Flah_11.jpg"
-description: "Imported from the previous website."
 featured: false
 year: 2017
 location: "Hudson Valley, NY"
 ---
-
-
-Imported from the previous website.

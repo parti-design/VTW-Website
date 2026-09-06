@@ -17,11 +17,7 @@ gallery:
   - image: "/assets/images/projects-final/m-p-house-addition/15-M-P336.jpg"
   - image: "/assets/images/projects-final/m-p-house-addition/02-M-P552.jpg"
   - image: "/assets/images/projects-final/m-p-house-addition/01-M-P007-1.jpg"
-description: "Imported from the previous website."
 featured: false
 year: 2017
 location: "Hudson Valley, NY"
 ---
-
-
-Imported from the previous website.

@@ -16,11 +16,7 @@ gallery:
   - image: "/assets/images/projects-final/r-b-barn-studio-addition/13-84-1.jpg"
   - image: "/assets/images/projects-final/r-b-barn-studio-addition/03-2_0718.jpg"
   - image: "/assets/images/projects-final/r-b-barn-studio-addition/02-07_08-121_1.jpg"
-description: "Imported from the previous website."
 featured: false
 year: 2017
 location: "Hudson Valley, NY"
 ---
-
-
-Imported from the previous website.
