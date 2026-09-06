@@ -1,0 +1,416 @@
+/* =============================================================================
+   Von Trapp Winter — brand layer
+   Implements "Brand System.html" (locked September 2026) over the existing
+   editorial CSS. Values live in assets/css/brand-tokens.css; nothing here
+   invents a colour, a size or a face of its own.
+
+   Load order: brand-tokens.css → main.css → home.css → interior-editorial.css
+               → editorial-pages.css → brand.css (this file, last)
+
+   Contents
+     01  Base, and the arrow cursor
+     02  The mark — VTW between two currents, with the name alongside
+     03  The wave rule — one per page, above the footer
+     04  Type — sans for headings and labels, Alegreya for everything read
+     05  Colour — the contrast corrections the system asks for
+     06  Components — buttons, the closing panel, motion
+   ============================================================================= */
+
+
+/* ─── 01 · Base ─────────────────────────────────────────────────────────────
+   The page is cream and set in Alegreya. The pointer is the mark's own arrow:
+   ink on cream ground, deep gold wherever something can be clicked.          */
+
+body {
+  font-family: var(--vtw-serif);
+  cursor: url("../images/vtw-cursor.svg") 1 2, default;
+}
+
+a,
+button,
+summary,
+label[for],
+[role="button"],
+[tabindex]:not([tabindex="-1"]),
+.ief__btn,
+.filter-btn,
+.project-gallery__item,
+.project-slider__btn,
+.project-slider__dot,
+.htm__dot,
+.htm__arrow,
+.hn__toggle {
+  cursor: url("../images/vtw-cursor-link.svg") 1 2, pointer;
+}
+
+input,
+textarea,
+select,
+[contenteditable] {
+  cursor: text;
+}
+
+::selection {
+  background: rgba(184, 160, 122, 0.28);
+  color: var(--vtw-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--vtw-gold-deep);
+  outline-offset: 3px;
+}
+
+
+/* ─── 02 · The mark ─────────────────────────────────────────────────────────
+   Three parts: a chain of arrows, VTW, the same chain again. The letters are
+   Alegreya Sans Medium tracked at -0.088em so the tops connect, and nudged
+   back by half that so the block stays centred on the waves. The size
+   coefficients come from the face's ink width at that tracking — they hold
+   only for Alegreya Sans Medium.                                             */
+
+.vtw {
+  display: block;
+  width: var(--w, 260px);
+  min-width: 0;
+  container-type: inline-size;
+}
+
+.vtw img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.vtw__t {
+  display: block;
+  margin: -0.04em 0;
+  font-family: var(--vtw-sans);
+  font-weight: 500;
+  font-size: calc(var(--w, 260px) * 0.53884);
+  font-size: 53.884cqw;
+  line-height: 0.9;
+  letter-spacing: var(--vtw-lock-track);
+  transform: translateX(var(--vtw-lock-shift));
+  text-align: center;
+  white-space: nowrap;
+  color: var(--vtw-ink);
+}
+
+.vtw__t span { display: inline-block; }
+
+.vtw--rev .vtw__t { color: var(--vtw-cream); }
+
+/* Horizontal lock: the mark, a hairline, then the name on two lines. */
+.lk-h {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--w, 200px) * 0.12);
+}
+
+.lk-h .vtw { flex: none; }
+
+.lk-h__n {
+  margin: 0;
+  min-width: 0;
+  font-family: var(--vtw-sans);
+  font-weight: 500;
+  font-size: calc(var(--w, 200px) * 0.145);
+  line-height: 1.08;
+  letter-spacing: -0.008em;
+  color: var(--vtw-ink);
+}
+
+.lk-h--div {
+  padding-left: calc(var(--w, 200px) * 0.12);
+  border-left: 1px solid var(--vtw-rule);
+}
+
+/* --- the header lock ------------------------------------------------------
+   The mark sits at 68px, which puts it at roughly 50px tall — the height a
+   fixed nav can carry. At that width the name's own coefficient would set it
+   at 10px, so the header alone sets the name at the eyebrow size instead, and
+   keeps the two-line stack. This is the one place the lockup is re-scaled. */
+
+.hn__logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  --w: 68px;
+  font-family: var(--vtw-sans);
+  letter-spacing: normal;
+  text-decoration: none;
+  transition: opacity 0.25s var(--vtw-ease);
+}
+
+.hn__logo:hover { opacity: 0.72; }
+
+.hn__logo .lk-h__n {
+  padding-left: 9px;
+  border-left: 1px solid var(--vtw-rule);
+  font-size: 12.5px;
+  line-height: 1.14;
+  letter-spacing: 0.005em;
+}
+
+.hn__logo .lk-h__n s {
+  display: block;
+  margin-top: 0.45em;
+  font-size: 0.72em;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--vtw-gold-text);
+}
+
+/* Nav, restated in the brand's own label sizing. */
+.hn__link {
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--vtw-muted);
+}
+
+.hn__link:hover,
+.hn__link--active { color: var(--vtw-ink); }
+
+
+/* ─── 03 · The wave rule ────────────────────────────────────────────────────
+   The arrow chain detached from the mark. Full width of the column, gold, at
+   85 per cent so it stays quieter than the mark. Once per page — it sits
+   above the footer and nowhere else.                                         */
+
+.vtw-rule {
+  height: 20px;
+  background: url("../images/vtw-wave.svg") left center / auto 100% repeat-x;
+  opacity: 0.85;
+}
+
+/* It replaces the footer's hairline rather than sitting above it — two rules
+   stacked would read as decoration, which is exactly what the wave is not. */
+.hft { border-top: 0; }
+
+.hft__rule {
+  max-width: 1200px;
+  margin: 0 auto 1.6rem;
+}
+
+
+/* ─── 04 · Type ─────────────────────────────────────────────────────────────
+   Alegreya Sans sets every heading, label, button and the mark. Alegreya sets
+   everything that is actually read: body copy, ledes, and the quotes, which
+   are the only italics in the system.                                        */
+
+.page-home { font-family: var(--vtw-serif); }
+
+/* Quotes and statements — serif italic, never the sans. */
+.hs__aside,
+.hav__quote,
+.htm__quote,
+.ieq__quote,
+.acom__foot,
+.ip__content blockquote {
+  font-family: var(--vtw-serif);
+  font-weight: 400;
+}
+
+/* Ledes and running copy that the old system set in the UI face. */
+.ieb__lead,
+.hh__sub,
+.hav__context,
+.hsv__desc,
+.hct__sub,
+.adoss__body p:first-of-type::first-letter {
+  font-family: var(--vtw-serif);
+}
+
+.hh__sub,
+.hav__context,
+.hsv__desc,
+.hct__sub,
+.hft__copy,
+.htm__project { font-weight: 400; }
+
+.hh__sub  { font-size: 1rem; line-height: 1.75; }
+.hct__sub { font-size: 1rem; line-height: 1.7; }
+.hav__context { font-size: 0.98rem; }
+.hsv__desc { font-size: 0.95rem; }
+.ieb__lead { font-weight: 400; }
+
+.adoss__body p:first-of-type::first-letter { font-weight: 500; }
+
+/* Markdown body — 64ch measure, Alegreya at reading size. */
+.ip__content {
+  font-size: 1.05rem;
+  line-height: 1.72;
+  color: var(--vtw-body);
+}
+
+.ip__content p,
+.ip__content li { max-width: var(--vtw-measure); }
+
+.ip__content h2,
+.ip__content h3,
+.ip__content h4 {
+  letter-spacing: -0.014em;
+}
+
+.ip__content h4 { font-weight: 700; }
+
+.ip__content strong { font-weight: 700; }
+
+/* Emphasis is Sans Bold; italic belongs to quotes. */
+.ip__content em { font-style: italic; }
+
+
+/* ─── 05 · Colour ───────────────────────────────────────────────────────────
+   #B8A07A is never text — it is the arrows, the rules and the hairlines. Small
+   gold type uses the text value, #7A6140 (5.2:1 on cream). Muted grey is left
+   only on captions and metadata that repeat what is already on the page.     */
+
+.hh__label,
+.hav__label,
+.hav__cite,
+.htm__name,
+.hsv__header-label,
+.hpj__label,
+.hpj__type,
+.ieh__label,
+.ieb__kicker,
+.ieq__label,
+.ieq__cite,
+.iesv__label,
+.iest__label,
+.iepm__label,
+.iemag__type,
+.iemag__tag,
+.adoss__k,
+.acom__label,
+.areg__nk,
+.amodes__label,
+.amast__top,
+.aher__label,
+.smast__kicker,
+.smast__toc-label,
+.sbill__label,
+.sproc__label,
+.faqh__kicker,
+.cmast__kicker,
+.cbody__label,
+.cdetail__label,
+.ip__label,
+.ip__stat-label,
+.article-feature__kicker,
+.contact-note__label,
+.contact-detail__label,
+.project-card__type {
+  color: var(--vtw-gold-text);
+}
+
+/* The list numbers and section indices read as gold text, not as fills. */
+.hsv__num,
+.iesv__num,
+.amodes__num,
+.faq__num,
+.sproc__num,
+.ieb__index,
+.smast__link .n { color: var(--vtw-gold-text); }
+
+/* Running copy is one step off the ink — that is what keeps the page calm. */
+.ip__content,
+.iesv__desc,
+.faq__a p,
+.areg__lead,
+.sbill__note,
+.sentry__lead,
+.amodes__foot,
+.ieh__sub,
+.iepm__sub { color: var(--vtw-body); }
+
+
+/* ─── 06 · Components ───────────────────────────────────────────────────────
+   One filled button per screen, in deep gold, for the single action that
+   matters. Everything else keeps the gold underline.                         */
+
+.hh__cta,
+.hct__link,
+.ip--site-cta .ip__cta-link {
+  display: inline-block;
+  padding: 14px 26px;
+  border: 0;
+  border-bottom: 0;
+  background: var(--vtw-gold-deep);
+  color: var(--vtw-white);
+  font-family: var(--vtw-sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  transition: background 0.25s var(--vtw-ease), color 0.25s var(--vtw-ease);
+}
+
+.hh__cta:hover,
+.hct__link:hover,
+.ip--site-cta .ip__cta-link:hover {
+  background: var(--vtw-ink);
+  color: var(--vtw-white);
+  border-color: transparent;
+  transform: none;
+}
+
+.ip--site-cta .ip__cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.ip--site-cta .ip__cta-link::after { color: var(--vtw-white); }
+
+.ip--site-cta .ip__cta-text { font-family: var(--vtw-sans); font-weight: 500; }
+
+/* Text links inside running copy: ink, with a gold underline. */
+.ip__content a {
+  color: var(--vtw-ink);
+  border-bottom-color: var(--vtw-gold);
+}
+
+.ip__content a:hover {
+  color: var(--vtw-gold-text);
+  border-bottom-color: var(--vtw-gold-deep);
+}
+
+/* Photographs lift on hover — 1.04 over 0.7s, the only image motion here. */
+.iemag__imgwrap img,
+.hpj__img img,
+.project-gallery__item img,
+.project-card__image img {
+  transition: transform var(--vtw-img-dur) var(--vtw-ease);
+}
+
+.iemag__imgwrap:hover img,
+.hpj__card:hover img,
+.project-gallery__item:hover img,
+.project-card:hover .project-card__image img {
+  transform: scale(var(--vtw-img-zoom));
+}
+
+/* Photographs sit on a warm grey ground while they load, never white. */
+.project-cover,
+.project-gallery__item,
+.iemag__imgwrap { background: var(--vtw-rule); }
+
+/* The closing panel keeps its inset hairline; the ground is the one gradient. */
+.ip--site-cta .ip__cta { background: var(--vtw-panel); }
+.ip--site-cta .ip__cta::before { border-color: var(--vtw-panel-inset); }
+
+@media (max-width: 760px) {
+  .hn__logo { --w: 56px; gap: 7px; }
+  .hn__logo .lk-h__n { padding-left: 7px; font-size: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iemag__imgwrap:hover img,
+  .hpj__card:hover img,
+  .project-gallery__item:hover img,
+  .project-card:hover .project-card__image img { transform: none; }
+}

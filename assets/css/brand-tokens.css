@@ -1,0 +1,52 @@
+/* Von Trapp Winter — brand tokens
+   Locked September 2026. Values taken from the live site (assets/css/main.css,
+   assets/css/home.css) so this file and the site cannot drift apart. */
+:root{
+  /* grounds — the page is cream, never white */
+  --vtw-cream:#f5f3ee;
+  --vtw-cream-mid:#eceae3;
+  --vtw-white:#ffffff;
+  /* ink */
+  --vtw-ink:#0d0d0b;
+  --vtw-body:#5a5952;
+  --vtw-muted:#8a8880;
+  /* line */
+  --vtw-rule:#d8d4ca;
+  /* accent */
+  --vtw-gold:#b8a07a;
+  --vtw-gold-deep:#8a6f47;
+  --vtw-gold-text:#7a6140;
+  /* type */
+  --vtw-sans:'Alegreya Sans','Helvetica Neue',Arial,sans-serif;
+  --vtw-serif:'Alegreya',Georgia,serif;
+  /* the monogram only ever sets at this tracking */
+  --vtw-lock-track:-0.088em;
+  --vtw-lock-shift:-0.044em;
+  /* scale */
+  --vtw-h1:clamp(42px,6.6vw,78px);
+  --vtw-h2:clamp(30px,4vw,46px);
+  --vtw-h3:clamp(22px,2.6vw,29px);
+  --vtw-h4:20px;
+  --vtw-body-size:18px;
+  --vtw-small:16.5px;
+  --vtw-eyebrow:12.5px;
+  --vtw-caption:13px;
+  /* surfaces — the one gradient in the system, for the CTA panel */
+  --vtw-panel:radial-gradient(circle at top right,rgba(184,160,122,.1),transparent 30%),linear-gradient(135deg,#f3f0e8 0%,#ece6db 100%);
+  --vtw-panel-inset:rgba(13,13,11,.05);
+  --vtw-placeholder:repeating-linear-gradient(135deg,#ddd8cc 0 14px,#d6d0c2 14px 28px);
+  /* image ratios */
+  --vtw-ratio-card:4 / 3;
+  --vtw-ratio-portrait:4 / 5;
+  --vtw-ratio-tall:3 / 4;
+  --vtw-ratio-wide:3 / 2;
+  --vtw-hero-h:clamp(340px,56vw,620px);
+  /* motion */
+  --vtw-ease:cubic-bezier(.16,1,.3,1);
+  --vtw-img-zoom:1.04;
+  --vtw-img-dur:.7s;
+  /* spacing */
+  --vtw-gap-section:clamp(52px,7vw,84px);
+  --vtw-gap-block:clamp(24px,3.4vw,44px);
+  --vtw-measure:64ch;
+}

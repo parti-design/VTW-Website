@@ -3,7 +3,7 @@
    to the About, Services, and Projects pages.
    Loaded AFTER main.css + home.css. Reuses the home tokens (:root in home.css):
      --black --white --cream --cream-mid --warm-gray --mid-gray --gold
-     --font-display (Cormorant Garamond)  --font-ui (Inter)
+     --font-display / --font-ui (Alegreya Sans)  --font-body (Alegreya)
    Class prefix: ie*  (interior-editorial)
    ============================================================================= */
 
@@ -12,7 +12,7 @@
 .page-editorial {
   background: var(--cream);
   color: var(--black);
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
 }
 
 /* The shared default.html main wrapper adds top padding for the fixed nav.
@@ -87,7 +87,7 @@
 
 .ieh__heading {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(2.9rem, 7vw, 6rem);
   line-height: 0.98;
   letter-spacing: -0.02em;
@@ -104,7 +104,7 @@
 
 .ieh__sub {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
   color: var(--mid-gray);
   margin: 2rem 0 0;
@@ -203,7 +203,7 @@
 
 .ieb__heading {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(2rem, 4vw, 3.1rem);
   line-height: 1.08;
   letter-spacing: -0.01em;
@@ -214,7 +214,7 @@
 
 .ieb__lead {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(1.4rem, 2.4vw, 1.95rem);
   line-height: 1.45;
   color: var(--black);
@@ -223,7 +223,7 @@
 
 .ieb__body p {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.85;
   color: #3a3a34;
   margin: 0 0 1.3rem;
@@ -289,7 +289,7 @@
 
 .ieq__quote {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-style: italic;
   font-size: clamp(1.6rem, 3.1vw, 2.6rem);
   line-height: 1.42;
@@ -354,7 +354,7 @@
 
 .iesv__title {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(1.7rem, 3vw, 2.4rem);
   line-height: 1.05;
   letter-spacing: -0.01em;
@@ -364,7 +364,7 @@
 
 .iesv__desc {
   font-size: 0.98rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
   color: #3a3a34;
   margin: 0;
@@ -381,7 +381,7 @@
   padding: 0 0 0 1.3rem;
   margin-bottom: 0.75rem;
   font-size: 0.9rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.55;
   color: var(--mid-gray);
 }
@@ -425,7 +425,7 @@
 
 .iest__note {
   font-size: 0.92rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.7;
   color: var(--mid-gray);
   margin: 0;
@@ -449,7 +449,7 @@
 .iest__num {
   font-family: var(--font-display);
   font-size: 2.6rem;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1;
   color: var(--gold);
   margin-bottom: 1rem;
@@ -457,7 +457,7 @@
 
 .iest__title {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1.4rem;
   color: var(--black);
   margin: 0 0 0.6rem;
@@ -465,7 +465,7 @@
 
 .iest__text {
   font-size: 0.9rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.7;
   color: var(--mid-gray);
   margin: 0;
@@ -499,7 +499,7 @@
 
 .iepm__title {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(3.2rem, 8vw, 6.5rem);
   line-height: 0.92;
   letter-spacing: -0.02em;
@@ -509,7 +509,7 @@
 
 .iepm__sub {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
   color: var(--mid-gray);
   margin: 0 0 0.4rem;
@@ -527,7 +527,7 @@
 }
 .iepm__count strong {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1.05rem;
   color: var(--gold);
   letter-spacing: 0.02em;
@@ -674,7 +674,7 @@
 
 .iemag__title {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1.35rem;
   line-height: 1.12;
   color: var(--black);
@@ -689,7 +689,7 @@
 .iemag__loc {
   flex-shrink: 0;
   font-size: 0.74rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--mid-gray);
   text-align: right;
   white-space: nowrap;

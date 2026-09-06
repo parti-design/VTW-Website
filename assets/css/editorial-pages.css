@@ -36,7 +36,7 @@
 
 .amast__lead {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(2rem, 4.6vw, 3.7rem);
   line-height: 1.16;
   letter-spacing: -0.01em;
@@ -131,7 +131,7 @@
 }
 .adoss__v {
   font-size: 0.92rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.5;
   color: var(--black);
 }
@@ -139,7 +139,7 @@
 .adoss__body { max-width: 42rem; }
 .adoss__h {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(1.9rem, 3.2vw, 2.7rem);
   line-height: 1.05;
   letter-spacing: -0.01em;
@@ -148,7 +148,7 @@
 }
 .adoss__body p {
   font-size: 1.02rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.85;
   color: #3a3a34;
   margin: 0 0 1.35rem;
@@ -157,7 +157,7 @@
 .adoss__body strong { font-weight: 500; color: var(--black); }
 .adoss__body p:first-of-type::first-letter {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 3.7em;
   line-height: 0.72;
   float: left;
@@ -189,7 +189,7 @@
 }
 .acom__stmt {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(1.55rem, 2.5vw, 2.05rem);
   line-height: 1.08;
   color: var(--black);
@@ -198,7 +198,7 @@
 .acom__stmt .g { color: var(--gold); }
 .acom__note {
   font-size: 0.88rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.65;
   color: var(--mid-gray);
   margin: 0;
@@ -207,7 +207,7 @@
   max-width: 46rem;
   margin: 3rem 0 0;
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-style: italic;
   font-size: clamp(1.3rem, 2.2vw, 1.7rem);
   line-height: 1.5;
@@ -230,7 +230,7 @@
 }
 .areg__h {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(1.9rem, 3.4vw, 2.8rem);
   line-height: 1.05;
   color: var(--black);
@@ -239,7 +239,7 @@
 }
 .areg__lead {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
   color: var(--mid-gray);
   margin: 0;
@@ -263,7 +263,7 @@
 }
 .areg__nv {
   font-size: 0.96rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.6;
   color: #3a3a34;
 }
@@ -293,7 +293,7 @@
 }
 .amodes__lead {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(1.6rem, 2.8vw, 2.3rem);
   line-height: 1.2;
   color: var(--black);
@@ -316,7 +316,7 @@
 }
 .amodes__t {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(1.3rem, 2.1vw, 1.65rem);
   line-height: 1.15;
   color: var(--black);
@@ -324,7 +324,7 @@
 }
 .amodes__d {
   font-size: 0.92rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.6;
   color: var(--mid-gray);
   margin: 0;
@@ -333,7 +333,7 @@
   margin: 2.5rem 0 0;
   max-width: 44rem;
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
   color: #3a3a34;
 }
@@ -368,7 +368,7 @@
 }
 .smast__lead {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(2rem, 4vw, 3.1rem);
   line-height: 1.14;
   letter-spacing: -0.01em;
@@ -403,7 +403,7 @@
 .smast__link .n { font-family: var(--font-display); font-size: 0.95rem; color: var(--gold); }
 .smast__link .t {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1.3rem;
   line-height: 1.1;
   transition: color 0.2s ease;
@@ -445,7 +445,7 @@
 .sentry--alt .sentry__media { order: 2; }
 .sentry__num {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(4.5rem, 10vw, 9rem);
   line-height: 0.78;
   color: transparent;
@@ -456,7 +456,7 @@
 }
 .sentry__title {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(1.9rem, 3.4vw, 2.7rem);
   line-height: 1.02;
   letter-spacing: -0.01em;
@@ -465,7 +465,7 @@
 }
 .sentry__lead {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
   color: #3a3a34;
   margin: 0;
@@ -484,7 +484,7 @@
   padding: 0.85rem 0 0.85rem 1.4rem;
   border-top: 1px solid var(--warm-gray);
   font-size: 0.9rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.45;
   color: #3a3a34;
 }
@@ -522,7 +522,7 @@
 }
 .sbill__stmt {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(1.7rem, 3vw, 2.45rem);
   line-height: 1.22;
   color: var(--black);
@@ -531,7 +531,7 @@
 }
 .sbill__note {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
   color: var(--mid-gray);
   margin: 0;
@@ -556,7 +556,7 @@
 }
 .sproc__h {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.02;
   color: var(--black);
@@ -596,14 +596,14 @@
 }
 .sproc__t {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(1.3rem, 2.2vw, 1.65rem);
   color: var(--black);
   margin: 0.3rem 0 0.5rem;
 }
 .sproc__x {
   font-size: 0.95rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.7;
   color: var(--mid-gray);
   margin: 0;
@@ -674,7 +674,7 @@
 }
 .faqh__lead {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(2rem, 4vw, 3.1rem);
   line-height: 1.14;
   letter-spacing: -0.01em;
@@ -701,7 +701,7 @@
 }
 .faq__q {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(1.4rem, 2.6vw, 2rem);
   line-height: 1.18;
   color: var(--black);
@@ -710,7 +710,7 @@
 }
 .faq__a p {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.85;
   color: #3a3a34;
   margin: 0 0 1.1rem;
@@ -728,7 +728,7 @@
   position: relative;
   padding: 0.5rem 0 0.5rem 1.3rem;
   font-size: 0.96rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.6;
   color: #3a3a34;
 }
@@ -761,7 +761,7 @@
 }
 .cmast__lead {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(2rem, 4.4vw, 3.4rem);
   line-height: 1.14;
   letter-spacing: -0.01em;
@@ -772,7 +772,7 @@
 .cmast__intro { margin: 2.2rem 0 0; max-width: 40rem; }
 .cmast__intro p {
   font-size: 1.05rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
   color: var(--mid-gray);
   margin: 0;
@@ -803,7 +803,7 @@
   padding: 1rem 0 1rem 1.4rem;
   border-top: 1px solid var(--warm-gray);
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(1.2rem, 2vw, 1.55rem);
   line-height: 1.3;
   color: var(--black);
@@ -833,7 +833,7 @@
 }
 .cdetail__value {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(1.15rem, 2vw, 1.5rem);
   color: var(--black);
   text-decoration: none;
@@ -909,7 +909,7 @@ a.cdetail__value:hover { color: var(--gold); }
 }
 .aher__lead {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(1.8rem, 3.2vw, 2.6rem);
   line-height: 1.1;
   color: var(--black);
@@ -918,7 +918,7 @@ a.cdetail__value:hover { color: var(--gold); }
 }
 .aher__body p {
   font-size: 1.02rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.85;
   color: #3a3a34;
   margin: 0 0 1.35rem;

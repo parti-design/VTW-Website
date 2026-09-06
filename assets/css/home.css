@@ -1,6 +1,6 @@
 /* =============================================================================
    Home Page — Editorial Redesign
-   Fonts: Cormorant Garamond (display) · Inter (UI/body)
+   Fonts: Alegreya Sans (display + UI) · Alegreya (body)  — see assets/css/brand-tokens.css
    Palette: Warm cream dominant · Near-black text · Muted gold accent
    ============================================================================= */
 
@@ -15,8 +15,13 @@
   --mid-gray:  #8a8880;
   --gold:      #b8a07a;
 
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-ui:      'Inter', 'Helvetica Neue', Arial, sans-serif;
+  /* Type is owned by the brand system — assets/css/brand-tokens.css.
+     display = headings, labels, the mark (Alegreya Sans Medium)
+     ui      = nav, eyebrows, buttons, captions (Alegreya Sans)
+     body    = all running copy and quotes (Alegreya) */
+  --font-display: var(--vtw-sans);
+  --font-ui:      var(--vtw-sans);
+  --font-body:    var(--vtw-serif);
 }
 
 /* --- Reset (home only) ----------------------------------------------------- */
@@ -70,7 +75,7 @@
   color: var(--black);
   font-family: var(--font-display);
   font-size: clamp(1.45rem, 2.1vw, 1.9rem);
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.04em;
   line-height: 1;
   text-decoration: none;
@@ -226,7 +231,7 @@ body.nav-open { overflow: hidden; }
 .hh__heading {
   font-family: var(--font-display);
   font-size: clamp(4rem, 10vw, 9rem);
-  font-weight: 300;
+  font-weight: 500;
   line-height: 0.95;
   letter-spacing: -0.02em;
   color: var(--black);
@@ -239,7 +244,7 @@ body.nav-open { overflow: hidden; }
 .hh__sub {
   font-family: var(--font-ui);
   font-size: 0.9rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
   letter-spacing: 0.02em;
   color: var(--mid-gray);
@@ -342,7 +347,7 @@ body.nav-open { overflow: hidden; }
 .hs__text {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4.5vw, 4rem);
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--black);
@@ -353,7 +358,7 @@ body.nav-open { overflow: hidden; }
 .hs__aside {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 3vw, 2.75rem);
-  font-weight: 300;
+  font-weight: 500;
   font-style: italic;
   color: var(--gold);
   margin: 0;
@@ -425,7 +430,7 @@ body.nav-open { overflow: hidden; }
 .hav__quote {
   font-family: var(--font-display);
   font-size: clamp(1.4rem, 2.5vw, 2rem);
-  font-weight: 300;
+  font-weight: 500;
   font-style: italic;
   line-height: 1.55;
   color: var(--black);
@@ -449,7 +454,7 @@ body.nav-open { overflow: hidden; }
 .hav__context {
   font-family: var(--font-ui);
   font-size: 0.9rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.7;
   color: var(--mid-gray);
   margin: 0;
@@ -497,7 +502,7 @@ body.nav-open { overflow: hidden; }
 .hsv__num {
   font-family: var(--font-display);
   font-size: 0.85rem;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--gold);
   letter-spacing: 0.08em;
   padding-top: 0.3rem;
@@ -506,7 +511,7 @@ body.nav-open { overflow: hidden; }
 .hsv__title {
   font-family: var(--font-display);
   font-size: clamp(1.4rem, 2.5vw, 2rem);
-  font-weight: 300;
+  font-weight: 500;
   color: var(--black);
   margin: 0 0 0.75rem;
   letter-spacing: -0.01em;
@@ -515,7 +520,7 @@ body.nav-open { overflow: hidden; }
 .hsv__desc {
   font-family: var(--font-ui);
   font-size: 0.85rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.75;
   color: var(--mid-gray);
   margin: 0;
@@ -644,7 +649,7 @@ body.nav-open { overflow: hidden; }
 .hpj__title {
   font-family: var(--font-display);
   font-size: 1.2rem;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--black);
   margin: 0 0 0.3rem;
 }
@@ -696,7 +701,7 @@ body.nav-open { overflow: hidden; }
 .htm__quote {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 300;
+  font-weight: 500;
   font-style: italic;
   line-height: 1.5;
   color: var(--black);
@@ -724,7 +729,7 @@ body.nav-open { overflow: hidden; }
 .htm__project {
   font-family: var(--font-ui);
   font-size: 0.75rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--mid-gray);
 }
 
@@ -784,7 +789,7 @@ body.nav-open { overflow: hidden; }
 .hct__heading {
   font-family: var(--font-display);
   font-size: clamp(3rem, 7vw, 6rem);
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--black);
@@ -794,7 +799,7 @@ body.nav-open { overflow: hidden; }
 .hct__sub {
   font-family: var(--font-ui);
   font-size: 0.9rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.7;
   color: var(--mid-gray);
   margin: 0 0 3rem;
@@ -834,7 +839,7 @@ body.nav-open { overflow: hidden; }
 .hft__copy {
   font-family: var(--font-ui);
   font-size: 0.75rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--mid-gray);
   margin: 0;
 }

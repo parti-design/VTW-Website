@@ -38,6 +38,8 @@ exclude:
   - README.md
   - agents.md
   - docs
+  - design
+  - notes
 
 # Collections
 collections:
