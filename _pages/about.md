@@ -48,10 +48,6 @@ description: "About Severin Winter, building consultant in the Hudson Valley, NY
         <span class="adoss__k">Focus</span>
         <span class="adoss__v">Historic barns, farmhouses &amp; homes</span>
       </div>
-      <div class="adoss__row">
-        <span class="adoss__k">Not</span>
-        <span class="adoss__v">A general contractor</span>
-      </div>
     </aside>
 
     <div class="adoss__body">
