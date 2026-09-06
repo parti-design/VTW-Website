@@ -403,9 +403,14 @@ select,
 .ip--site-cta .ip__cta { background: var(--vtw-panel); }
 .ip--site-cta .ip__cta::before { border-color: var(--vtw-panel-inset); }
 
+/* On a phone the lockup is the only branding on screen, so it takes more room
+   than it does on desktop, not less. The nav's own padding tightens by the
+   same amount, which keeps the fixed header at the height it already was. */
 @media (max-width: 760px) {
-  .hn__logo { --w: 56px; gap: 7px; }
-  .hn__logo .lk-h__n { padding-left: 7px; font-size: 11px; }
+  .hn { padding: 1.1rem 1.5rem; }
+  .hn--scrolled { padding: 0.8rem 1.5rem; }
+  .hn__logo { --w: 78px; gap: 10px; }
+  .hn__logo .lk-h__n { padding-left: 10px; font-size: 13px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
