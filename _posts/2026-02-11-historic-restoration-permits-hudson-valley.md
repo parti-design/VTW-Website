@@ -3,7 +3,7 @@ layout: post
 title: "Historic Restoration in the Hudson Valley: Permits, Reviews, and Common Delays"
 date: 2026-02-11 10:05:00 -0500
 author: Severin Winter
-description: "A Hudson Valley building consultant explains the real permit and preservation review process for historic restoration, plus what actually causes delays."
+description: "A Hudson Valley building specialist explains the real permit and preservation review process for historic restoration, plus what actually causes delays."
 ---
 
 You bought the old farmhouse outside Rhinebeck, or the barn in Columbia County that everyone in town has an opinion about, and you are ready to start restoring it. Then someone mentions you might need a "certificate of appropriateness," another person says the State has to weigh in, and your contractor wants to know whether the building department has even seen the plans yet. Suddenly the work you were excited about feels like a paperwork maze, and nobody has explained who actually decides what.
@@ -42,7 +42,7 @@ Treat approvals as a real phase of the project, not a formality you rush at the 
 
 It also means planning your budget and timeline around iteration. Historic reviews often require a round or two of back-and-forth, and that has both cost and schedule consequences. Projects that acknowledge this up front are simply calmer. If tax credits are part of your plan, build in extra lead time, because the SHPO review and the documentation it requires add real steps; I get into the specifics in [New York historic preservation tax credits]({% post_url 2026-05-01-new-york-historic-preservation-tax-credits %}).
 
-One last point on the people involved. Your licensed architect and engineer produce and seal the drawings the building department and any commission will review. My job is to sit on your side of that table: to keep the scope buildable, the budget honest, and the submission complete so the licensed professionals are not stuck answering avoidable questions. If you are still deciding whether you need that kind of help, [when to hire a building consultant]({% post_url 2025-04-18-when-to-hire-a-building-consultant %}) walks through it.
+One last point on the people involved. Your licensed architect and engineer produce and seal the drawings the building department and any commission will review. My job is to sit on your side of that table: to keep the scope buildable, the budget honest, and the submission complete so the licensed professionals are not stuck answering avoidable questions. If you are still deciding whether you need that kind of help, [when to hire a building specialist]({% post_url 2025-04-18-when-to-hire-a-building-consultant %}) walks through it.
 
 Historic restoration in the Hudson Valley is absolutely doable. It rewards preparation and local process knowledge far more than it rewards speed. Specific fees, thresholds, and program rules change, so always verify the current details with your local building department and the relevant agency before you rely on them.
 

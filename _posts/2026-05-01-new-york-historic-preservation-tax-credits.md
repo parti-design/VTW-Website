@@ -36,7 +36,7 @@ That standards layer is also why these projects need more coordination up front,
 
 ## Where I fit, and where I don't
 
-I want to be clear about my role, because tax credits attract a lot of vague promises. I am a building consultant and owner's representative. I do not prepare your tax filings, I do not seal drawings, and I am not the one who certifies your application with the state. You will want a tax professional for the numbers and, depending on the project, your licensed architect or engineer for the drawings and certifications the program may require.
+I want to be clear about my role, because tax credits attract a lot of vague promises. I am a building specialist and owner's representative. I do not prepare your tax filings, I do not seal drawings, and I am not the one who certifies your application with the state. You will want a tax professional for the numbers and, depending on the project, your licensed architect or engineer for the drawings and certifications the program may require.
 
 What I do is sit on your side of the table while the work itself gets defined. That means helping you build a realistic restoration budget, reviewing scope for constructability, separating urgent stabilization from longer-term restoration, and making sure the work your contractor prices actually lines up with what the program is likely to credit. A surprising amount of credit value gets lost simply because work was scoped or documented in a way that did not fit the qualifying categories. Getting that right early is the same discipline that helps you [avoid change orders]({% post_url 2025-12-03-how-to-avoid-change-orders %}) later.
 

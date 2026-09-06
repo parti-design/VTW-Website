@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "When Should You Hire a Building Consultant in the Hudson Valley?"
+title: "When Should You Hire a Building Specialist in the Hudson Valley?"
 date: 2025-04-18 09:00:00 -0400
 author: Severin Winter
-description: "When should you hire a building consultant in the Hudson Valley? A practical guide to the right timing, what early advice prevents, and how it saves money locally."
+description: "When should you hire a building specialist in the Hudson Valley? A practical guide to the right timing, what early advice prevents, and how it saves money locally."
 ---
 
 You found the house. An 1840s farmhouse outside Rhinebeck, or a barn on a hillside in Columbia County with a view that made the drive up from the city worth it. Your offer is in, or close to it. The listing agent says it "just needs cosmetic work." Your contractor friend glanced at the photos and said it looks solid. And a quieter voice is asking whether you really know what you are walking into, or whether you are about to find out the expensive way.
 
 That is the moment people most often call me. The honest answer to "when should I bring someone in" is almost always the same: sooner than you think, and before you sign something you cannot easily undo.
 
-## Is it too early to hire a building consultant?
+## Is it too early to hire a building specialist?
 
 The most common question I hear is whether to call now or wait until there is a contractor and a set of plans to look at. People worry that calling early is premature, that there is nothing yet to advise on.
 

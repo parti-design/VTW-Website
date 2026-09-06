@@ -3,7 +3,7 @@ layout: default
 title: "About"
 permalink: /about/
 body_class: page-editorial
-description: "About Severin Winter, building consultant in the Hudson Valley, NY."
+description: "About Severin Winter, building specialist in the Hudson Valley, NY."
 ---
 
 <!-- ═══ HERO — text + image ═══ -->
@@ -17,7 +17,7 @@ description: "About Severin Winter, building consultant in the Hudson Valley, NY
       <p class="amast__lead">Four decades of building, repairing, and restoring across the <em>Hudson Valley.</em></p>
       <div class="amast__byline">
         <strong>Severin Winter</strong>
-        <span>Independent Building Consultant</span>
+        <span>Independent Building Specialist</span>
       </div>
     </div>
     <figure class="amast__media">

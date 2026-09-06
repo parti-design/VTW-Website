@@ -3,14 +3,14 @@ layout: default
 title: "FAQ"
 permalink: /faq/
 body_class: page-editorial
-description: "Frequently asked questions about working with Severin Winter, building consultant in the Hudson Valley."
+description: "Frequently asked questions about working with Severin Winter, building specialist in the Hudson Valley."
 ---
 
 <!-- ═══ OPENING ═══ -->
 <section class="faqh">
   <div class="faqh__inner">
     <p class="faqh__kicker">Questions</p>
-    <h1 class="faqh__lead">What to expect from an independent building consultant.</h1>
+    <h1 class="faqh__lead">What to expect from an independent building specialist.</h1>
   </div>
 </section>
 
@@ -21,9 +21,9 @@ description: "Frequently asked questions about working with Severin Winter, buil
     <article class="faq__item" data-animate>
       <div class="faq__num">01</div>
       <div class="faq__qa">
-        <h2 class="faq__q">What does a building consultant actually do?</h2>
+        <h2 class="faq__q">What does a building specialist actually do?</h2>
         <div class="faq__a">
-          <p>A building consultant provides expert advice on building projects &mdash; but does not act as a contractor or manage construction crews. Think of it as having someone in your corner who knows exactly how buildings go together, what things cost, and where projects typically go wrong, and who works exclusively on your behalf.</p>
+          <p>A building specialist provides expert advice on building projects &mdash; but does not act as a contractor or manage construction crews. Think of it as having someone in your corner who knows exactly how buildings go together, what things cost, and where projects typically go wrong, and who works exclusively on your behalf.</p>
           <p>In practice, that might mean reviewing plans before you commit, helping you select and vet a contractor, representing your interests during construction, assessing a property you&rsquo;re considering buying, or providing a second opinion on a proposal or budget.</p>
         </div>
       </div>

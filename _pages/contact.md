@@ -3,7 +3,7 @@ layout: contact
 title: "Contact"
 permalink: /contact/
 body_class: page-editorial
-description: "Contact Severin Winter, building consultant in the Hudson Valley, NY."
+description: "Contact Severin Winter, building specialist in the Hudson Valley, NY."
 phone_area: "845"
 phone_prefix: "749"
 phone_line: "7077"

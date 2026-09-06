@@ -14,7 +14,7 @@ The question in your head is not just "Does this house work today?" It is "What 
 
 A pre-purchase property assessment is me walking the property with you, before you close, to give you a builder's honest read on three things: the real condition of the structure, whether the place can actually do what you want it to do, and the realistic cost to get there.
 
-I am a building consultant, not your inspector and not your architect. I work alongside the licensed professionals you will eventually hire. What I bring to that driveway is field judgment from years of building, renovating, and restoring old houses and barns in Dutchess, Columbia, and Ulster counties. I look at the foundation, the framing, the roof, the water story, the site, and the systems the way someone who has had to fix all of those things looks at them. Then I tell you, in plain numbers and plain language, what you are likely taking on.
+I am a building specialist, not your inspector and not your architect. I work alongside the licensed professionals you will eventually hire. What I bring to that driveway is field judgment from years of building, renovating, and restoring old houses and barns in Dutchess, Columbia, and Ulster counties. I look at the foundation, the framing, the roof, the water story, the site, and the systems the way someone who has had to fix all of those things looks at them. Then I tell you, in plain numbers and plain language, what you are likely taking on.
 
 It is usually the first thing I do with a client, and often the only thing they need from me before they decide. Think of it as the entry point: a focused, hourly engagement that gives you a clear picture before you commit hundreds of thousands of dollars.
 
