@@ -25,7 +25,12 @@ gallery:
   - image: "/assets/images/projects-final/triform-office/15-P1220750.jpg"
   - image: "/assets/images/projects-final/triform-office/08-P1220712.jpg"
   - image: "/assets/images/projects-final/triform-office/02-P1210749-1.jpg"
+description: "Design-build expansion creating a new administration and gathering building for Triform Camphill Community, with anthroposophic design language and warm natural materials."
 featured: true
-year: 2017
-location: "Hudson Valley, NY"
+year: 2010
+location: "Hudson, NY"
 ---
+
+When Triform Camphill Community needed room for its administration and a place for meetings and gatherings, the answer grew out of a building it already had. The project extended the existing structure, expanding its foundation and roofline to form a single new building that could house the community's growing needs. Severin designed the building in close collaboration with Triform and carried the project through construction.
+
+The design speaks the anthroposophic language at the heart of Camphill life. Outside, a familiar barn-like form with arched windows in the gable; inside, warm natural wood throughout, from the floors to the custom doors and trim with their softly curved lines. The result is a workplace with the character and warmth of a home.
