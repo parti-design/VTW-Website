@@ -21,6 +21,11 @@
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}" />
 
   {%- seo -%}
+
+  <!-- Umami — self-hosted, cookieless. data-domains pins reporting to the live
+       host so local builds and previews send nothing. -->
+  <script defer src="https://stats.parti.design/script.js"
+          data-website-id="a154c352-3f3f-4338-881b-999663770be9" data-domains="vontrappwinter.com"></script>
 </head>
 <body class="{{ page.body_class | default: 'page-interior' }}">
 
