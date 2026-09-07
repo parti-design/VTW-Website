@@ -8,15 +8,15 @@ description: "How to choose a Hudson Valley contractor: compare bids fairly, che
 
 You have three proposals spread across the kitchen table. One is noticeably cheaper than the other two, and your eye keeps drifting back to it. The other two contractors seemed sharper when they walked the house, but that lower number is hard to ignore. So you sit there asking the question almost everyone asks me at this stage: how do I know which of these is actually the right one?
 
-Price matters. I would never tell you it doesn't. But price alone is a poor way to decide, and in the Hudson Valley it can be an actively dangerous one. The right contractor for a tidy kitchen update in Rhinebeck may be exactly the wrong contractor for an 1840s farmhouse with a dry-laid stone foundation and horsehair plaster on the walls. Choosing well starts long before you compare numbers.
+Price matters. I would never tell you it doesn't. But price alone is a poor way to decide, and in the Hudson Valley it can be an actively dangerous one. The right contractor for a tidy kitchen update may be exactly the wrong contractor for an 1840s farmhouse with a dry-laid stone foundation and horsehair plaster on the walls. Choosing well starts long before you compare numbers.
 
 ## Why does choosing a contractor work differently up here?
 
-Most of what I do is renovation and restoration of old houses and barns, and that changes the math. A lot of the building stock in Dutchess, Columbia, and Ulster counties is genuinely old: timber-frame barns, balloon-framed farmhouses, knob-and-tube wiring still live in a corner of the attic, lime mortar in the foundation that will spall and crumble if someone repoints it with modern Portland cement.
+Most of what I do is renovation and restoration of old houses and barns, and that changes the math. A lot of the building stock in this part of the Hudson Valley is genuinely old: timber-frame barns, balloon-framed farmhouses, knob-and-tube wiring still live in a corner of the attic, lime mortar in the foundation that will spall and crumble if someone repoints it with modern Portland cement.
 
 A contractor who is excellent at straightforward work may have never touched any of that. That is not a knock on them; it is a question of fit. Pointing a stone foundation, splicing into a hand-hewn sill, matching old trim profiles, plastering over lath instead of hanging drywall over it, working around an old septic field and ledge rock you cannot just dig through — these are specific skills. The person who is best at them is often not the person with the lowest overhead or the flashiest truck.
 
-So before you weigh price, get honest about what your project actually is. A near-new house in a Kingston subdivision and a tired barn outside Millbrook are not the same job, and they do not call for the same crew. If you are still at the buying stage, my [old-house buying checklist]({% post_url 2025-08-29-buying-old-house-hudson-valley-checklist %}) will help you understand what you are taking on before you ever line up bids.
+So before you weigh price, be clear-eyed about what your project actually is. A near-new house in a Kingston subdivision and a tired barn outside Millbrook are not the same job, and they do not call for the same crew. If you are still at the buying stage, my [old-house buying checklist]({% post_url 2025-08-29-buying-old-house-hudson-valley-checklist %}) will help you understand what you are taking on before you ever line up bids.
 
 ## Why do bids have to be comparable before you read them?
 
@@ -49,4 +49,4 @@ Watch for the patterns that rarely improve once work begins: a number that is fa
 
 The right choice is almost never simply the lowest bid on the table. It is the contractor with a transparent process, a realistic plan, and the right experience for your exact scope.
 
-If you would like an independent set of eyes on your bids before you sign, or help writing a scope tight enough that the numbers are finally comparable, [reach out](/contact/). It is often the difference between three guesses and three real answers.
+If you would like an independent set of eyes on your bids before you sign, or help writing a scope tight enough that the numbers are finally comparable, [send me the details](/contact/). It is often the difference between three guesses and three real answers.

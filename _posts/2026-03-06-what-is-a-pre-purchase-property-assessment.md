@@ -6,7 +6,7 @@ author: Severin Winter
 description: "A Hudson Valley builder explains the pre-purchase property assessment: how it differs from a home inspection and gives buyers cost clarity and leverage."
 ---
 
-You found it. The 1840s farmhouse outside Rhinebeck, or the timber-frame barn up a dirt road in Columbia County that you can already picture as a home. The listing photos are good. The price feels almost reasonable. And now you are standing in the driveway with your phone out, trying to figure out whether this is the project of your dreams or a money pit with good bones. A home inspection is the obvious next step. But a home inspection answers a narrower question than the one you are actually asking.
+Somewhere between the listing photos and the drive home, the question changes. It stops being whether you like the 1840s farmhouse with the deep porch, or the timber-frame barn up a dirt road you can already picture as a home, and starts being what it will take to get there. The price feels almost reasonable. And there you are in the driveway with your phone out, trying to work out whether this is the project of your dreams or a money pit with good bones. A home inspection is the obvious next step. But a home inspection answers a narrower question than the one you are actually asking.
 
 The question in your head is not just "Does this house work today?" It is "What will it cost me to turn this into the place I want, and am I about to overpay?" That is a different question, and it needs a different kind of look. That is what a pre-purchase property assessment is for.
 
@@ -14,7 +14,7 @@ The question in your head is not just "Does this house work today?" It is "What 
 
 A pre-purchase property assessment is me walking the property with you, before you close, to give you a builder's honest read on three things: the real condition of the structure, whether the place can actually do what you want it to do, and the realistic cost to get there.
 
-I am a building specialist, not your inspector and not your architect. I work alongside the licensed professionals you will eventually hire. What I bring to that driveway is field judgment from years of building, renovating, and restoring old houses and barns in Dutchess, Columbia, and Ulster counties. I look at the foundation, the framing, the roof, the water story, the site, and the systems the way someone who has had to fix all of those things looks at them. Then I tell you, in plain numbers and plain language, what you are likely taking on.
+I am a building specialist, not your inspector and not your architect. I work alongside the licensed professionals you will eventually hire. What I bring to that driveway is field judgment from years of building, renovating, and restoring old houses and barns in Columbia, Dutchess, Greene, and Ulster counties. I look at the foundation, the framing, the roof, the water story, the site, and the systems the way someone who has had to fix all of those things looks at them. Then I tell you, in plain numbers and plain language, what you are likely taking on.
 
 It is usually the first thing I do with a client, and often the only thing they need from me before they decide. Think of it as the entry point: a focused, hourly engagement that gives you a clear picture before you commit hundreds of thousands of dollars.
 
@@ -50,4 +50,4 @@ And when the property checks out, the assessment does something just as valuable
 
 It pays for itself in one of two ways. Either it saves you from a property whose true cost was hiding in the foundation and the septic field, or it gives you the numbers and the nerve to buy well. A few hours of my time is a rounding error against the price of the house. The expensive mistake is finding all of this out after closing.
 
-If you have a property under consideration, or one you are about to make an offer on, [reach out](/contact/) for a no-obligation conversation. We can talk through whether an assessment makes sense for your situation before you commit a dollar.
+If you have a property under consideration, or one you are about to make an offer on, [tell me what you are considering](/contact/) — no obligation. We can talk through whether an assessment makes sense for your situation before you commit a dollar.

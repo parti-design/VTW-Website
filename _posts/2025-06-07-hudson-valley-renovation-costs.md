@@ -14,11 +14,11 @@ The honest answer is that costs vary widely, but the reasons they vary are usual
 
 Renovation pricing is shaped by the existing condition of the building, how clearly the scope is defined, your finish expectations, access and logistics, permit requirements, and hidden conditions that only show up once work begins. On an older home, that last item is usually the largest source of budget pressure, and it is the one no one wants to think about while they are still excited about the kitchen.
 
-Of those factors, the one you control most directly is how clearly the scope is defined. A vague scope produces a vague price. When a contractor cannot see exactly what you want, the bid either gets padded to cover the unknown or it gets thin because the unknowns were left out. Neither helps you. The more specific your drawings and specifications, the more honest and comparable the numbers come back. I wrote more about that in [how to choose a contractor]({% post_url 2025-10-14-how-to-choose-a-contractor-hudson-valley %}), because the quality of your bids depends as much on what you hand the builder as on who the builder is.
+Of those factors, the one you control most directly is how clearly the scope is defined. A vague scope produces a vague price. When a contractor cannot see exactly what you want, the bid either gets padded to cover the unknown or it gets thin because the unknowns were left out. Neither helps you. The more specific your drawings and specifications, the more reliable and comparable the numbers come back. I wrote more about that in [how to choose a contractor]({% post_url 2025-10-14-how-to-choose-a-contractor-hudson-valley %}), because the quality of your bids depends as much on what you hand the builder as on who the builder is.
 
 ## Why do old Hudson Valley houses surprise people?
 
-Because they hide things, and the things they hide are expensive. I have opened up enough walls in Dutchess, Columbia, and Ulster County to have a short list of the usual suspects.
+Because they hide things, and the things they hide are expensive. I have opened up enough walls in old Hudson Valley houses to have a short list of the usual suspects.
 
 A dry-laid stone foundation looks solid until you load it differently or dig near it, and then you find it has been quietly shedding mortar and bowing for a century. Knob-and-tube wiring still runs live in more old farmhouses than people expect, and once you touch it, you often have to deal with all of it. Septic is its own chapter: an undersized or failing system, or a perc test that comes back poor, can rewrite a budget overnight, and that is before you learn how the county wants it addressed. Ledge, the rock that sits just under so much of this region, can turn a simple excavation or addition footing into a line item with a hammer attachment on it.
 
@@ -44,4 +44,4 @@ Slow down long enough to do three things. Verify the existing conditions as much
 
 Better documents produce better bids, and better bids mean fewer expensive surprises. A useful renovation budget is not a guess. It is a decision tool that helps you set scope and sequence with confidence, and it is far cheaper to build carefully on paper than to discover its gaps mid-demolition. I cannot hand you the dollar figures in the abstract, because they depend on your house, your scope, and current local pricing, and septic and permit specifics should always be confirmed with your county. What I can tell you is which questions to ask before the number means anything.
 
-That kitchen-table moment, staring at a bid you are not sure you trust, is exactly the right time to get a second read. If you want help pressure-testing your assumptions before you commit, [reach out](/contact/).
+That kitchen-table moment, staring at a bid you are not sure you trust, is exactly the right time to get a second read. If you want help pressure-testing your assumptions before you commit, [start a conversation](/contact/).

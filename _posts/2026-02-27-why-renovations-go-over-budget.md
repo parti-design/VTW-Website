@@ -6,7 +6,7 @@ author: Severin Winter
 description: "The real reasons Hudson Valley renovations go over budget, from thin allowances to hidden conditions, plus the questions to ask a contractor before you sign."
 ---
 
-You have the bid in hand. The number is a little higher than you hoped, but you can live with it, so you sign, and you start telling people the project will cost what the contract says. Eight months later you have paid well over that, and you cannot point to a single moment where anyone did anything wrong. That story plays out in Dutchess and Columbia and Ulster counties more often than anyone likes to admit, and it is almost never because the homeowner picked a dishonest contractor. It is because the budget was built on hope instead of information. Here is where the money actually goes, and what to ask before you put your name on the line.
+You have the bid in hand. The number is a little higher than you hoped, but you can live with it, so you sign, and you start telling people the project will cost what the contract says. Eight months later you have paid well over that, and you cannot point to a single moment where anyone did anything wrong. That story plays out across the Hudson Valley more often than anyone likes to admit, and it is almost never because the homeowner picked a dishonest contractor. It is because the budget was built on hope instead of information. Here is where the money actually goes, and what to ask before you put your name on the line.
 
 ## Why does the final cost end up so much higher than the bid?
 

@@ -6,7 +6,7 @@ author: Severin Winter
 description: "How NYC second-home owners can run a Hudson Valley build or renovation from afar, using a trusted local advocate as eyes on site."
 ---
 
-You found the place. A farmhouse outside Rhinebeck, a barn in Columbia County, a fixer in Kingston that you can already picture on a Sunday in October. The problem is that you live in the city, your weekends are precious, and the work you want done is going to happen Monday through Friday, two hours away, in front of people you have never met. So the question sits in the back of your mind on the train ride home: how do I run this without being there, and how do I know I am not being taken for a ride?
+You live two hours south of the house. A farmhouse up a dirt road, a barn with good bones, a place in town you can already picture on a Sunday in October, and a job that is going to run Monday through Friday, in front of people you have never met, while you are at your desk. So the question sits in the back of your mind on the train ride home: how do I run this without being there, and how do I know I am not being taken for a ride?
 
 I hear a version of this almost every week. It is one of the most common situations I work in, and it is also one of the most solvable. Distance is a real problem, but it is a manageable one when you have someone on the ground whose only job is to look out for you.
 
@@ -48,4 +48,4 @@ I sort the incoming questions so the ones that reach you are real choices, frame
 
 Set a rhythm. Agree on when you get site visits and updates so you are not chasing information. Keep one clear chain: questions route through one person who has the full picture, not five group texts. Decide the budget contingency before you need it, so the first surprise does not feel like a crisis. And get the independent read early, while options are still open, rather than after a job has stalled. If you want the fuller picture on what these projects actually cost up here, I laid that out in [Hudson Valley renovation costs]({% post_url 2025-06-07-hudson-valley-renovation-costs %}).
 
-Owning a place up here while living in the city is supposed to be the good kind of project, the one you look forward to. It can be, with the right person watching it for you between visits. If you are weighing a build or a renovation and want a straight, no-obligation conversation about how to run it from a distance, [reach out](/contact/). I am happy to talk it through.
+Owning a place up here while living in the city is supposed to be the good kind of project, the one you look forward to. It can be, with the right person watching it for you between visits. If you are weighing a build or a renovation and want a straight conversation about how to run it from a distance, [talk it through with me](/contact/). No obligation, and no pitch.
