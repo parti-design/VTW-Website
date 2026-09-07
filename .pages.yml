@@ -1,4 +1,4 @@
-# Pages CMS / Grove configuration for the Von Trapp Winter (Severin Winter Consulting) site.
+# Pages CMS / Grove configuration for the Von Trapp Winter site.
 # Mirrors the previous Decap CMS setup. Jekyll ignores dotfiles, so this never ships to the build.
 
 media:

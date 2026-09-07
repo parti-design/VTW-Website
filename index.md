@@ -1,6 +1,6 @@
 ---
 layout: home
-title: "Severin Winter Consulting"
+title: "Von Trapp Winter"
 description: >-
   Hudson Valley building specialist working in owner's representation,
   renovation, and the restoration of historic barns and homes.
