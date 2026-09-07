@@ -186,6 +186,27 @@ select,
   opacity: 0.85;
 }
 
+/* Articles is deliberately not in the main menu, so the footer carries the only
+   link to it. Without one the whole article cluster is orphaned. */
+.hft__links {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.hft__link {
+  font-family: var(--vtw-sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--vtw-muted);
+  transition: color 0.25s var(--vtw-ease);
+}
+
+.hft__link:hover { color: var(--vtw-ink); }
+
 /* It replaces the footer's hairline rather than sitting above it — two rules
    stacked would read as decoration, which is exactly what the wave is not. */
 .hft { border-top: 0; }
