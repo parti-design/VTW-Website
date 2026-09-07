@@ -4,6 +4,7 @@ title: "How to Avoid Costly Change Orders on Renovation Projects"
 date: 2025-12-03 09:55:00 -0500
 author: Severin Winter
 description: "A Hudson Valley building specialist on why renovation change orders happen, which ones are avoidable, and the questions to ask before you sign a contract."
+published: false
 ---
 
 A couple bought a farmhouse outside Rhinebeck and called me three weeks into their renovation. The contract had come in close to what they expected, they liked the builder, and they had signed. Now there was a stack of change orders on the kitchen table and a number on the bottom that was climbing past anything they had budgeted. None of it felt like anyone's fault, exactly. The framing under the bathroom was rotted. The "as needed" electrical line had turned into a whole-house rewire. The kitchen cabinet allowance bought maybe half the cabinets. They asked me the question I hear most often: how does a project go from on-budget to over-budget without anyone deciding it should?

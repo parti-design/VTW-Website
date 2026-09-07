@@ -4,6 +4,7 @@ title: "The Greenest House Is the One Already Standing"
 date: 2026-05-22 09:00:00 -0400
 author: Severin Winter
 description: "Restoring an old Hudson Valley home is often greener than building new. The embodied-carbon case for reuse, and when an old building can't be saved."
+published: false
 ---
 
 You found the old farmhouse outside Rhinebeck. Good bones, drafty windows, a foundation that has shifted a little over a century and a half. Someone has already told you it would be "easier to just tear it down and start fresh," and part of you wonders whether that would even be the greener choice. New construction can be tight, efficient, all-electric. The old place leaks heat. So which one is actually better for the planet?

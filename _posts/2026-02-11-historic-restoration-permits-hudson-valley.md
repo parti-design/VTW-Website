@@ -4,6 +4,7 @@ title: "Historic Restoration in the Hudson Valley: Permits, Reviews, and Common 
 date: 2026-02-11 10:05:00 -0500
 author: Severin Winter
 description: "A Hudson Valley building specialist explains the real permit and preservation review process for historic restoration, plus what actually causes delays."
+published: false
 ---
 
 You bought the old farmhouse outside Rhinebeck, or the barn in Columbia County that everyone in town has an opinion about, and you are ready to start restoring it. Then someone mentions you might need a "certificate of appropriateness," another person says the State has to weigh in, and your contractor wants to know whether the building department has even seen the plans yet. Suddenly the work you were excited about feels like a paperwork maze, and nobody has explained who actually decides what.

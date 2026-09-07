@@ -4,6 +4,7 @@ title: "Getting a Design That You Can Actually Afford to Build"
 date: 2026-04-03 09:00:00 -0400
 author: Severin Winter
 description: "How to keep an architect's design grounded in Hudson Valley construction reality and budget: constructability review, costly details, value engineering."
+published: false
 ---
 
 You found an architect you trust. The early sketches are beautiful. The plan opens up that dark center-hall farmhouse outside Rhinebeck exactly the way you pictured, and you are excited. Then the first real cost estimate comes back, and it is not close. Now you are staring at a design you love and a number you cannot reach, wondering which one has to give.

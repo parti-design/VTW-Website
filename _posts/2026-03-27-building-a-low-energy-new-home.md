@@ -4,6 +4,7 @@ title: "Building a Healthy, Low-Energy New Home in the Hudson Valley"
 date: 2026-03-27 09:00:00 -0400
 author: Severin Winter
 description: "A plain-spoken guide to building a healthy, low-energy new home in the Hudson Valley: envelope, air-sealing, windows, ventilation, and right-sized heating."
+published: false
 ---
 
 You have found the land, maybe out toward Millbrook or up near Rhinebeck, and you have a clear picture in your head: a new house that is comfortable in February, quiet, healthy to breathe in, and cheap to run. Then you start reading, and within a week you are drowning in acronyms and salespeople telling you which heat pump or smart thermostat will change your life. Let me make this simpler. After enough winters out here, I have learned that the houses that actually perform are not the ones with the most gadgets. They are the ones that got the boring parts right.

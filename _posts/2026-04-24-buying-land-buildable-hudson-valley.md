@@ -4,6 +4,7 @@ title: "Buying Land to Build On in the Hudson Valley: Is the Site Actually Build
 date: 2026-04-24 09:00:00 -0400
 author: Severin Winter
 description: "How to tell if Hudson Valley raw land is actually buildable: septic and perc, wells, ledge, wetlands, setbacks, access, and hidden site costs before you buy."
+published: false
 ---
 
 You found the parcel. Maybe it's a few rolling acres outside Rhinebeck, an old hayfield in Columbia County, or a wooded lot up a dirt road near Woodstock. The price feels reasonable, the view is exactly what you pictured, and the listing says "build your dream home." So you start imagining the house. I'd ask you to slow down for a moment and ask a less romantic question first: can you actually build on it, and what will it cost to make it ready before a single foundation footing goes in?

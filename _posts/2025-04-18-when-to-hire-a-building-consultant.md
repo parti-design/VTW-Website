@@ -4,6 +4,7 @@ title: "When Should You Hire a Building Specialist in the Hudson Valley?"
 date: 2025-04-18 09:00:00 -0400
 author: Severin Winter
 description: "When should you hire a building specialist in the Hudson Valley? The right timing, what early advice prevents, and how it saves money locally."
+published: false
 ---
 
 You found the house. An 1840s farmhouse outside Rhinebeck, or a barn on a hillside in Columbia County with a view that made the drive up from the city worth it. Your offer is in, or close to it. The listing agent says it "just needs cosmetic work." Your contractor friend glanced at the photos and said it looks solid. And a quieter voice is asking whether you really know what you are walking into, or whether you are about to find out the expensive way.

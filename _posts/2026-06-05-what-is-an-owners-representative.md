@@ -4,6 +4,7 @@ title: "What Is an Owner's Representative? A Plain-English Guide for Hudson Vall
 date: 2026-06-05 09:00:00 -0400
 author: Severin Winter
 description: "What an owner's representative does for Hudson Valley homeowners, how the role differs from a contractor or architect, and when hiring one saves money."
+published: false
 ---
 
 You found the farmhouse. The one in Rhinebeck with the stone foundation and the barn out back that needs more help than the listing let on. Now you have an architect's name from a friend, a contractor your neighbor swears by, and a growing pile of decisions you do not feel qualified to make. Somewhere in there is a quiet worry: how do I know if I'm being told the truth about cost, schedule, and what this old place actually needs?

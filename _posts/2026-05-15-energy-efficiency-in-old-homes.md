@@ -4,6 +4,7 @@ title: "Making an Old Hudson Valley Home Comfortable Without Wrecking Its Charac
 date: 2026-05-15 09:00:00 -0400
 author: Severin Winter
 description: "How to make a drafty old Hudson Valley house warm and efficient: air-sealing first, attic insulation, storm windows, and avoiding moisture and rot."
+published: false
 ---
 
 It usually starts in January. The wind comes off the river or down a Columbia County hillside, you feel a draft crossing the kitchen floor in your wool socks, and the heating bill lands like a second mortgage. So you start pricing new windows, because that is what everyone tells you to do. I get this call a lot, and my first answer almost always surprises people: do not start with the windows.

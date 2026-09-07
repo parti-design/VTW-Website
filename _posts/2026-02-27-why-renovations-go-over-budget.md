@@ -31,7 +31,7 @@ Before you sign anything, slow down and ask. The answers tell you as much about 
 - **What exactly is included, and what is excluded?** Ask for the exclusions in writing. The exclusions list is where the surprises hide.
 - **What items are allowances, and how did you arrive at each number?** Then go price a few of those items yourself. If the allowance for tile assumes a builder-grade product and you want something nicer, you have found a future overrun today, while you can still plan for it.
 - **Is there a contingency, who controls it, and what happens if we do not use it?** A contingency you control and get back if unspent is very different from padding baked into the price.
-- **How do you handle change orders?** You want them documented, priced, and approved in writing before the work proceeds. I wrote a whole piece on [how to keep change orders from running your budget]({% post_url 2025-12-03-how-to-avoid-change-orders %}) because this single answer predicts so much.
+- **How do you handle change orders?** You want them documented, priced, and approved in writing before the work proceeds. This single answer predicts more about how a job will go than almost anything else you can ask.
 - **What have you not been able to see yet, and how will we handle it?** A good contractor will tell you straight which conditions are unknown and how discoveries get priced.
 - **Can I see the payment schedule and how it tracks to completed work?** Payments should follow progress, not get front-loaded.
 

@@ -4,6 +4,7 @@ title: "Reclaimed, Local, and Durable: Sustainable Material Choices for Hudson V
 date: 2026-03-13 09:00:00 -0400
 author: Severin Winter
 description: "Greener, longer-lasting Hudson Valley building materials: reclaimed barn wood, local stone and lumber, and why durability is real sustainability."
+published: false
 ---
 
 A client in Rhinebeck once asked me, half-joking, whether the "green" choice and the "lasts forever" choice were ever the same thing. She'd been handed a glossy spec sheet full of high-tech materials and a separate pile of brochures about reclaimed beams, and the two stories didn't seem to add up. I told her what I'll tell you here: more often than people expect, the greenest material on a Hudson Valley project is also the one that will still be doing its job in eighty years. Durability and sustainability are not in tension. They're usually the same idea wearing different clothes.

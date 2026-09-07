@@ -132,6 +132,9 @@ content:
       - { name: date, label: Date, type: date, options: { time: true } }
       - { name: author, label: Author, type: string, required: false, default: "Severin Winter" }
       - { name: description, label: Description, type: text, required: false }
+      # Off means the article stays in the repo but is not built or listed.
+      # Fourteen pieces are parked this way; flip one to true to bring it back.
+      - { name: published, label: Published, type: boolean, required: false, default: true }
       - { name: body, label: Body, type: rich-text }
 
   # ---- Testimonials ------------------------------------------------------
