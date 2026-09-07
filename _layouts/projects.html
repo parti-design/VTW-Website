@@ -42,9 +42,11 @@ layout: default
       {%- assign project = site.projects | where_exp: "p", "p.url contains seg" | first -%}
       {%- if project -%}
       {%- assign cover = project.cover_image | default: project.photo -%}
+      {%- comment -%} Wide variants render about 845px on a 12-column 1280px grid; the rest about 410px. {%- endcomment -%}
+      {%- capture card_sizes -%}(max-width: 560px) calc(100vw - 3rem), (max-width: 900px) calc((100vw - 3rem - 1.1rem) / 2), {% if size == 'feature' or size == 'wide' or size == 'half' %}845px{% else %}410px{% endif %}{%- endcapture -%}
       <article class="iemag__card iemag__card--{{ size }}" data-type="{{ project.type }}">
         <a class="iemag__imgwrap" href="{{ project.url | relative_url }}">
-          {%- if cover -%}<img src="{{ cover | relative_url }}" alt="{{ project.title | escape }}" loading="lazy" />{%- endif -%}
+          {%- if cover -%}{%- include img.html src=cover alt=project.title sizes=card_sizes widths="400,800,1200,1600" -%}{%- endif -%}
           {%- if project.featured -%}<span class="iemag__tag">Featured</span>{%- endif -%}
         </a>
         <div class="iemag__body">

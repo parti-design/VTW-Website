@@ -399,6 +399,25 @@ select,
 .project-gallery__item,
 .iemag__imgwrap { background: var(--vtw-rule); }
 
+/* The home page's three photo panels are CSS backgrounds, so srcset cannot
+   reach them. Each panel hands three WebP derivatives in as custom properties
+   and we choose by viewport — a phone has no use for the 1600px file. */
+.hh__photo.has-image,
+.hs__photo.has-image,
+.hav__photo.has-image { background-image: var(--bg-md); }
+
+@media (max-width: 760px) {
+  .hh__photo.has-image,
+  .hs__photo.has-image,
+  .hav__photo.has-image { background-image: var(--bg-sm); }
+}
+
+@media (min-width: 1400px) {
+  .hh__photo.has-image,
+  .hs__photo.has-image,
+  .hav__photo.has-image { background-image: var(--bg-lg); }
+}
+
 /* The closing panel keeps its inset hairline; the ground is the one gradient. */
 .ip--site-cta .ip__cta { background: var(--vtw-panel); }
 .ip--site-cta .ip__cta::before { border-color: var(--vtw-panel-inset); }

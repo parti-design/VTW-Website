@@ -21,7 +21,10 @@ description: "About Severin Winter, building specialist in the Hudson Valley, NY
       </div>
     </div>
     <figure class="amast__media">
-      <img src="{{ '/assets/images/projects-final/c-m-residence/79-CM1142.jpg' | relative_url }}" alt="A Hudson Valley residence built and overseen by Severin Winter" />
+      {%- include img.html src="/assets/images/projects-final/c-m-residence/79-CM1142.jpg"
+            alt="A Hudson Valley residence built and overseen by Severin Winter"
+            sizes="(max-width: 900px) calc(100vw - 3rem), 470px"
+            widths="400,800,1200,1600" loading="eager" -%}
       <figcaption class="amast__cap">C. M. Residence &mdash; Hudson Valley, NY</figcaption>
     </figure>
   </div>

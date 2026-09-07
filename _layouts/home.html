@@ -72,7 +72,7 @@
 
     <!-- ═══ HERO ══════════════════════════════════════════════════════════════ -->
     <section class="hh">
-      <div class="hh__photo{% if page.hero_image %} has-image{% endif %}"{% if page.hero_image %} style="background-image: url('{{ page.hero_image | relative_url }}');"{% endif %} aria-hidden="true"></div>
+      <div class="hh__photo{% if page.hero_image %} has-image{% endif %}"{% if page.hero_image %}{%- assign _b = page.hero_image | replace: '.jpeg','' | replace: '.jpg','' | replace: '.png','' | replace: '/assets/images/','/assets/images/derived/' %} style="--bg-sm: url('{{ _b | append: "-800.webp" | relative_url }}'); --bg-md: url('{{ _b | append: "-1200.webp" | relative_url }}'); --bg-lg: url('{{ _b | append: "-1600.webp" | relative_url }}');"{% endif %} aria-hidden="true"></div>
       <div class="hh__inner">
         <p class="hh__label">{{ hero_label }}</p>
         <h1 class="hh__heading">
@@ -97,12 +97,12 @@
         </p>
         <p class="hs__aside">{{ statement_aside }}</p>
       </div>
-      <div class="hs__photo{% if page.statement_image %} has-image{% endif %}"{% if page.statement_image %} style="background-image: url('{{ page.statement_image | relative_url }}');"{% endif %} aria-hidden="true"></div>
+      <div class="hs__photo{% if page.statement_image %} has-image{% endif %}"{% if page.statement_image %}{%- assign _b = page.statement_image | replace: '.jpeg','' | replace: '.jpg','' | replace: '.png','' | replace: '/assets/images/','/assets/images/derived/' %} style="--bg-sm: url('{{ _b | append: "-800.webp" | relative_url }}'); --bg-md: url('{{ _b | append: "-1200.webp" | relative_url }}'); --bg-lg: url('{{ _b | append: "-1600.webp" | relative_url }}');"{% endif %} aria-hidden="true"></div>
     </section>
 
     <!-- ═══ ADVOCATE ══════════════════════════════════════════════════════════ -->
     <section class="hav" data-animate>
-      <div class="hav__photo{% if page.advocate_image %} has-image{% endif %}"{% if page.advocate_image %} style="background-image: url('{{ page.advocate_image | relative_url }}');"{% endif %} aria-hidden="true"></div>
+      <div class="hav__photo{% if page.advocate_image %} has-image{% endif %}"{% if page.advocate_image %}{%- assign _b = page.advocate_image | replace: '.jpeg','' | replace: '.jpg','' | replace: '.png','' | replace: '/assets/images/','/assets/images/derived/' %} style="--bg-sm: url('{{ _b | append: "-800.webp" | relative_url }}'); --bg-md: url('{{ _b | append: "-1200.webp" | relative_url }}'); --bg-lg: url('{{ _b | append: "-1600.webp" | relative_url }}');"{% endif %} aria-hidden="true"></div>
       <div class="hav__inner">
         <div class="hav__label-col">
           <span class="hav__label">{{ advocate_label }}</span>
@@ -178,7 +178,10 @@
           <a class="hpj__card" href="{{ project.url | relative_url }}">
             <div class="hpj__img-wrap">
               {%- if project_cover -%}
-              <img src="{{ project_cover | relative_url }}" alt="{{ project.title | escape }}" loading="lazy" />
+              {%- include img.html src=project_cover
+                   alt=project.title
+                   sizes="(max-width: 760px) calc(100vw - 3rem), 384px"
+                   widths="400,800,1200,1600" -%}
               {%- else -%}
               <div class="hpj__img-placeholder"></div>
               {%- endif -%}

@@ -25,7 +25,11 @@ layout: default
       {%- endif -%}
       {%- if cover_path -%}
       <figure class="project-cover">
-        <img src="{{ cover_path | relative_url }}" alt="{{ page.title | escape }} cover image" loading="eager" />
+        {%- include img.html src=cover_path
+             alt=page.title
+             sizes="(max-width: 980px) calc(100vw - 2.8rem), 1160px"
+             widths="400,800,1200,1600"
+             loading="eager" fetchpriority="high" decoding="sync" -%}
       </figure>
       {%- endif -%}
 
@@ -51,7 +55,9 @@ layout: default
             data-lightbox-src="{{ image_path | relative_url }}"
             aria-label="Open image {{ forloop.index }}"
           >
-            <img src="{{ image_path | relative_url }}" alt="{{ page.title | escape }} image {{ forloop.index }}" loading="lazy" />
+            {%- include img.html src=image_path
+                 alt=page.title
+                 sizes="(max-width: 600px) calc(100vw - 2.8rem), (max-width: 980px) calc((100vw - 2.8rem - 0.85rem) / 2), 377px" -%}
           </button>
           {%- endfor -%}
         </div>
@@ -60,7 +66,7 @@ layout: default
           <button class="project-lightbox__close" type="button" data-lightbox-close aria-label="Close gallery">&times;</button>
           <button class="project-lightbox__nav project-lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Previous image">&larr;</button>
           <figure class="project-lightbox__frame">
-            <img src="" alt="" data-lightbox-image />
+            <img alt="" data-lightbox-image />
           </figure>
           <button class="project-lightbox__nav project-lightbox__nav--next" type="button" data-lightbox-next aria-label="Next image">&rarr;</button>
         </dialog>

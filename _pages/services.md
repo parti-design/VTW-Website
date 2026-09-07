@@ -27,7 +27,10 @@ description: "Services from Severin Winter, building specialist in the Hudson Va
 <section class="sentry" id="s01" data-animate>
   <div class="sentry__inner">
     <figure class="sentry__media">
-      <img src="{{ '/assets/images/projects-final/p-f-nyc-residence/02-Flah_23.jpg' | relative_url }}" alt="Design and planning work on a Hudson Valley residence" loading="lazy" />
+      {%- include img.html src="/assets/images/projects-final/p-f-nyc-residence/02-Flah_23.jpg"
+            alt="Design and planning work on a Hudson Valley residence"
+            sizes="(max-width: 900px) calc(100vw - 3rem), 660px"
+            widths="400,800,1200,1600" -%}
     </figure>
     <div class="sentry__content">
       <span class="sentry__num">01</span>
@@ -47,7 +50,10 @@ description: "Services from Severin Winter, building specialist in the Hudson Va
 <section class="sentry sentry--alt" id="s02" data-animate>
   <div class="sentry__inner">
     <figure class="sentry__media">
-      <img src="{{ '/assets/images/projects-final/m-p-house-addition/02-M-P552.jpg' | relative_url }}" alt="A Hudson Valley new-construction project" loading="lazy" />
+      {%- include img.html src="/assets/images/projects-final/m-p-house-addition/02-M-P552.jpg"
+            alt="A Hudson Valley new-construction project"
+            sizes="(max-width: 900px) calc(100vw - 3rem), 660px"
+            widths="400,800,1200,1600" -%}
     </figure>
     <div class="sentry__content">
       <span class="sentry__num">02</span>
@@ -69,7 +75,10 @@ description: "Services from Severin Winter, building specialist in the Hudson Va
 <section class="sentry" id="s03" data-animate>
   <div class="sentry__inner">
     <figure class="sentry__media">
-      <img src="{{ '/assets/images/projects-final/s-sc-kitchen/01-IMG_0032.jpg' | relative_url }}" alt="A renovated Hudson Valley kitchen" loading="lazy" />
+      {%- include img.html src="/assets/images/projects-final/s-sc-kitchen/01-IMG_0032.jpg"
+            alt="A renovated Hudson Valley kitchen"
+            sizes="(max-width: 900px) calc(100vw - 3rem), 660px"
+            widths="400,800,1200,1600" -%}
     </figure>
     <div class="sentry__content">
       <span class="sentry__num">03</span>
@@ -91,7 +100,10 @@ description: "Services from Severin Winter, building specialist in the Hudson Va
 <section class="sentry sentry--alt" id="s04" data-animate>
   <div class="sentry__inner">
     <figure class="sentry__media">
-      <img src="{{ '/assets/images/projects-final/f-s-barn/54-07-68.jpg' | relative_url }}" alt="A restored Hudson Valley timber-frame barn" loading="lazy" />
+      {%- include img.html src="/assets/images/projects-final/f-s-barn/54-07-68.jpg"
+            alt="A restored Hudson Valley timber-frame barn"
+            sizes="(max-width: 900px) calc(100vw - 3rem), 660px"
+            widths="400,800,1200,1600" -%}
     </figure>
     <div class="sentry__content">
       <span class="sentry__num">04</span>
