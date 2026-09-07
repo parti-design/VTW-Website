@@ -3,7 +3,7 @@ layout: post
 title: "Historic Preservation Tax Credits in New York: Could Your Hudson Valley Project Qualify?"
 date: 2026-05-01 09:00:00 -0400
 author: Severin Winter
-description: "A plain-spoken guide for Hudson Valley owners on how NY State and federal historic rehabilitation tax credits may offset restoration costs, plus how to verify eligibility."
+description: "A plain guide for Hudson Valley owners to NY State and federal historic rehabilitation tax credits: what they may offset, and how to check eligibility."
 ---
 
 You bought the 1840s farmhouse outside Rhinebeck, or the brick row house in Hudson, and now you are staring down a restoration budget that keeps climbing. The slate roof, the failing plaster, the windows everyone tells you to rip out and shouldn't. Somewhere along the way a neighbor or your accountant mentioned "historic tax credits," and you wondered: is that a real thing, or just something people say?

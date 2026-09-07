@@ -3,7 +3,7 @@ layout: post
 title: "How to Choose the Right Contractor in the Hudson Valley"
 date: 2025-10-14 11:20:00 -0400
 author: Severin Winter
-description: "How to choose a Hudson Valley contractor: compare bids fairly, check the right references, and match the trade to old foundations, timber frame, and lime mortar."
+description: "How to choose a Hudson Valley contractor: compare bids fairly, check the right references, and match the trade to old foundations and timber frame."
 ---
 
 You have three proposals spread across the kitchen table. One is noticeably cheaper than the other two, and your eye keeps drifting back to it. The other two contractors seemed sharper when they walked the house, but that lower number is hard to ignore. So you sit there asking the question almost everyone asks me at this stage: how do I know which of these is actually the right one?

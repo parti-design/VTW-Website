@@ -25,7 +25,7 @@ gallery:
   - image: "/assets/images/projects-final/triform-office/15-P1220750.jpg"
   - image: "/assets/images/projects-final/triform-office/08-P1220712.jpg"
   - image: "/assets/images/projects-final/triform-office/02-P1210749-1.jpg"
-description: "Design-build expansion creating a new administration and gathering building for Triform Camphill Community, with anthroposophic design language and warm natural materials."
+description: "Design-build expansion creating a new administration and gathering building for Triform Camphill Community, in warm natural wood and anthroposophic form."
 featured: true
 year: 2010
 location: "Hudson, NY"

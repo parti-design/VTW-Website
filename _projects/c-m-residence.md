@@ -19,7 +19,7 @@ gallery:
   - image: "/assets/images/projects-final/c-m-residence/04-m-626.jpg"
   - image: "/assets/images/projects-final/c-m-residence/03-Chalk-Marcoz-591.jpg"
   - image: "/assets/images/projects-final/c-m-residence/02-Pete-13.jpg"
-description: "Full design-build restoration of a historic hilltop mansion with Catskill Mountain views, preserving the original structure and crafting custom cabinetry from trees milled on site."
+description: "Design-build restoration of a historic hilltop mansion with Catskill views, preserving the original structure with cabinetry milled from trees on site."
 featured: true
 year: 2006
 location: "Hudson Valley, NY"

@@ -3,7 +3,7 @@ layout: post
 title: "Caring for an Old Farmhouse: A Hudson Valley Owner's Maintenance Guide"
 date: 2026-03-20 09:00:00 -0400
 author: Severin Winter
-description: "A friendly, season-by-season maintenance guide for old Hudson Valley farmhouses: water, roofs, masonry, wood, drainage, and pests, plus the small upkeep that prevents big restoration bills."
+description: "A season-by-season maintenance guide for old Hudson Valley farmhouses: water, roofs, masonry, wood, drainage and pests, and the upkeep that prevents big bills."
 ---
 
 There's a particular sound an old house makes when it's been raining for three days straight. You're lying awake in a farmhouse outside Rhinebeck or up a dirt road in Columbia County, and you hear it: a slow tick somewhere in the wall, or a smell of damp coming up from the cellar that wasn't there last week. Most of the time it's nothing. But if you've ever wondered whether you're staying ahead of your old house or quietly falling behind it, you're asking the right question.

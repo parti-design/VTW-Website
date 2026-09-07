@@ -3,7 +3,7 @@ layout: post
 title: "New Construction in the Hudson Valley: The Early Decisions That Make or Break Your Budget"
 date: 2026-05-08 09:00:00 -0400
 author: Severin Winter
-description: "A Hudson Valley building specialist on the early new-construction decisions, site, foundation, form, and structure, that set your budget before the drawings are done."
+description: "How site, foundation, form and structure set a Hudson Valley new build's budget before the drawings are finished — the early decisions that matter most."
 ---
 
 You found the land. Maybe it's a few acres outside Rhinebeck with a view you can't stop thinking about, or a wooded lot up near Woodstock where you're already picturing the porch. You've got a number in your head for what the house will cost, and you're ready to start drawing. This is exactly the moment I'd ask you to slow down for a week.

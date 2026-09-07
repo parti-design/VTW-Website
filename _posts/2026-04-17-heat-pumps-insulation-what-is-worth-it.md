@@ -3,7 +3,7 @@ layout: post
 title: "Heat Pumps, Insulation, and What's Actually Worth It in a Hudson Valley Home"
 date: 2026-04-17 09:00:00 -0400
 author: Severin Winter
-description: "An honest, practical guide to which energy upgrades pay off in Hudson Valley homes, why the envelope comes before heat pumps, and how to check current NY incentives."
+description: "An honest guide to which energy upgrades pay off in Hudson Valley homes, why the envelope comes before heat pumps, and how to check current NY incentives."
 ---
 
 A client in Rhinebeck called me last winter with a question I hear all the time. She'd gotten three different pitches: one company wanted to sell her a new heat pump system, another wanted to blow insulation into the attic, and a solar installer wanted to talk panels. Everyone had a brochure, everyone had a rebate to mention, and she had no idea which one to do first or whether any of it was worth the money in a drafty 1890s farmhouse. That's the right question, and the order matters more than most people realize.

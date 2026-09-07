@@ -3,7 +3,7 @@ layout: post
 title: "Building or Renovating in the Hudson Valley When You Live in the City"
 date: 2026-05-29 09:00:00 -0400
 author: Severin Winter
-description: "How NYC second-home owners can run a Hudson Valley build or renovation from afar without getting taken advantage of, using a trusted local advocate as eyes on site."
+description: "How NYC second-home owners can run a Hudson Valley build or renovation from afar, using a trusted local advocate as eyes on site."
 ---
 
 You found the place. A farmhouse outside Rhinebeck, a barn in Columbia County, a fixer in Kingston that you can already picture on a Sunday in October. The problem is that you live in the city, your weekends are precious, and the work you want done is going to happen Monday through Friday, two hours away, in front of people you have never met. So the question sits in the back of your mind on the train ride home: how do I run this without being there, and how do I know I am not being taken for a ride?
