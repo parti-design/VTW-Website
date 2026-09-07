@@ -9,7 +9,7 @@ to be confirmed with Severin._
 - **Public / site name:** Von Trapp Winter
 - **Legal entity:** Von Trapp Winter Enterprises LLC
 - **DBA:** Severin Winter
-- **Business:** Hudson Valley building consultant — new build, renovation, and
+- **Business:** Hudson Valley building specialist — new build, renovation, and
   restoration of historical barns and houses. _(project context, not from the
   logo notes)_
 - **Status:** Logo work is in progress ("work on logo for Dad", 2026-06-01);

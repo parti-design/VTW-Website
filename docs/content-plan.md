@@ -25,7 +25,7 @@ mention from a referral partner into a phone call. Every article ends with a sof
   over volume; this is a wind-down-friendly engine.
 
 ## Already published (build on / cross-link, don't duplicate)
-1. When Should You Hire a Building Consultant? (owner's-rep value)
+1. When Should You Hire a Building Specialist? (owner's-rep value)
 2. Hudson Valley Renovation Costs (cost / pre-purchase)
 3. Buying an Old House — Checklist (pre-purchase, buyers)
 4. How to Choose a Contractor (vetting)

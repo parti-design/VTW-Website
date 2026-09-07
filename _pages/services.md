@@ -3,7 +3,7 @@ layout: default
 title: "Services"
 permalink: /services/
 body_class: page-editorial
-description: "Building consulting services offered by Severin Winter in the Hudson Valley, NY."
+description: "Services from Severin Winter, building specialist in the Hudson Valley, NY: design and planning, new construction, renovation, and historical restoration."
 ---
 
 <!-- ═══ OPENING: LEAD + CONTENTS ═══ -->
