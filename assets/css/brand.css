@@ -18,12 +18,16 @@
 
 
 /* ─── 01 · Base ─────────────────────────────────────────────────────────────
-   The page is cream and set in Alegreya. The pointer is the mark's own arrow:
-   ink on cream ground, deep gold wherever something can be clicked.          */
+   The page is cream and set in Alegreya. The pointer is the mark's own arrow,
+   set at a real pointer's angle rather than the mark's 45 degrees, and sized
+   near a system pointer rather than the 39px it was. The button gold by
+   default, deepening to #7A6140 wherever something can be clicked. The light
+   #B8A07A is not an option here: the locked rule keeps it off anything read at
+   text scale, and a 27px arrow on cream is that case.                        */
 
 body {
   font-family: var(--vtw-serif);
-  cursor: url("../images/vtw-cursor.svg") 1 2, default;
+  cursor: url("../images/vtw-cursor.svg") 2 2, default;
 }
 
 a,
@@ -40,7 +44,7 @@ label[for],
 .htm__dot,
 .htm__arrow,
 .hn__toggle {
-  cursor: url("../images/vtw-cursor-link.svg") 1 2, pointer;
+  cursor: url("../images/vtw-cursor-link.svg") 2 2, pointer;
 }
 
 input,
