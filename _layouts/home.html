@@ -39,34 +39,7 @@
   {%- assign cta_link_text = page.home_cta_link_text | default: "Get in touch &rarr;" -%}
 
   <!-- ═══ NAV ═══════════════════════════════════════════════════════════════ -->
-  <header class="hn" id="hn">
-    <div class="hn__inner">
-      <a class="hn__logo" href="{{ '/' | relative_url }}" aria-label="Von Trapp Winter — home">
-        <span class="vtw" aria-hidden="true">
-          <img src="{{ '/assets/images/vtw-wave.svg' | relative_url }}" alt="" />
-          <span class="vtw__t"><span>VTW</span></span>
-          <img src="{{ '/assets/images/vtw-wave.svg' | relative_url }}" alt="" />
-        </span>
-        <span class="lk-h__n" aria-hidden="true">Von&nbsp;Trapp<br />Winter</span>
-      </a>
-      <button class="hn__toggle" id="hn-toggle" type="button" aria-expanded="false" aria-controls="hn-nav" aria-label="Open menu">
-        <span class="hn__toggle-bar"></span>
-        <span class="hn__toggle-bar"></span>
-        <span class="hn__toggle-bar"></span>
-      </button>
-      <nav class="hn__nav" id="hn-nav" aria-label="Main navigation">
-        <ul class="hn__list">
-          {%- for link in site.nav_links -%}
-            {%- unless link.title == "Home" -%}
-            <li>
-              <a class="hn__link" href="{{ link.url | relative_url }}">{{ link.title }}</a>
-            </li>
-            {%- endunless -%}
-          {%- endfor -%}
-        </ul>
-      </nav>
-    </div>
-  </header>
+  {%- include site-header.html -%}
 
   <main>
 
@@ -247,16 +220,7 @@
   </main>
 
   <!-- ═══ FOOTER ════════════════════════════════════════════════════════════ -->
-  <footer class="hft">
-    <div class="vtw-rule hft__rule" role="presentation"></div>
-    <div class="hft__inner">
-      <p class="hft__copy">&copy; {{ 'now' | date: "%Y" }} Severin Winter. Hudson Valley, NY.</p>
-      <nav class="hft__links" aria-label="Secondary">
-        <a class="hft__link" href="{{ '/articles/' | relative_url }}">Articles</a>
-        <a class="hft__admin" href="https://grove.parti.design/parti-design/VTW-Website" target="_blank" rel="noopener">Admin</a>
-      </nav>
-    </div>
-  </footer>
+  {%- include site-footer.html -%}
 
   <!-- ═══ SCRIPTS ═══════════════════════════════════════════════════════════ -->
   <script>

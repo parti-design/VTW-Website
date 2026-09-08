@@ -844,16 +844,6 @@ body.nav-open { overflow: hidden; }
   margin: 0;
 }
 
-.hft__admin {
-  font-family: var(--font-ui);
-  font-size: 0.7rem;
-  color: var(--warm-gray);
-  text-decoration: none;
-  letter-spacing: 0.08em;
-}
-
-.hft__admin:hover { color: var(--mid-gray); }
-
 /* --- Keyframes ------------------------------------------------------------- */
 
 @keyframes fadeInUp {

@@ -129,43 +129,57 @@ select,
   border-left: 1px solid var(--vtw-rule);
 }
 
+/* --- the wide lock --------------------------------------------------------
+   The full name set between two wave bands. These bands are the detached
+   rule, not the mark's own arrows, so they tile to whatever width the name
+   asks for. That is the whole point: the lockup grows sideways rather than
+   downwards, so it can read twice as large in a fixed nav without making the
+   nav any taller. Size it with font-size alone — the bands follow the text. */
+
+.lk-w {
+  display: inline-block;
+  font-family: var(--vtw-sans);
+}
+
+.lk-w__band {
+  display: block;
+  height: var(--lk-w-band, 11px);
+  background: url("../images/vtw-wave.svg") left center / auto 100% repeat-x;
+  opacity: 0.85;
+}
+
+/* text-indent cancels the trailing letter-space, which would otherwise sit the
+   name a hair left of the bands it is supposed to be centred in. */
+.lk-w__n {
+  display: block;
+  padding: 0.12em 0 0.08em;
+  font-size: var(--lk-w-size, 26px);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: 0.055em;
+  text-indent: 0.055em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--vtw-ink);
+}
+
 /* --- the header lock ------------------------------------------------------
-   The mark sits at 68px, which puts it at roughly 50px tall — the height a
-   fixed nav can carry. At that width the name's own coefficient would set it
-   at 10px, so the header alone sets the name at the eyebrow size instead, and
-   keeps the two-line stack. This is the one place the lockup is re-scaled. */
+   The only lockup in the nav. At 28px the name runs about 260px wide against
+   the old mark's 137px — near enough the doubling Severin asked for — and the
+   block still stands 58px tall, eight more than before. The nav absorbs that;
+   growing the mark itself by the same factor would have cost 50px of height
+   on every page. */
 
 .hn__logo {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  --w: 68px;
-  font-family: var(--vtw-sans);
-  letter-spacing: normal;
+  display: block;
+  --lk-w-size: 28px;
+  --lk-w-band: 12px;
   text-decoration: none;
   transition: opacity 0.25s var(--vtw-ease);
 }
 
 .hn__logo:hover { opacity: 0.72; }
-
-.hn__logo .lk-h__n {
-  padding-left: 9px;
-  border-left: 1px solid var(--vtw-rule);
-  font-size: 12.5px;
-  line-height: 1.14;
-  letter-spacing: 0.005em;
-}
-
-.hn__logo .lk-h__n s {
-  display: block;
-  margin-top: 0.45em;
-  font-size: 0.72em;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--vtw-gold-text);
-}
 
 /* Nav, restated in the brand's own label sizing. */
 .hn__link {
@@ -190,12 +204,92 @@ select,
   opacity: 0.85;
 }
 
-/* Articles is deliberately not in the main menu, so the footer carries the only
-   link to it. Without one the whole article cluster is orphaned. */
-.hft__links {
-  display: flex;
-  align-items: center;
-  gap: 1.4rem;
+/* The footer is the one place the mark is allowed to be large — nothing below
+   it competes, and a visitor who has read to the bottom has earned the full
+   signature. The legal entity sits under the mark, deliberately quieter than
+   it. Articles is deliberately not in the main menu, so the list here carries
+   the only link to it; without one the whole article cluster is orphaned. */
+
+.hft { padding-top: 2.8rem; padding-bottom: 1.6rem; }
+
+.hft__inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: clamp(2.2rem, 6vw, 5.5rem);
+  padding-bottom: 2.4rem;
+}
+
+.hft__brand { text-align: center; }
+
+.hft__brand .vtw {
+  --w: 132px;
+  margin: 0 auto;
+}
+
+.hft__entity {
+  margin: 0.75rem 0 0;
+  font-family: var(--vtw-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-indent: 0.2em;
+  text-transform: uppercase;
+  color: var(--vtw-gold-text);
+}
+
+.hft__cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.6rem);
+}
+
+.hft__ct {
+  margin: 0 0 0.6rem;
+  font-family: var(--vtw-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vtw-muted);
+}
+
+.hft__cv {
+  margin: 0;
+  font-family: var(--vtw-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--vtw-body);
+}
+
+.hft__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hft__list li + li { margin-top: 0.45rem; }
+
+/* In the links column the heading and its items would otherwise both be small
+   uppercase grey, and the column would read as one undifferentiated block. The
+   links take the same voice as the details in the other two columns instead. */
+.hft__list .hft__link {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  line-height: 1.7;
+  color: var(--vtw-body);
+}
+
+.hft__list .hft__link:hover { color: var(--vtw-gold-text); }
+
+.hft__base {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 1.35rem;
+  border-top: 1px solid var(--vtw-rule);
 }
 
 .hft__link {
@@ -447,14 +541,16 @@ select,
 .ip--site-cta .ip__cta { background: var(--vtw-panel); }
 .ip--site-cta .ip__cta::before { border-color: var(--vtw-panel-inset); }
 
-/* On a phone the lockup is the only branding on screen, so it takes more room
-   than it does on desktop, not less. The nav's own padding tightens by the
-   same amount, which keeps the fixed header at the height it already was. */
+/* On a phone the name has to share the bar with the menu button, so the lockup
+   steps down to 16px — about 175px wide, which still clears a 375px screen. */
 @media (max-width: 760px) {
   .hn { padding: 1.1rem 1.5rem; }
   .hn--scrolled { padding: 0.8rem 1.5rem; }
-  .hn__logo { --w: 78px; gap: 10px; }
-  .hn__logo .lk-h__n { padding-left: 10px; font-size: 13px; }
+  .hn__logo { --lk-w-size: 16px; --lk-w-band: 7px; }
+
+  .hft__inner { grid-template-columns: 1fr; gap: 2.2rem; }
+  .hft__brand { text-align: left; }
+  .hft__brand .vtw { --w: 104px; margin: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

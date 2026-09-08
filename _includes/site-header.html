@@ -1,0 +1,27 @@
+<header class="hn" id="hn">
+  <div class="hn__inner">
+    <a class="hn__logo" href="{{ '/' | relative_url }}" aria-label="Von Trapp Winter &mdash; home">
+      <span class="lk-w" aria-hidden="true">
+        <span class="lk-w__band"></span>
+        <span class="lk-w__n">Von Trapp Winter</span>
+        <span class="lk-w__band"></span>
+      </span>
+    </a>
+    <button class="hn__toggle" id="hn-toggle" type="button" aria-expanded="false" aria-controls="hn-nav" aria-label="Open menu">
+      <span class="hn__toggle-bar"></span>
+      <span class="hn__toggle-bar"></span>
+      <span class="hn__toggle-bar"></span>
+    </button>
+    <nav class="hn__nav" id="hn-nav" aria-label="Main navigation">
+      <ul class="hn__list">
+        {%- for link in site.nav_links -%}
+          {%- unless link.title == "Home" -%}
+          <li>
+            <a class="hn__link{% if page.url == link.url %} hn__link--active{% endif %}" href="{{ link.url | relative_url }}">{{ link.title }}</a>
+          </li>
+          {%- endunless -%}
+        {%- endfor -%}
+      </ul>
+    </nav>
+  </div>
+</header>
