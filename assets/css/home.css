@@ -52,15 +52,32 @@
   right: 0;
   z-index: 100;
   padding: 2rem 3rem;
-  transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+  transition: padding 0.4s ease;
 }
 
-.hn--scrolled {
+/* The scrolled bar's ground and blur sit on a pseudo-element rather than on
+   .hn itself. backdrop-filter makes an element the containing block for its
+   fixed-position descendants, so while it lived on .hn the fixed mobile menu
+   resolved inset:0 against the bar instead of the viewport — scroll past 80px,
+   open the menu, and the overlay was 69px tall instead of full screen. .hn has
+   to stay free of backdrop-filter, filter and transform for that reason. */
+.hn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
   background: rgba(245, 243, 238, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  padding: 1.25rem 3rem;
   box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+  transition: opacity 0.4s ease;
+}
+
+.hn--scrolled::before { opacity: 1; }
+
+.hn--scrolled {
+  padding: 1.25rem 3rem;
 }
 
 .hn__inner {
