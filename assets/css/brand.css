@@ -148,33 +148,38 @@ select,
   opacity: 0.85;
 }
 
-/* text-indent cancels the trailing letter-space, which would otherwise sit the
-   name a hair left of the bands it is supposed to be centred in. */
+/* Set as a name, not as caps — so the tracking comes right down: 0.055em was
+   holding all-caps apart and is far too loose for lowercase. text-indent
+   cancels the trailing letter-space, which would otherwise sit the name a hair
+   left of the bands it is supposed to be centred in. */
 .lk-w__n {
   display: block;
-  padding: 0.12em 0 0.08em;
+  /* 0.12/0.08 balanced caps, which have no descender. Measured against the
+     bands, that left 9.0px of air above the caps and 4.7px below the p's, so
+     2.15px moves from top to bottom. Same total, so the bar height is unchanged,
+     and being in em it holds at every breakpoint. */
+  padding: 0.06em 0 0.14em;
   font-size: var(--lk-w-size, 26px);
   font-weight: 500;
   line-height: 1.04;
-  letter-spacing: 0.055em;
-  text-indent: 0.055em;
+  letter-spacing: 0.02em;
+  text-indent: 0.02em;
   text-align: center;
-  text-transform: uppercase;
   white-space: nowrap;
   color: var(--vtw-ink);
 }
 
 /* --- the header lock ------------------------------------------------------
-   The only lockup in the nav. At 28px the name runs about 260px wide against
-   the old mark's 137px — near enough the doubling Severin asked for — and the
-   block still stands 58px tall, eight more than before. The nav absorbs that;
-   growing the mark itself by the same factor would have cost 50px of height
-   on every page. */
+   The only lockup in the nav. Set as a name rather than caps it needs 36px to
+   hold the 259px width the caps had at 28px — lowercase is simply narrower per
+   point — and the block grows 59px to 73px, since 'Trapp' now has a descender
+   where caps had none. Width is what was worth keeping: it is what makes the
+   logo read large against the old mark's 137px. */
 
 .hn__logo {
   display: block;
-  --lk-w-size: 28px;
-  --lk-w-band: 12px;
+  --lk-w-size: 36px;
+  --lk-w-band: 14px;
   text-decoration: none;
   transition: opacity 0.25s var(--vtw-ease);
 }
@@ -541,12 +546,14 @@ select,
 .ip--site-cta .ip__cta { background: var(--vtw-panel); }
 .ip--site-cta .ip__cta::before { border-color: var(--vtw-panel-inset); }
 
-/* On a phone the name has to share the bar with the menu button, so the lockup
-   steps down to 16px — about 175px wide, which still clears a 375px screen. */
+/* On a phone the lockup steps down, but far less than it used to: 25px sets it
+   about 181px wide, a fifth wider than the caps version it replaces. It shares
+   the bar with the menu button and still leaves 110px of clear space at 375px,
+   and about 55px at 320px, which is the narrowest phone worth supporting. */
 @media (max-width: 760px) {
   .hn { padding: 1.1rem 1.5rem; }
   .hn--scrolled { padding: 0.8rem 1.5rem; }
-  .hn__logo { --lk-w-size: 16px; --lk-w-band: 7px; }
+  .hn__logo { --lk-w-size: 25px; --lk-w-band: 11px; }
 
   .hft__inner { grid-template-columns: 1fr; gap: 2.2rem; }
   .hft__brand { text-align: left; }
