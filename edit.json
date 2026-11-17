@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "name": "Von Trapp Winter",
+  "url": "https://vontrappwinter.com",
+  "branch": "main",
+  "editable": ["_projects/*.md", "_posts/*.md", "_data/*.yml"],
+  "media": "assets/images/uploads",
+  "deploy": { "typicalSeconds": 90 },
+  "modules": {
+    "collections": {
+      "projects": {
+        "label": "Projects", "singular": "project", "folder": "_projects", "url": "/projects/{slug}/",
+        "fields": [
+          { "name": "title", "label": "Project title", "type": "text", "required": true },
+          { "name": "type", "label": "Type of project", "type": "choice", "options": ["New Construction", "Renovation", "Historical Restoration"] },
+          { "name": "year", "label": "Year finished", "type": "number" },
+          { "name": "location", "label": "Town", "type": "text" },
+          { "name": "featured", "label": "Show on the home page", "type": "toggle" },
+          { "name": "body", "label": "Project description", "type": "rich", "important": true }
+        ],
+        "new": { "type": "Renovation", "featured": false }
+      }
+    }
+  }
+}
