@@ -6,15 +6,15 @@ layout: default
   <div class="ip__inner ip__inner--wide">
     <article class="project-page">
       <header class="ip__head">
-        <p class="ip__label">{{ page.type | default: "Project" }}</p>
-        <h1 class="ip__title">{{ page.title }}</h1>
-        <p class="ip__meta">
-          {%- if page.location -%}<span>{{ page.location }}</span>{%- endif -%}
-          {%- if page.year -%}
-          {%- if page.location -%}<span>&middot;</span>{%- endif -%}
-          <span>{{ page.year }}</span>
-          {%- endif -%}
-        </p>
+        <p class="ip__label"{% include edit.html f=page.path p="/type" t="choice" opts="New Construction|Renovation|Historical Restoration" l="Type of project" opt=true %}>{{ page.type | default: "Project" | escape }}</p>
+        <h1 class="ip__title"{% include edit.html f=page.path p="/title" l="Project title" %}>{{ page.title | escape }}</h1>
+        {%- comment -%}
+          Both spans always render so the editor can click them. An empty one, and the
+          dot beside it, are hidden by CSS (main.css, "Project meta").
+        {%- endcomment %}
+        <p class="ip__meta"><span
+          {%- include edit.html f=page.path p="/location" l="Town" ph="Add the town" opt=true %}>{{ page.location | escape }}</span><span class="ip__sep">&middot;</span><span
+          {%- include edit.html f=page.path p="/year" l="Year finished" ph="Add the year" opt=true %}>{{ page.year | escape }}</span></p>
       </header>
 
       {%- assign gallery_images = page.gallery -%}
@@ -33,12 +33,16 @@ layout: default
       </figure>
       {%- endif -%}
 
-      <div class="project-page__body ip__content">
-        {%- assign body_text = content | strip -%}
+      {%- comment -%}
+        The description is the Markdown body. No project shows its old `description`
+        field here any more (none had one without a body); that field still feeds the
+        meta description. The div stays empty when there is no body, so the editor's
+        placeholder can show through :empty.
+      {%- endcomment -%}
+      {%- assign body_text = content | strip -%}
+      <div class="project-page__body ip__content"{% include edit.html f=page.path p="body" t="rich" l="Project description" ph="Add a description: what was there, what you did, what makes it special" %}>
         {%- if body_text != "" -%}
           {{ content }}
-        {%- elsif page.description -%}
-          <p>{{ page.description }}</p>
         {%- endif -%}
       </div>
 
