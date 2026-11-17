@@ -3,7 +3,22 @@ layout: default
 ---
 
 {%- comment -%} Curated magazine rhythm: slug:size, in display order {%- endcomment -%}
-{%- assign order = "c-m-residence:feature,p-f-nyc-residence:tall,k-m-apartment-renovation:third,y-h-apartment-renovation:third,k-m-deck:third,c-m-kitchen:tall,f-s-barn:feature,triform-office:feature,r-b-barn-studio-addition:tall,k-m-kitchen-renovation-2:third,s-sc-kitchen:third,hvs-bus-shelter:third,j-j-barn-restoration:tall,m-p-house-addition:feature,blue-heron-farms:feature,me-k-potting-shed:tall" | split: "," -%}
+{%- assign curated = "c-m-residence:feature,p-f-nyc-residence:tall,k-m-apartment-renovation:third,y-h-apartment-renovation:third,k-m-deck:third,c-m-kitchen:tall,f-s-barn:feature,triform-office:feature,r-b-barn-studio-addition:tall,k-m-kitchen-renovation-2:third,s-sc-kitchen:third,hvs-bus-shelter:third,j-j-barn-restoration:tall,m-p-house-addition:feature,blue-heron-farms:feature,me-k-potting-shed:tall" -%}
+{%- comment -%}
+  Projects missing from the curated list (say, one just added in the editor) follow
+  it as "third" cards, so a new project always shows up. A project is matched on the
+  last part of its URL, its slug.
+{%- endcomment -%}
+{%- assign curated_list = curated | split: "," -%}
+{%- capture curated_slugs -%},{%- for entry in curated_list -%}{{ entry | split: ":" | first }},{%- endfor -%}{%- endcapture -%}
+{%- capture extra -%}
+  {%- for p in site.projects -%}
+    {%- assign p_slug = p.url | split: "/" | last -%}
+    {%- assign needle = "," | append: p_slug | append: "," -%}
+    {%- unless curated_slugs contains needle -%},{{ p_slug }}:third{%- endunless -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- assign order = curated | append: extra | split: "," -%}
 {%- assign total = site.projects | size -%}
 
 <!-- ═══ MASTHEAD ═══ -->
@@ -38,23 +53,23 @@ layout: default
       {%- assign parts = entry | split: ":" -%}
       {%- assign slug = parts[0] -%}
       {%- assign size = parts[1] -%}
-      {%- assign seg = slug | append: "/" -%}
+      {%- assign seg = "/" | append: slug | append: "/" -%}
       {%- assign project = site.projects | where_exp: "p", "p.url contains seg" | first -%}
       {%- if project -%}
       {%- assign cover = project.cover_image | default: project.photo -%}
       {%- comment -%} Wide variants render about 845px on a 12-column 1280px grid; the rest about 410px. {%- endcomment -%}
       {%- capture card_sizes -%}(max-width: 560px) calc(100vw - 3rem), (max-width: 900px) calc((100vw - 3rem - 1.1rem) / 2), {% if size == 'feature' or size == 'wide' or size == 'half' %}845px{% else %}410px{% endif %}{%- endcapture -%}
-      <article class="iemag__card iemag__card--{{ size }}" data-type="{{ project.type }}">
+      <article class="iemag__card iemag__card--{{ size }}" data-type="{{ project.type | escape }}">
         <a class="iemag__imgwrap" href="{{ project.url | relative_url }}">
           {%- if cover -%}{%- include img.html src=cover alt=project.title sizes=card_sizes widths="400,800,1200,1600" -%}{%- endif -%}
           {%- if project.featured -%}<span class="iemag__tag">Featured</span>{%- endif -%}
         </a>
         <div class="iemag__body">
           <div>
-            <p class="iemag__type">{{ project.type }}</p>
-            <h2 class="iemag__title"><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h2>
+            <p class="iemag__type">{{ project.type | escape }}</p>
+            <h2 class="iemag__title"><a href="{{ project.url | relative_url }}">{{ project.title | escape }}</a></h2>
           </div>
-          {%- if project.location -%}<p class="iemag__loc">{{ project.location }}</p>{%- endif -%}
+          {%- if project.location -%}<p class="iemag__loc">{{ project.location | escape }}</p>{%- endif -%}
         </div>
       </article>
       {%- endif -%}
