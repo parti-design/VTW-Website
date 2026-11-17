@@ -1,0 +1,16 @@
+{% comment %}
+  Editor label: the only place data-edit attributes are written. Prints its own
+  leading space, so call it straight after the last attribute:
+
+    <h1 class="ip__title"{% include edit.html f=page.path p="/title" l="Project title" %}>
+
+    f     file, repo-relative: page.path, or the loop item's path inside a loop
+    p     JSON Pointer into the front matter ("/title"), or "body" for the Markdown body
+    t     field type: text (default), rich, choice, image, video
+    l     a name for people, shown in the editor's Changes and History
+    ph    placeholder shown in the editor when the value is empty
+    opts  choices for t="choice", separated by |
+    opt   set to true when the key may be missing because the template has a default
+
+  The editor's site contract: docs/editor.md.
+{% endcomment %} data-edit="{{ include.f | escape }}#{{ include.p | escape }}"{% if include.t %} data-edit-type="{{ include.t | escape }}"{% endif %}{% if include.l %} data-edit-label="{{ include.l | escape }}"{% endif %}{% if include.ph %} data-edit-placeholder="{{ include.ph | escape }}"{% endif %}{% if include.opts %} data-edit-options="{{ include.opts | escape }}"{% endif %}{% if include.opt %} data-edit-optional{% endif -%}
