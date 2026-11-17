@@ -17,6 +17,7 @@
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}" />
 
   {%- seo -%}
+  <meta name="edit:commit" content="{{ site.github.build_revision }}" />
 
   <!-- Umami — self-hosted, cookieless. data-domains pins reporting to the live
        host so local builds and previews send nothing. -->
@@ -309,6 +310,9 @@
       restartAuto();
     });
   </script>
+
+  {%- comment -%} Visual editor bridge: does nothing for visitors. See docs/editor.md. Same as default.html. {%- endcomment %}
+  <script src="{{ '/edit-bridge.js' | relative_url }}" data-editor="{{ site.editor_url }}" async></script>
 
 </body>
 </html>
