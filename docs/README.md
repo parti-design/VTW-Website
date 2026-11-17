@@ -12,4 +12,6 @@ appears on the live site. Safe place for internal business/legal/marketing notes
   incentive map, local real-estate agencies to approach + the referral playbook.
 - **[content-plan.md](content-plan.md)** — SEO/article series across the site's pillars
   plus a sustainability cluster; builds on the 6 already-published posts.
+- **[editor.md](editor.md)** — how the site is wired for the click-on-the-page visual
+  editor: labels, the `edit.html` helper, `edit.json`, and running it locally.
 </content>
