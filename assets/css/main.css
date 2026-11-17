@@ -104,24 +104,13 @@ body {
   color: #8a8880;
 }
 
-/* Project meta: town and year always render so the editor can click them. An empty
-   one takes no room, and neither does the dot beside it. */
+/* Project meta: town and year always render so the visual editor can click them. An
+   empty one takes no room, and neither does the dot beside it. While editing, the
+   editor's own stronger rule shows an empty one again, with its placeholder. */
 .ip__meta > span:empty,
 .ip__meta > span:empty + .ip__sep,
 .ip__meta > .ip__sep:has(+ span:empty) {
   display: none;
-}
-
-/* While the visual editor is open (it sets data-editing on <html>), an empty labelled
-   element shows its placeholder instead of collapsing, so there is something to click. */
-html[data-editing] .ip__meta > span[data-edit]:empty {
-  display: inline;
-}
-
-html[data-editing] [data-edit-placeholder]:empty::before {
-  content: attr(data-edit-placeholder);
-  opacity: 0.6;
-  font-style: italic;
 }
 
 .ip__stats {

@@ -10,7 +10,7 @@ layout: default
         <h1 class="ip__title"{% include edit.html f=page.path p="/title" l="Project title" %}>{{ page.title | escape }}</h1>
         {%- comment -%}
           Both spans always render so the editor can click them. An empty one, and the
-          dot beside it, are hidden by CSS (main.css, "Project meta").
+          dot beside it, are hidden by CSS (main.css, "Project meta") on the live site.
         {%- endcomment %}
         <p class="ip__meta"><span
           {%- include edit.html f=page.path p="/location" l="Town" ph="Add the town" opt=true %}>{{ page.location | escape }}</span><span class="ip__sep">&middot;</span><span
@@ -36,8 +36,8 @@ layout: default
       {%- comment -%}
         The description is the Markdown body. No project shows its old `description`
         field here any more (none had one without a body); that field still feeds the
-        meta description. The div stays empty when there is no body, so the editor's
-        placeholder can show through :empty.
+        meta description. With no body the div is left truly empty; the editor shows
+        its placeholder there.
       {%- endcomment -%}
       {%- assign body_text = content | strip -%}
       <div class="project-page__body ip__content"{% include edit.html f=page.path p="body" t="rich" l="Project description" ph="Add a description: what was there, what you did, what makes it special" %}>
