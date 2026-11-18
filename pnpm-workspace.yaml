@@ -1,0 +1,8 @@
+# pnpm 10 reads the approved-build list from here, not from package.json.
+# esbuild is Vite's own and needs its postinstall. Without this a clean install
+# in a container stops and asks, which fails the Docker build. (No sharp: every
+# photograph is pre-sized, so astro:assets never runs.)
+onlyBuiltDependencies:
+  - esbuild
+ignoredBuiltDependencies:
+  - sharp
