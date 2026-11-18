@@ -1,0 +1,60 @@
+---
+// One page per live article, at /:year/:month/:day/:title/ (Jekyll's permalink).
+// Parked articles (published: false) get no page. Was _layouts/post.html.
+import Default from '../../../../layouts/Default.astro'
+import { getPosts, postSlug, postUrl, type Post } from '../../../../lib/content'
+import { longDate, xmlschema } from '../../../../lib/dates'
+import { renderBody } from '../../../../lib/jekyll'
+
+export async function getStaticPaths() {
+  return (await getPosts()).map((post) => {
+    const [year, month, day] = xmlschema(post.data.date).slice(0, 10).split('-')
+    return { params: { year, month, day, title: postSlug(post) }, props: { post } }
+  })
+}
+
+const { post } = Astro.props as { post: Post }
+const d = post.data
+---
+<Default
+  path={postUrl(post)}
+  title={d.title}
+  description={d.description}
+  body={post.body}
+  date={d.date}
+  author={d.author}
+>
+<section class="ip ip--post">
+  <div class="ip__inner ip__inner--wide">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      <header class="ip__head">
+        <p class="ip__label">Articles</p>
+        <h1 class="ip__title" itemprop="name headline">{d.title}</h1>
+        <div class="ip-post__title-rule" aria-hidden="true"></div>
+      </header>
+
+      <div class="ip-post">
+        <aside class="ip-post__meta">
+          <p class="ip__meta">
+            <time datetime={xmlschema(d.date)} itemprop="datePublished">
+              {longDate(d.date)}
+            </time>{d.author && (<Fragment><span>&middot;</span>
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+              <span itemprop="name">{d.author}</span>
+            </span></Fragment>)}</p>
+        </aside>
+
+        <div class="ip-post__main">
+          <div class="ip__content" itemprop="articleBody">
+            <Fragment set:html={renderBody(post)} />
+          </div>
+
+          <footer class="ip__foot">
+            <a class="ip__back" href="/articles/">Back to articles</a>
+          </footer>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+</Default>

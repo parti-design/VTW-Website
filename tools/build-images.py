@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Generate responsive WebP derivatives for the site's photographs.
 
-GitHub Pages runs Jekyll without custom plugins, so derivatives are built here
-and committed. Originals in assets/images/ are never touched: they stay as the
-archive and as the <img src> fallback, and the lightbox still opens them at
-full size.
+The site build never resizes anything (no image tooling runs in it), so
+derivatives are built here and committed. src/lib/images.ts writes the srcset
+from the naming below, and leaves it out for a photo whose copies are missing.
+Originals in assets/images/ are never touched: they stay as the archive and as
+the <img src> fallback, and the lightbox still opens them at full size.
 
     python3 tools/build-images.py            # build what is missing or stale
     python3 tools/build-images.py --force    # rebuild everything

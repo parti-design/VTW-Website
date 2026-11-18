@@ -1,0 +1,114 @@
+---
+// One page per file in _projects/, at /projects/<file name>/. Was _layouts/project.html.
+//
+// Labelled for the visual editor: type, title, town, year and the description (the
+// Markdown body). Town, year and the description render even when empty so they can be
+// clicked; on the live site CSS hides an empty town or year and the dot beside it
+// (main.css, "Project meta"). The photos are not labelled yet (see docs/editor.md).
+import Img from '../../components/Img.astro'
+import Default from '../../layouts/Default.astro'
+import { galleryImages, getProjects, projectCover, projectUrl, type Project } from '../../lib/content'
+import { buildTime } from '../../lib/dates'
+import { edit } from '../../lib/edit'
+import { LARGE } from '../../lib/images'
+import { renderBody } from '../../lib/jekyll'
+
+export async function getStaticPaths() {
+  return (await getProjects()).map((project) => ({ params: { slug: project.id }, props: { project } }))
+}
+
+const { project } = Astro.props as { project: Project }
+const d = project.data
+const file = project.filePath
+const cover = projectCover(project, true)
+const gallery = galleryImages(project)
+const body = renderBody(project)
+
+const TYPES = ['New Construction', 'Renovation', 'Historical Restoration']
+---
+<Default
+  path={projectUrl(project)}
+  title={d.title}
+  description={d.description}
+  body={project.body}
+  date={buildTime}
+>
+<section class="ip ip--project">
+  <div class="ip__inner ip__inner--wide">
+    <article class="project-page">
+      <header class="ip__head">
+        <p class="ip__label" {...edit(file, '/type', { type: 'choice', label: 'Type of project', options: TYPES, optional: true })}>{d.type || 'Project'}</p>
+        <h1 class="ip__title" {...edit(file, '/title', { label: 'Project title' })}>{d.title}</h1>
+        <p class="ip__meta"><span {...edit(file, '/location', { label: 'Town', placeholder: 'Add the town', optional: true })}>{d.location}</span><span class="ip__sep">&middot;</span><span {...edit(file, '/year', { label: 'Year finished', placeholder: 'Add the year', optional: true })}>{d.year}</span></p>
+      </header>{cover && (
+      <figure class="project-cover"><Img src={cover} alt={d.title} sizes="(max-width: 980px) calc(100vw - 2.8rem), 1160px" widths={LARGE} loading="eager" decoding="sync" fetchpriority="high" />
+      </figure>)}<div class="project-page__body ip__content" {...edit(file, 'body', { type: 'rich', label: 'Project description', placeholder: 'Add a description: what was there, what you did, what makes it special' })} set:html={body} />{gallery.length > 0 && (
+      <section class="project-gallery" aria-label="Project photo gallery" data-project-lightbox>
+        <h2 class="project-gallery__title">Gallery</h2>
+        <div class="project-gallery__grid">{gallery.map((src, i) => (
+          <button
+            class="project-gallery__item"
+            type="button"
+            data-lightbox-index={i}
+            data-lightbox-src={src}
+            aria-label={`Open image ${i + 1}`}
+          ><Img src={src} alt={d.title} sizes="(max-width: 600px) calc(100vw - 2.8rem), (max-width: 980px) calc((100vw - 2.8rem - 0.85rem) / 2), 377px" />
+          </button>
+        ))}</div>
+
+        <dialog class="project-lightbox" data-lightbox>
+          <button class="project-lightbox__close" type="button" data-lightbox-close aria-label="Close gallery">&times;</button>
+          <button class="project-lightbox__nav project-lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Previous image">&larr;</button>
+          <figure class="project-lightbox__frame">
+            <img alt="" data-lightbox-image />
+          </figure>
+          <button class="project-lightbox__nav project-lightbox__nav--next" type="button" data-lightbox-next aria-label="Next image">&rarr;</button>
+        </dialog>
+      </section>)}
+
+      <footer class="ip__foot">
+        <a class="ip__back" href="/projects/">Back to projects</a>
+      </footer>
+    </article>
+  </div>
+</section>
+
+<script is:inline>
+  document.querySelectorAll('[data-project-lightbox]').forEach((gallery) => {
+    const thumbs = Array.from(gallery.querySelectorAll('[data-lightbox-src]'));
+    const lightbox = gallery.querySelector('[data-lightbox]');
+    const lightboxImage = gallery.querySelector('[data-lightbox-image]');
+    const close = gallery.querySelector('[data-lightbox-close]');
+    const prev = gallery.querySelector('[data-lightbox-prev]');
+    const next = gallery.querySelector('[data-lightbox-next]');
+    let index = 0;
+
+    if (!lightbox || !lightboxImage || thumbs.length === 0) return;
+
+    const show = (nextIndex) => {
+      index = (nextIndex + thumbs.length) % thumbs.length;
+      const thumb = thumbs[index];
+      lightboxImage.src = thumb.dataset.lightboxSrc;
+      lightboxImage.alt = thumb.querySelector('img')?.alt || '';
+    };
+
+    thumbs.forEach((thumb, thumbIndex) => {
+      thumb.addEventListener('click', () => {
+        show(thumbIndex);
+        lightbox.showModal();
+      });
+    });
+
+    prev?.addEventListener('click', () => show(index - 1));
+    next?.addEventListener('click', () => show(index + 1));
+    close?.addEventListener('click', () => lightbox.close());
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) lightbox.close();
+    });
+    lightbox.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') show(index - 1);
+      if (event.key === 'ArrowRight') show(index + 1);
+    });
+  });
+</script>
+</Default>

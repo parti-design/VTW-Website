@@ -1,0 +1,29 @@
+---
+// A plain page: label, title, subtitle, body. Was _layouts/page.html, Jekyll's default
+// for pages. No current page uses it, but a new one without a layout gets it.
+import type { Page } from '../lib/content'
+import Default from './Default.astro'
+
+interface Props {
+  page: Page
+  html: string
+}
+const { page, html } = Astro.props
+const d = page.data
+const slug = d.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+---
+<Default path={d.permalink} title={d.title} description={d.description} bodyClass={d.body_class}>
+<section class={`ip ip--generic ip--${slug}`}>
+  <div class="ip__inner ip__inner--wide">
+    <header class="ip__head">
+      <p class="ip__label">Hudson Valley &mdash; Building Specialist</p>
+      {d.title && <h1 class="ip__title">{d.title}</h1>}
+      {d.subtitle ? <p class="ip__subtitle">{d.subtitle}</p> : d.description && <p class="ip__subtitle">{d.description}</p>}
+    </header>
+
+    <div class="ip__content">
+      <Fragment set:html={html} />
+    </div>
+  </div>
+</section>
+</Default>

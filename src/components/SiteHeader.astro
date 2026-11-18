@@ -1,0 +1,32 @@
+---
+// The nav bar on every page. `current` is the page's URL, for the active link.
+import { site } from '../site.config'
+
+interface Props {
+  current: string
+}
+const { current } = Astro.props
+---
+<header class="hn" id="hn">
+  <div class="hn__inner">
+    <a class="hn__logo" href="/" aria-label="Von Trapp Winter &mdash; home">
+      <span class="lk-w" aria-hidden="true">
+        <span class="lk-w__band"></span>
+        <span class="lk-w__n">Von Trapp Winter</span>
+        <span class="lk-w__band"></span>
+      </span>
+    </a>
+    <button class="hn__toggle" id="hn-toggle" type="button" aria-expanded="false" aria-controls="hn-nav" aria-label="Open menu">
+      <span class="hn__toggle-bar"></span>
+      <span class="hn__toggle-bar"></span>
+      <span class="hn__toggle-bar"></span>
+    </button>
+    <nav class="hn__nav" id="hn-nav" aria-label="Main navigation">
+      <ul class="hn__list">{site.nav.map((link) => (
+        <li>
+          <a class:list={['hn__link', { 'hn__link--active': current === link.url }]} href={link.url}>{link.title}</a>
+        </li>
+      ))}</ul>
+    </nav>
+  </div>
+</header>

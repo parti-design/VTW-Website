@@ -1,0 +1,14 @@
+---
+// A responsive photograph. Give it the original's path or URL; srcset comes from the
+// naming contract in src/lib/images.ts. Always pass `sizes`, measured from the
+// container's real CSS width, or the browser assumes the image fills the viewport and
+// fetches the largest file every time.
+//
+//   <Img src={cover} alt={title} sizes="(max-width: 980px) calc(100vw - 2.8rem), 1160px" widths={LARGE} />
+//
+// `attrs` passes anything else to the tag, an editor label say: attrs={edit(file, '/cover_image', { type: 'image' })}
+import { imgTag, type ImgProps } from '../lib/images'
+
+type Props = ImgProps
+---
+<Fragment set:html={imgTag(Astro.props)} />
