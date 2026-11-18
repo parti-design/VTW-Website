@@ -1,0 +1,55 @@
+// What the templates ask of the content: which entries exist, in which order, and at
+// which URL. URLs are the old site's, character for character.
+import { getCollection, type CollectionEntry } from 'astro:content'
+import { buildTime, datePath } from './dates'
+
+export type Project = CollectionEntry<'projects'>
+export type Post = CollectionEntry<'posts'>
+export type Page = CollectionEntry<'pages'>
+
+/** /projects/<file name>/ */
+export const projectUrl = (p: Project) => `/projects/${p.id}/`
+
+/** The post's slug: its file name without the date. */
+export const postSlug = (p: Post) => p.id.replace(/^\d{4}-\d{2}-\d{2}-/, '')
+
+/** /:year/:month/:day/:title/ */
+export const postUrl = (p: Post) => `/${datePath(p.data.date)}/${postSlug(p)}/`
+
+/** Projects in file-name order, as Jekyll listed site.projects. */
+export async function getProjects(): Promise<Project[]> {
+  return (await getCollection('projects')).sort((a, b) => a.id.localeCompare(b.id))
+}
+
+/**
+ * Live articles, newest first (Jekyll's site.posts). Parked ones (published: false) and
+ * ones dated in the future are left out, as Jekyll left them out.
+ */
+export async function getPosts(): Promise<Post[]> {
+  return (await getCollection('posts', (p) => p.data.published && p.data.date <= buildTime)).sort(
+    (a, b) => b.data.date.getTime() - a.data.date.getTime() || b.id.localeCompare(a.id),
+  )
+}
+
+/** _pages/*.md in file-name order (the order jekyll-sitemap listed them in). */
+export async function getPages(): Promise<Page[]> {
+  return (await getCollection('pages')).sort((a, b) => a.id.localeCompare(b.id))
+}
+
+export async function getHome() {
+  const [home] = await getCollection('home')
+  if (!home) throw new Error('index.md is missing')
+  return home
+}
+
+/** The image a project shows first: its cover, else its first gallery photo. */
+export function projectCover(p: Project, fallbackToGallery = false): string | undefined {
+  const cover = p.data.cover_image || p.data.photo
+  if (cover || !fallbackToGallery) return cover || undefined
+  const first = p.data.gallery?.[0]
+  return typeof first === 'string' ? first : first?.image
+}
+
+/** Gallery photo paths. */
+export const galleryImages = (p: Project) =>
+  (p.data.gallery ?? []).map((g) => (typeof g === 'string' ? g : g.image))
