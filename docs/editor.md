@@ -136,8 +136,14 @@ photos; `assets/images/` has only the mark, the wave, the cursors and the icons.
   script's settings. The about, services and home photos are project photos, so they are
   stored once, in their project's folder. `docs/media-manifest.json` lists every object; it
   keeps folder, name and hash apart so the media library doesn't count it as a use.
-- **Rolling the move back.** Revert the commit that made it (the photos and the script come
-  back from git), deploy, then delete the objects the manifest lists, and the rows for
+- **Old addresses.** Links elsewhere and image search still point at the photos' old
+  addresses. nginx answers each of them (183 originals, 402 resized copies) with a 301 to
+  the new one: an original to its master, a copy to the copy of the same width. The list is
+  made from the manifest while the Docker image is built (`scripts/photo-redirects.mjs`,
+  included by `nginx.conf`'s `map`), not committed, so the media library doesn't count it
+  as a use of every photo. Any other missing path under `/assets/images/` is still a 404.
+- **Rolling the move back.** Revert the commit that made it and the one that added the
+  redirects (the photos and the script come back from git), deploy, then delete the objects the manifest lists, and the rows for
   `grove/vtw/projects/` in the editor's `media_s3_objects` table.
 - **Open Graph.** No page sets `og:image` (jekyll-seo-tag had no image configured, and the
   Astro port kept that). To add one, store a JPEG as its own master in the library (its own
@@ -163,8 +169,8 @@ repository `local:<absolute path to this repo>`, the branch you are working on, 
 
 ## Deploying (Coolify)
 
-- Build pack: Dockerfile, port 80. The image is nginx and `dist/`, nothing else; it has a
-  health check on `/`.
+- Build pack: Dockerfile, port 80. The image is nginx, `dist/` and the photo redirect list,
+  nothing else; the build runs `nginx -t`, and the image has a health check on `/`.
 - Switch on **Include Source Commit in Build**, so `SOURCE_COMMIT` reaches the build and the
   editor sees each publish go live. No other build arguments or environment variables.
 - Cloudflare in front, as before: it terminates TLS, and nginx takes the visitor's IP from

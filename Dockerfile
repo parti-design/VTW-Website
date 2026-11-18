@@ -29,12 +29,19 @@ RUN pnpm build \
  && test -f dist/sitemap.xml \
  && test -f dist/assets/css/main.css
 
+# The photos' old addresses and their new ones, for nginx.conf's redirect map.
+RUN node scripts/photo-redirects.mjs > photo-redirects.inc
+
 
 FROM nginx:1.27-alpine AS runner
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY security-headers.inc /etc/nginx/conf.d/security-headers.inc
+COPY --from=build /app/photo-redirects.inc /etc/nginx/conf.d/photo-redirects.inc
 COPY --from=build /app/dist /usr/share/nginx/html
+
+# A config nginx can't load fails the build here, not the deploy.
+RUN nginx -t
 
 EXPOSE 80
 
