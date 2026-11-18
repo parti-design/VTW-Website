@@ -38,6 +38,9 @@ const projects = defineCollection({
     type: text,
     year: z.union([z.number(), z.string()]).nullish(),
     location: text,
+    // Rows of the project info box; empty ones don't show on the site.
+    role: text,
+    scope: text,
     // The meta description. The page itself shows the Markdown body.
     description: text,
     featured: z.boolean().default(false),
@@ -254,7 +257,18 @@ const site = defineCollection({
     cta: z.object({ text: z.string(), link: z.string() }),
     page_label: z.string(),
     post: z.object({ label: z.string(), back: z.string() }),
-    project: z.object({ default_type: z.string(), gallery: z.string(), back: z.string() }),
+    project: z.object({
+      default_type: z.string(),
+      info: z.string(),
+      info_type: z.string(),
+      info_year: z.string(),
+      info_location: z.string(),
+      info_role: z.string(),
+      info_scope: z.string(),
+      about: z.string(),
+      gallery: z.string(),
+      back: z.string(),
+    }),
     not_found: z.object({ title: z.string(), heading: z.string(), text: z.string(), link: z.string() }),
   }),
 })

@@ -17,7 +17,9 @@
           { "name": "title", "label": "Project title", "type": "text", "required": true },
           { "name": "type", "label": "Type of project", "type": "choice", "options": ["New Construction", "Renovation", "Historical Restoration"] },
           { "name": "year", "label": "Year finished", "type": "number" },
-          { "name": "location", "label": "Town", "type": "text" },
+          { "name": "location", "label": "Location", "type": "text" },
+          { "name": "role", "label": "Your role", "type": "text" },
+          { "name": "scope", "label": "Scope of work", "type": "text" },
           { "name": "featured", "label": "Show on the home page", "type": "toggle" },
           { "name": "body", "label": "Project description", "type": "rich", "important": true }
         ],

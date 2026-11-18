@@ -81,7 +81,7 @@ copy.
 | `index.md` | Every home page text: top, statement, quote, the four services, section headings and links, the closing call to action |
 | `_pages/about.md`, `services.md`, `faq.md` | All their copy, as structured fields (the markup that used to be their body is in `src/layouts/`) |
 | `_pages/projects.md`, `articles.md`, `contact.md` | Kickers, introductions, filter buttons, link texts, field names, phone and email |
-| `_projects/*.md`, `_posts/*.md` | Title, type, town, year, summary and text, labelled on their own pages and wherever they are listed |
+| `_projects/*.md`, `_posts/*.md` | Title, type, location, year, role, scope, summary and text, labelled on their own pages and wherever they are listed |
 | `_data/testimonials.yml` | The home page testimonials |
 
 Every page's `<title>` and meta description are labelled too, so the editor's page panel lists
@@ -95,9 +95,11 @@ that never show on screen (aria-label). The contact page's "Available with JavaS
 and its no-script notes are in `contact.md` but carry no label: a browser running the editor
 never shows them.
 
-On a project page, town, year and the description always render, even when empty, so they
-can be clicked; on the live site CSS hides an empty town or year and the dot beside it
-(`main.css`, "Project meta").
+A project page has a project info box (type, year, location, role, scope) beside a
+description box. Every row and the description always render, even when empty, so they can
+be clicked; on the live site CSS hides an empty row, and a project without a description
+shows its info across the page instead (`main.css`, "Project info"). The row names and the
+box headings are site-wide texts in `_data/site.yml` under `project`.
 
 The projects page keeps its curated order and card sizes (`src/layouts/Projects.astro`), and
 lists any project missing from that order after it as a third-width card, so a project added

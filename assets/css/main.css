@@ -635,8 +635,103 @@ body {
   border-color: #0d0d0b;
 }
 
+/* Project info: a box of facts beside the description box. Every row renders so the
+   visual editor can click it; on the live site an empty row takes no room. Without a
+   description yet, the facts run across the page instead of sitting beside an empty box.
+   While editing (html[data-editing]) everything shows, with its prompt. */
+.project-info-layout {
+  display: grid;
+  grid-template-columns: minmax(230px, 290px) minmax(0, 1fr);
+  gap: clamp(1.2rem, 2.6vw, 2.2rem);
+  align-items: start;
+}
+
+.project-info {
+  padding: 1.5rem 1.6rem 0.5rem;
+  background: var(--vtw-panel);
+  border: 1px solid var(--vtw-rule);
+}
+
+.project-info__title {
+  margin: 0 0 1rem;
+  font-family: var(--vtw-sans);
+  font-size: var(--vtw-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vtw-gold-text);
+}
+
+.project-info__list {
+  display: grid;
+  margin: 0;
+}
+
+.project-info__row {
+  padding: 0.85rem 0 0.95rem;
+  border-top: 1px solid var(--vtw-rule);
+}
+
+.project-info__row dt {
+  margin: 0 0 0.25rem;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--vtw-muted);
+}
+
+.project-info__row dd {
+  margin: 0;
+  font-family: var(--vtw-sans);
+  font-size: var(--vtw-small);
+  line-height: 1.45;
+  color: var(--vtw-ink);
+}
+
+html:not([data-editing]) .project-info__row:has(> dd:empty) {
+  display: none;
+}
+
+.project-about {
+  padding: clamp(1.5rem, 3.4vw, 2.6rem);
+  background: var(--vtw-white);
+  border: 1px solid var(--vtw-rule);
+}
+
+.project-about__title {
+  margin: 0 0 1.1rem;
+  font-family: var(--font-display);
+  font-size: var(--vtw-h3);
+  font-weight: 500;
+  line-height: 1.1;
+}
+
 .project-page__body {
-  max-width: 760px;
+  max-width: var(--vtw-measure);
+}
+
+html:not([data-editing]) .project-info-layout:has(.project-page__body:empty) {
+  grid-template-columns: 1fr;
+}
+
+html:not([data-editing]) .project-about:has(> .project-page__body:empty) {
+  display: none;
+}
+
+html:not([data-editing]) .project-info-layout:has(.project-page__body:empty) .project-info__list {
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  column-gap: 1.6rem;
+}
+
+@media (max-width: 900px) {
+  .project-info-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .project-info__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1.2rem;
+  }
 }
 
 .project-gallery {

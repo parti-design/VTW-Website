@@ -70,8 +70,10 @@ export const PROJECT_TYPES = ['New Construction', 'Renovation', 'Historical Rest
 export const projectLabels = {
   type: { type: 'choice', label: 'Type of project', options: PROJECT_TYPES, optional: true },
   title: { label: 'Project title' },
-  location: { label: 'Town', placeholder: 'Add the town', optional: true },
+  location: { label: 'Location', placeholder: 'Add the town or area', optional: true },
   year: { label: 'Year finished', placeholder: 'Add the year', optional: true },
+  role: { label: 'Your role', placeholder: 'Add your role, e.g. design and build', optional: true },
+  scope: { label: 'Scope of work', placeholder: 'Add what was done, e.g. new porch, kitchen, restored frame', optional: true },
 } as const
 
 /** Gallery photo paths. */

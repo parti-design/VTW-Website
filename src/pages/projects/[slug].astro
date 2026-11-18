@@ -1,11 +1,12 @@
 ---
 // One page per file in _projects/, at /projects/<file name>/. Was _layouts/project.html.
 //
-// Labelled for the visual editor: type, title, town, year and the description (the
-// Markdown body). Town, year and the description render even when empty so they can be
-// clicked; on the live site CSS hides an empty town or year and the dot beside it
-// (main.css, "Project meta"). The photos are not labelled yet (see docs/editor.md); their
-// alt text is the project title. The frame's texts (Gallery, Back to projects) are in
+// Under the cover: the project info box (type, year, location, role, scope) beside the
+// description box (the Markdown body). Every row and the description render even when
+// empty so they can be clicked in the editor; on the live site CSS hides an empty row, and
+// without a description the info runs across the page instead (main.css, "Project info").
+// The photos are not labelled yet (see docs/editor.md); their alt text is the project
+// title. The frame's texts (row names, headings, Gallery, Back to projects) are in
 // _data/site.yml.
 import Img from '../../components/Img.astro'
 import Default from '../../layouts/Default.astro'
@@ -26,6 +27,14 @@ const cover = projectCover(project, true)
 const gallery = galleryImages(project)
 const body = renderBody(project)
 const t = (await getSite()).project
+// The info box's rows: the row name (a site-wide text) and this project's value.
+const info = [
+  { key: 'type', name: t.info_type, value: d.type || t.default_type },
+  { key: 'year', name: t.info_year, value: d.year },
+  { key: 'location', name: t.info_location, value: d.location },
+  { key: 'role', name: t.info_role, value: d.role },
+  { key: 'scope', name: t.info_scope, value: d.scope },
+] as const
 
 ---
 <Default
@@ -42,10 +51,21 @@ const t = (await getSite()).project
       <header class="ip__head">
         <p class="ip__label" {...edit(file, '/type', projectLabels.type)}>{d.type || t.default_type}</p>
         <h1 class="ip__title" {...edit(file, '/title', projectLabels.title)}>{d.title}</h1>
-        <p class="ip__meta"><span {...edit(file, '/location', projectLabels.location)}>{d.location}</span><span class="ip__sep">&middot;</span><span {...edit(file, '/year', projectLabels.year)}>{d.year}</span></p>
       </header>{cover && (
       <figure class="project-cover"><Img src={cover} alt={d.title} sizes="(max-width: 980px) calc(100vw - 2.8rem), 1160px" widths={LARGE} loading="eager" decoding="sync" fetchpriority="high" />
-      </figure>)}<div class="project-page__body ip__content" {...edit(file, 'body', { type: 'rich', label: 'Project description', placeholder: 'Add a description: what was there, what you did, what makes it special' })} set:html={body} />{gallery.length > 0 && (
+      </figure>)}
+      <div class="project-info-layout">
+        <aside class="project-info" aria-labelledby="project-info-title">
+          <h2 class="project-info__title" id="project-info-title" {...edit(SITE_FILE, '/project/info', { label: 'Project pages: info box heading' })}>{t.info}</h2>
+          <dl class="project-info__list">{info.map((row) => (
+            <div class="project-info__row"><dt {...edit(SITE_FILE, `/project/info_${row.key}`, { label: `Project pages: name of the ${row.key} row` })}>{row.name}</dt><dd {...edit(file, `/${row.key}`, projectLabels[row.key])}>{row.value}</dd></div>
+          ))}</dl>
+        </aside>
+        <section class="project-about" aria-labelledby="project-about-title">
+          <h2 class="project-about__title" id="project-about-title" {...edit(SITE_FILE, '/project/about', { label: 'Project pages: description heading' })}>{t.about}</h2>
+          <div class="project-page__body ip__content" {...edit(file, 'body', { type: 'rich', label: 'Project description', placeholder: 'Add a description: what was there, what you did, what makes it special' })} set:html={body} />
+        </section>
+      </div>{gallery.length > 0 && (
       <section class="project-gallery" aria-label="Project photo gallery" data-project-lightbox>
         <h2 class="project-gallery__title" {...edit(SITE_FILE, '/project/gallery', { label: 'Project pages: gallery heading' })}>{t.gallery}</h2>
         <div class="project-gallery__grid">{gallery.map((src, i) => (

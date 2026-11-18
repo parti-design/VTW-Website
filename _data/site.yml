@@ -64,6 +64,15 @@ post:
 project:
   # Shown above the title when a project has no type.
   default_type: Project
+  # The project info box beside the description: its heading and row names.
+  info: Project info
+  info_type: Type
+  info_year: Year
+  info_location: Location
+  info_role: Role
+  info_scope: Scope
+  # The heading of the description box.
+  about: About the project
   gallery: Gallery
   back: Back to projects
 
