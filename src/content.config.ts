@@ -20,6 +20,12 @@ const jekyllDate = z.union([z.date(), z.string()]).transform((v, ctx) => {
 /** A text field the editor may have emptied. */
 const text = z.string().nullish()
 
+/** Copy printed on the page: an empty or missing one prints nothing. */
+const copy = z
+  .string()
+  .nullish()
+  .transform((v) => v ?? '')
+
 /** A gallery item: a path, or { image: path }. */
 const galleryItem = z.union([z.string(), z.object({ image: z.string() })])
 
@@ -75,8 +81,7 @@ const pages = defineCollection({
   }),
 })
 
-// index.md: the home page has no body, only these settings. Every text has a default
-// in src/pages/index.astro.
+// index.md: the home page has no body; every text on it is a key here.
 const home = defineCollection({
   loader: glob({ base: '.', pattern: 'index.md' }),
   schema: z.object({
@@ -86,19 +91,25 @@ const home = defineCollection({
     hero_image: text,
     statement_image: text,
     advocate_image: text,
-    hero_label: text,
-    hero_heading: text,
-    hero_subheading: text,
-    hero_cta_text: text,
-    statement_text: text,
-    statement_aside: text,
-    advocate_label: text,
-    advocate_quote: text,
-    advocate_name: text,
-    advocate_context: text,
-    home_cta_heading: text,
-    home_cta_sub: text,
-    home_cta_link_text: text,
+    hero_label: copy,
+    hero_heading: copy,
+    hero_subheading: copy,
+    hero_cta_text: copy,
+    scroll_hint: copy,
+    statement_text: copy,
+    statement_aside: copy,
+    advocate_label: copy,
+    advocate_quote: copy,
+    advocate_name: copy,
+    advocate_context: copy,
+    services_label: copy,
+    services: z.array(z.object({ title: copy, text: copy })).default([]),
+    services_link: copy,
+    projects_label: copy,
+    projects_link: copy,
+    home_cta_heading: copy,
+    home_cta_sub: copy,
+    home_cta_link_text: copy,
   }),
 })
 

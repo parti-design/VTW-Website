@@ -1,37 +1,26 @@
 ---
-// The home page. Its settings are index.md's front matter; every text falls back to the
-// default below. The defaults are HTML (entities, &#10;) and are printed as such, as
-// Jekyll printed them. Was _layouts/home.html, which stood alone rather than extending
-// the default layout, and still does: fewer stylesheets, no <main class="im">.
+// The home page. Every text on it is a key in index.md's front matter, labelled for the
+// editor; the project cards and testimonials are labelled with their own files. Was
+// _layouts/home.html, which stood alone rather than extending the default layout, and
+// still does: fewer stylesheets, no <main class="im">.
+//
+// The step numbers (01-04) count the services; they are not text to edit.
 import { getCollection } from 'astro:content'
 import EditBridge from '../components/EditBridge.astro'
 import Head from '../components/Head.astro'
 import Img from '../components/Img.astro'
 import SiteFooter from '../components/SiteFooter.astro'
 import SiteHeader from '../components/SiteHeader.astro'
-import { getHome, getProjects, projectCover, projectUrl } from '../lib/content'
+import { getHome, getProjects, projectCover, projectLabels, projectUrl, SITE_FILE } from '../lib/content'
+import { edit, type EditOptions } from '../lib/edit'
 import { backgroundVars, LARGE } from '../lib/images'
 
 const home = await getHome()
 const p = home.data
-
-const t = {
-  heroLabel: p.hero_label || 'Hudson Valley &mdash; Building Specialist',
-  heroHeading: p.hero_heading || 'Your advocate&#10;on every&#10;decision.',
-  heroSubheading: p.hero_subheading || 'New construction. Renovation. Historical restoration.&#10;Independent counsel with no conflicts of interest.',
-  heroCtaText: p.hero_cta_text || 'Start a conversation',
-  statementText: p.statement_text || 'Most people navigate their biggest financial decision without anyone truly in their corner.',
-  statementAside: p.statement_aside || 'That&rsquo;s where I come in.',
-  advocateLabel: p.advocate_label || 'The difference',
-  advocateQuote: p.advocate_quote || 'I have no financial relationship with any contractor, supplier, or architect I recommend. No markup on materials. No referral fees. My compensation comes from you &mdash; and my obligation belongs entirely to your project.',
-  advocateName: p.advocate_name || 'Severin Winter',
-  advocateContext: p.advocate_context || 'Forty years of building in the Hudson Valley. Now working exclusively as an independent advisor.',
-  ctaHeading: p.home_cta_heading || 'Let&rsquo;s start with&#10;a conversation.',
-  ctaSub: p.home_cta_sub || 'No obligation. Tell me about your project and where you are in the process.',
-  ctaLinkText: p.home_cta_link_text || 'Get in touch &rarr;',
-}
-/** Liquid's newline_to_br. */
-const nl2br = (s: string) => s.replace(/\r?\n/g, '<br />\n')
+const file = home.filePath
+const label = (key: string, name: string, more: EditOptions = {}) => edit(file, `/${key}`, { label: name, ...more })
+/** A line break typed in the editor becomes a <br />, as Liquid's newline_to_br did. */
+const lines = (s: string) => s.split('\n')
 
 // The first three featured projects, in file-name order. Marking a fourth as featured
 // does not push one off by surprise elsewhere: the projects page still tags them all.
@@ -39,13 +28,21 @@ const featured = (await getProjects()).filter((pr) => pr.data.featured).slice(0,
 const testimonials = (await getCollection('testimonials'))
   .filter((x) => x.data.featured)
   .sort((a, b) => Number(a.id) - Number(b.id))
+const TESTIMONIALS_FILE = '_data/testimonials.yml'
 
 const stylesheets = ['/assets/css/brand-tokens.css', '/assets/css/main.css', '/assets/css/home.css', '/assets/css/brand.css']
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <Head stylesheets={stylesheets} path="/" title={p.title} description={p.description} />
+  <Head
+    stylesheets={stylesheets}
+    path="/"
+    title={p.title}
+    description={p.description}
+    file={file}
+    titleLabel={edit(SITE_FILE, '/tagline', { label: 'Home page browser tab: the words after the site name' })}
+  />
 </head>
 <body class="page-home">
 
@@ -58,17 +55,13 @@ const stylesheets = ['/assets/css/brand-tokens.css', '/assets/css/main.css', '/a
     <section class="hh">
       <div class:list={['hh__photo', { 'has-image': p.hero_image }]} style={p.hero_image ? backgroundVars(p.hero_image) : undefined} aria-hidden="true"></div>
       <div class="hh__inner">
-        <p class="hh__label" set:html={t.heroLabel} />
-        <h1 class="hh__heading">
-          <Fragment set:html={nl2br(t.heroHeading)} />
-        </h1>
-        <p class="hh__sub">
-          <Fragment set:html={nl2br(t.heroSubheading)} />
-        </p>
-        <a class="hh__cta" href="/contact/" set:html={t.heroCtaText} />
+        <p class="hh__label" {...label('hero_label', 'Top: small line above the headline')}>{p.hero_label}</p>
+        <h1 class="hh__heading" {...label('hero_heading', 'Top: headline', { multiline: true })}>{lines(p.hero_heading).map((l, i) => (<Fragment>{i > 0 && <br />}{l}</Fragment>))}</h1>
+        <p class="hh__sub" {...label('hero_subheading', 'Top: text under the headline', { multiline: true })}>{lines(p.hero_subheading).map((l, i) => (<Fragment>{i > 0 && <br />}{l}</Fragment>))}</p>
+        <a class="hh__cta" href="/contact/" {...label('hero_cta_text', 'Top: button')}>{p.hero_cta_text}</a>
       </div>
       <div class="hh__scroll-hint" aria-hidden="true">
-        <span>Scroll</span>
+        <span {...label('scroll_hint', 'Top: scroll hint')}>{p.scroll_hint}</span>
         <div class="hh__scroll-line"></div>
       </div>
     </section>
@@ -76,10 +69,8 @@ const stylesheets = ['/assets/css/brand-tokens.css', '/assets/css/main.css', '/a
     <!-- ═══ STATEMENT ═════════════════════════════════════════════════════════ -->
     <section class="hs" data-animate>
       <div class="hs__inner">
-        <p class="hs__text">
-          <Fragment set:html={t.statementText} />
-        </p>
-        <p class="hs__aside" set:html={t.statementAside} />
+        <p class="hs__text" {...label('statement_text', 'Statement')}>{p.statement_text}</p>
+        <p class="hs__aside" {...label('statement_aside', 'Statement: the line after it')}>{p.statement_aside}</p>
       </div>
       <div class:list={['hs__photo', { 'has-image': p.statement_image }]} style={p.statement_image ? backgroundVars(p.statement_image) : undefined} aria-hidden="true"></div>
     </section>
@@ -89,16 +80,12 @@ const stylesheets = ['/assets/css/brand-tokens.css', '/assets/css/main.css', '/a
       <div class:list={['hav__photo', { 'has-image': p.advocate_image }]} style={p.advocate_image ? backgroundVars(p.advocate_image) : undefined} aria-hidden="true"></div>
       <div class="hav__inner">
         <div class="hav__label-col">
-          <span class="hav__label" set:html={t.advocateLabel} />
+          <span class="hav__label" {...label('advocate_label', 'Quote: small heading')}>{p.advocate_label}</span>
         </div>
         <div class="hav__body">
-          <blockquote class="hav__quote">
-            &ldquo;<Fragment set:html={t.advocateQuote} />&rdquo;
-          </blockquote>
-          <cite class="hav__cite" set:html={t.advocateName} />
-          <p class="hav__context">
-            <Fragment set:html={t.advocateContext} />
-          </p>
+          <blockquote class="hav__quote" {...label('advocate_quote', 'Quote (the quotation marks are added)', { multiline: true })}>&ldquo;{p.advocate_quote}&rdquo;</blockquote>
+          <cite class="hav__cite" {...label('advocate_name', 'Quote: who says it')}>{p.advocate_name}</cite>
+          <p class="hav__context" {...label('advocate_context', 'Quote: line under the name')}>{p.advocate_context}</p>
         </div>
       </div>
     </section>
@@ -106,44 +93,17 @@ const stylesheets = ['/assets/css/brand-tokens.css', '/assets/css/main.css', '/a
     <!-- ═══ SERVICES ══════════════════════════════════════════════════════════ -->
     <section class="hsv" data-animate>
       <div class="hsv__inner">
-        <p class="hsv__header-label">What I do</p>
-
-        <div class="hsv__item" data-animate data-delay="0">
-          <span class="hsv__num">01</span>
+        <p class="hsv__header-label" {...label('services_label', 'Services: heading')}>{p.services_label}</p>
+{p.services.map((s, i) => (<Fragment>
+        <div class="hsv__item" data-animate data-delay={i * 100}>
+          <span class="hsv__num">{String(i + 1).padStart(2, '0')}</span>
           <div class="hsv__content">
-            <h3 class="hsv__title">Design &amp; Planning</h3>
-            <p class="hsv__desc">From concept to a buildable, budgeted plan. Working alongside your architect to make sure what is drawn can actually be built.</p>
+            <h3 class="hsv__title" {...label(`services/${i}/title`, `Service ${i + 1}: name`)}>{s.title}</h3>
+            <p class="hsv__desc" {...label(`services/${i}/text`, `Service ${i + 1}: text`)}>{s.text}</p>
           </div>
-          <a class="hsv__link" href="/services/">Learn more</a>
+          <a class="hsv__link" href="/services/" {...label('services_link', 'Services: link text')}>{p.services_link}</a>
         </div>
-
-        <div class="hsv__item" data-animate data-delay="100">
-          <span class="hsv__num">02</span>
-          <div class="hsv__content">
-            <h3 class="hsv__title">New Construction</h3>
-            <p class="hsv__desc">Site assessment, contractor vetting, budget planning, and construction oversight. From the first shovel to the final walkthrough.</p>
-          </div>
-          <a class="hsv__link" href="/services/">Learn more</a>
-        </div>
-
-        <div class="hsv__item" data-animate data-delay="200">
-          <span class="hsv__num">03</span>
-          <div class="hsv__content">
-            <h3 class="hsv__title">Renovation</h3>
-            <p class="hsv__desc">Scope development, contractor selection, and owner&rsquo;s representation throughout. Protecting your interests when it matters most.</p>
-          </div>
-          <a class="hsv__link" href="/services/">Learn more</a>
-        </div>
-
-        <div class="hsv__item" data-animate data-delay="300">
-          <span class="hsv__num">04</span>
-          <div class="hsv__content">
-            <h3 class="hsv__title">Historical Restoration</h3>
-            <p class="hsv__desc">Specialist advisory for barns, farmhouses, and period structures. Grounded knowledge of traditional methods and how to apply them with care.</p>
-          </div>
-          <a class="hsv__link" href="/services/">Learn more</a>
-        </div>
-
+</Fragment>))}
       </div>
     </section>
 
@@ -151,11 +111,12 @@ const stylesheets = ['/assets/css/brand-tokens.css', '/assets/css/main.css', '/a
     <section class="hpj" data-animate>
       <div class="hpj__inner">
         <div class="hpj__header">
-          <p class="hpj__label">Selected work</p>
-          <a class="hpj__all" href="/projects/">View all &rarr;</a>
+          <p class="hpj__label" {...label('projects_label', 'Projects: heading')}>{p.projects_label}</p>
+          <a class="hpj__all" href="/projects/" {...label('projects_link', 'Projects: link to all projects')}>{p.projects_link}</a>
         </div>
         <div class="hpj__grid">{featured.map((project) => {
           const cover = projectCover(project)
+          const pf = project.filePath
           return (
           <a class="hpj__card" href={projectUrl(project)}>
             <div class="hpj__img-wrap">{cover ? (
@@ -164,8 +125,8 @@ const stylesheets = ['/assets/css/brand-tokens.css', '/assets/css/main.css', '/a
               <div class="hpj__img-placeholder"></div>
             )}</div>
             <div class="hpj__card-body">
-              <span class="hpj__type">{project.data.type}</span>
-              <h3 class="hpj__title">{project.data.title}</h3>{project.data.location && <p class="hpj__location">{project.data.location}</p>}</div>
+              <span class="hpj__type" {...edit(pf, '/type', projectLabels.type)}>{project.data.type}</span>
+              <h3 class="hpj__title" {...edit(pf, '/title', projectLabels.title)}>{project.data.title}</h3>{project.data.location && <p class="hpj__location" {...edit(pf, '/location', projectLabels.location)}>{project.data.location}</p>}</div>
           </a>
           )
         })}</div>
@@ -179,12 +140,10 @@ const stylesheets = ['/assets/css/brand-tokens.css', '/assets/css/main.css', '/a
         <div class="htm__viewport">
           <div class="htm__track">{testimonials.map((x) => (
             <article class="htm__slide">
-              <blockquote class="htm__quote">
-                &ldquo;{x.data.quote}&rdquo;
-              </blockquote>
+              <blockquote class="htm__quote" {...edit(TESTIMONIALS_FILE, `/testimonials/${x.id}/quote`, { label: 'Testimonial (the quotation marks are added)', multiline: true })}>&ldquo;{x.data.quote}&rdquo;</blockquote>
               <footer class="htm__footer">
-                <span class="htm__name">{x.data.name}</span>{x.data.project && (
-                <span class="htm__project">{x.data.project}</span>
+                <span class="htm__name" {...edit(TESTIMONIALS_FILE, `/testimonials/${x.id}/name`, { label: 'Testimonial: who' })}>{x.data.name}</span>{x.data.project && (
+                <span class="htm__project" {...edit(TESTIMONIALS_FILE, `/testimonials/${x.id}/project`, { label: 'Testimonial: which project' })}>{x.data.project}</span>
                 )}</footer>
             </article>
           ))}</div>
@@ -203,9 +162,9 @@ const stylesheets = ['/assets/css/brand-tokens.css', '/assets/css/main.css', '/a
     <!-- ═══ CTA ═══════════════════════════════════════════════════════════════ -->
     <section class="hct" data-animate>
       <div class="hct__inner">
-        <h2 class="hct__heading" set:html={nl2br(t.ctaHeading)} />
-        <p class="hct__sub" set:html={t.ctaSub} />
-        <a class="hct__link" href="/contact/" set:html={t.ctaLinkText} />
+        <h2 class="hct__heading" {...label('home_cta_heading', 'Bottom: heading', { multiline: true })}>{lines(p.home_cta_heading).map((l, i) => (<Fragment>{i > 0 && <br />}{l}</Fragment>))}</h2>
+        <p class="hct__sub" {...label('home_cta_sub', 'Bottom: text')}>{p.home_cta_sub}</p>
+        <a class="hct__link" href="/contact/" {...label('home_cta_link_text', 'Bottom: link')}>{p.home_cta_link_text}</a>
       </div>
     </section>
 

@@ -9,7 +9,7 @@
 // _data/site.yml.
 import Img from '../../components/Img.astro'
 import Default from '../../layouts/Default.astro'
-import { galleryImages, getProjects, getSite, projectCover, projectUrl, SITE_FILE, type Project } from '../../lib/content'
+import { galleryImages, getProjects, getSite, projectCover, projectLabels, projectUrl, SITE_FILE, type Project } from '../../lib/content'
 import { buildTime } from '../../lib/dates'
 import { edit } from '../../lib/edit'
 import { LARGE } from '../../lib/images'
@@ -27,7 +27,6 @@ const gallery = galleryImages(project)
 const body = renderBody(project)
 const t = (await getSite()).project
 
-const TYPES = ['New Construction', 'Renovation', 'Historical Restoration']
 ---
 <Default
   path={projectUrl(project)}
@@ -41,9 +40,9 @@ const TYPES = ['New Construction', 'Renovation', 'Historical Restoration']
   <div class="ip__inner ip__inner--wide">
     <article class="project-page">
       <header class="ip__head">
-        <p class="ip__label" {...edit(file, '/type', { type: 'choice', label: 'Type of project', options: TYPES, optional: true })}>{d.type || t.default_type}</p>
-        <h1 class="ip__title" {...edit(file, '/title', { label: 'Project title' })}>{d.title}</h1>
-        <p class="ip__meta"><span {...edit(file, '/location', { label: 'Town', placeholder: 'Add the town', optional: true })}>{d.location}</span><span class="ip__sep">&middot;</span><span {...edit(file, '/year', { label: 'Year finished', placeholder: 'Add the year', optional: true })}>{d.year}</span></p>
+        <p class="ip__label" {...edit(file, '/type', projectLabels.type)}>{d.type || t.default_type}</p>
+        <h1 class="ip__title" {...edit(file, '/title', projectLabels.title)}>{d.title}</h1>
+        <p class="ip__meta"><span {...edit(file, '/location', projectLabels.location)}>{d.location}</span><span class="ip__sep">&middot;</span><span {...edit(file, '/year', projectLabels.year)}>{d.year}</span></p>
       </header>{cover && (
       <figure class="project-cover"><Img src={cover} alt={d.title} sizes="(max-width: 980px) calc(100vw - 2.8rem), 1160px" widths={LARGE} loading="eager" decoding="sync" fetchpriority="high" />
       </figure>)}<div class="project-page__body ip__content" {...edit(file, 'body', { type: 'rich', label: 'Project description', placeholder: 'Add a description: what was there, what you did, what makes it special' })} set:html={body} />{gallery.length > 0 && (

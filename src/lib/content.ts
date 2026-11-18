@@ -61,6 +61,17 @@ export function projectCover(p: Project, fallbackToGallery = false): string | un
   return typeof first === 'string' ? first : first?.image
 }
 
+/** The types a project can have: edit.json offers these three in the editor. */
+export const PROJECT_TYPES = ['New Construction', 'Renovation', 'Historical Restoration']
+
+/** Editor labels for a project's fields, wherever the project appears. */
+export const projectLabels = {
+  type: { type: 'choice', label: 'Type of project', options: PROJECT_TYPES, optional: true },
+  title: { label: 'Project title' },
+  location: { label: 'Town', placeholder: 'Add the town', optional: true },
+  year: { label: 'Year finished', placeholder: 'Add the year', optional: true },
+} as const
+
 /** Gallery photo paths. */
 export const galleryImages = (p: Project) =>
   (p.data.gallery ?? []).map((g) => (typeof g === 'string' ? g : g.image))
