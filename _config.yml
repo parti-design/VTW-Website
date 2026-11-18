@@ -8,7 +8,7 @@ baseurl: ""
 
 # The visual editor that frames this site (docs/editor.md). edit-bridge.js only talks
 # to this origin. _config.editor-local.yml points it at a local editor instead.
-editor_url: "https://edit.parti.design"
+editor_url: "https://grove.parti.design"
 
 author:
   name: Severin Winter

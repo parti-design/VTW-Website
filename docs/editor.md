@@ -1,6 +1,6 @@
 # The visual editor
 
-The site can be edited by clicking on the page, in the editor at https://edit.parti.design
+The site can be edited by clicking on the page, in the editor at https://grove.parti.design
 (source: `~/Documents/GitHub/grove-editor`, contract in its `docs/making-a-site-editable.md`).
 The editor reads and writes the repo's files and commits to `main`; GitHub Pages rebuilds as
 usual. Nothing here changes what visitors see.
