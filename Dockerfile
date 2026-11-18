@@ -40,5 +40,5 @@ EXPOSE 80
 
 # 127.0.0.1, not localhost: inside the container localhost resolves to ::1 first,
 # nginx listens on IPv4 only, and the check would fail while the site serves fine.
-HEALTHCHECK --interval=15s --timeout=3s --start-period=5s --retries=3 \
+HEALTHCHECK --interval=15s --timeout=3s --start-period=1s --retries=3 \
   CMD wget -qO /dev/null http://127.0.0.1/ || exit 1
