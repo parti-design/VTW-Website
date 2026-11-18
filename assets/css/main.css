@@ -756,6 +756,15 @@ html:not([data-editing]) .project-info-layout:has(.project-page__body:empty) .pr
   margin-top: 2.4rem;
 }
 
+/* No photos yet: no gallery on the site; while editing, the heading and an empty box to add them. */
+.project-gallery--empty {
+  display: none;
+}
+
+html[data-editing] .project-gallery--empty {
+  display: block;
+}
+
 .project-gallery__title {
   margin: 0 0 1rem;
   font-family: var(--font-display);

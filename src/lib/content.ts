@@ -71,6 +71,7 @@ export const projectLabels = {
   type: { type: 'choice', label: 'Type of project', options: PROJECT_TYPES, optional: true },
   title: { label: 'Project title' },
   cover: { type: 'image', label: 'Cover photo', placeholder: 'Add a cover photo', optional: true },
+  gallery: { type: 'gallery', item: 'image', label: 'Gallery photos', placeholder: 'Add photos from the library', optional: true },
   location: { label: 'Location', placeholder: 'Add the town or area', optional: true },
   year: { label: 'Year finished', placeholder: 'Add the year', optional: true },
   role: { label: 'Your role', placeholder: 'Add your role, e.g. design and construction', optional: true },

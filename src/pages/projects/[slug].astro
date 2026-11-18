@@ -5,8 +5,10 @@
 // description box (the Markdown body). Every row and the description render even when
 // empty so they can be clicked in the editor; on the live site CSS hides an empty row, and
 // without a description the info runs across the page instead (main.css, "Project info").
-// The cover photo is labelled (picked from the media library in the editor); a project
-// without one gets an empty frame that only shows while editing. Photo alt text is the
+// The cover photo and the gallery are labelled (photos come from the media library in the
+// editor); a project without a cover gets an empty frame, and without photos an empty
+// gallery, that only show while editing. The gallery's <template> is the markup the editor
+// copies for a photo added to an empty gallery. Photo alt text is the
 // project title. The frame's texts (the info box's heading and row names, Gallery, Back to
 // projects) are in _data/site.yml.
 import Img from '../../components/Img.astro'
@@ -66,10 +68,10 @@ const info = [
         <section class="project-about" aria-label={d.title}>
           <div class="project-page__body ip__content" {...edit(file, 'body', { type: 'rich', label: 'Project description', placeholder: 'Add a description: what was there, what you did, what makes it special' })} set:html={body} />
         </section>
-      </div>{gallery.length > 0 && (
-      <section class="project-gallery" aria-label="Project photo gallery" data-project-lightbox>
+      </div>
+      <section class:list={['project-gallery', { 'project-gallery--empty': gallery.length === 0 }]} aria-label="Project photo gallery" data-project-lightbox>
         <h2 class="project-gallery__title" {...edit(SITE_FILE, '/project/gallery', { label: 'Project pages: gallery heading' })}>{t.gallery}</h2>
-        <div class="project-gallery__grid">{gallery.map((src, i) => (
+        <div class="project-gallery__grid" {...edit(file, '/gallery', projectLabels.gallery)}>{gallery.map((src, i) => (
           <button
             class="project-gallery__item"
             type="button"
@@ -78,7 +80,7 @@ const info = [
             aria-label={`Open image ${i + 1}`}
           ><Img src={src} alt={d.title} sizes="(max-width: 600px) calc(100vw - 2.8rem), (max-width: 980px) calc((100vw - 2.8rem - 0.85rem) / 2), 377px" />
           </button>
-        ))}</div>
+        ))}<template><button class="project-gallery__item" type="button" data-lightbox-src="data:," aria-label="Open image"><img src="data:," alt={d.title} loading="lazy" /></button></template></div>
 
         <dialog class="project-lightbox" data-lightbox>
           <button class="project-lightbox__close" type="button" data-lightbox-close aria-label="Close gallery">&times;</button>
@@ -88,7 +90,7 @@ const info = [
           </figure>
           <button class="project-lightbox__nav project-lightbox__nav--next" type="button" data-lightbox-next aria-label="Next image">&rarr;</button>
         </dialog>
-      </section>)}
+      </section>
 
       <footer class="ip__foot">
         <a class="ip__back" href="/projects/" {...edit(SITE_FILE, '/project/back', { label: 'Project pages: link back to the list' })}>{t.back}</a>

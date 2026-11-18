@@ -11,7 +11,7 @@
 // Render labelled elements even when their value is empty, or there is nothing to
 // click; hide empty ones with CSS, not with a template `if`.
 
-export type EditType = 'text' | 'rich' | 'choice' | 'image' | 'video'
+export type EditType = 'text' | 'rich' | 'choice' | 'image' | 'video' | 'gallery'
 
 export interface EditOptions {
   /** Field type; text is the default. */
@@ -32,6 +32,8 @@ export interface EditOptions {
   marks?: string
   /** Rich text: heading levels allowed ("2 3"); none unless given. */
   headings?: string
+  /** Gallery: the key that holds each item's photo address ("image" for { image: url }). */
+  item?: string
 }
 
 export function edit(file: string | undefined, pointer: string, o: EditOptions = {}): Record<string, string> {
@@ -49,5 +51,6 @@ export function edit(file: string | undefined, pointer: string, o: EditOptions =
   if (o.marks) attrs['data-edit-marks'] = o.marks
   if (o.headings !== undefined) attrs['data-edit-headings'] = o.headings
   if (o.optional) attrs['data-edit-optional'] = ''
+  if (o.item) attrs['data-edit-item'] = o.item
   return attrs
 }
