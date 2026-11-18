@@ -95,7 +95,9 @@ export function renderLiquid(text: string, from: string): string {
         const [tag, ...rest] = inner.split(/\s+/)
         const args = inner.slice(tag.length).trim()
         if (tag === 'include' && rest[0] === 'img.html') {
-          out = includeImg(includeArgs(args.slice('img.html'.length), from))
+          const a = includeArgs(args.slice('img.html'.length), from)
+          if (!a.src) throw new Error(`${from}: {% include img.html %} without a src`)
+          out = includeImg(a)
         } else if (tag === 'post_url' && rest.length === 1) {
           out = postUrlFromFile(rest[0], from)
         } else {

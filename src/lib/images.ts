@@ -50,7 +50,8 @@ function exists(url: string): boolean {
   if (existsSync(join(process.cwd(), url))) return true
   if (!missing.has(url)) {
     missing.add(url)
-    console.warn(`[images] missing resized copy ${url} (run tools/build-images.py); serving the original`)
+    const fix = url.startsWith(DERIVED) ? 'run tools/build-images.py' : "the editor makes these when edit.json sets modules.image.variants"
+    console.warn(`[images] missing resized copy ${url} (${fix}); serving the original`)
   }
   return false
 }
