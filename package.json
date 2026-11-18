@@ -6,7 +6,8 @@
     "dev": "astro dev --port 4400",
     "build": "astro build",
     "preview": "astro preview --port 4401",
-    "check": "astro check"
+    "check": "astro check",
+    "check:labels": "node scripts/check-labels.mjs"
   },
   "dependencies": {
     "astro": "^5.14.1",
