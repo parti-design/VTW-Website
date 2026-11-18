@@ -4,7 +4,7 @@
 // served from (edit.json "media": "assets/images/uploads" becomes /assets/images/uploads/
 // in front matter). Under public/ the two would differ, and every upload would point at
 // a file that does not exist. Keeping assets/ where it is also leaves every image path
-// in the content, tools/build-images.py and .pages.yml as they were.
+// in the content and tools/build-images.py as they were.
 //
 // Build: copied into dist/ once the pages are written. Dev needs nothing: Vite already
 // serves files under the project root at their own path.
