@@ -1,0 +1,115 @@
+---
+// The projects index: a magazine grid in a curated order, with type filters. Was
+// _layouts/projects.html.
+import Img from '../components/Img.astro'
+import { getProjects, projectCover, projectUrl, type Page } from '../lib/content'
+import { LARGE } from '../lib/images'
+import Default from './Default.astro'
+
+interface Props {
+  page: Page
+}
+const { page } = Astro.props
+
+// Curated magazine rhythm: file name and card size, in display order. A project missing
+// from this list (one just added in the editor, say) follows it as a "third" card, so a
+// new project always shows up.
+const CURATED: [slug: string, size: string][] = [
+  ['c-m-residence', 'feature'],
+  ['p-f-nyc-residence', 'tall'],
+  ['k-m-apartment-renovation', 'third'],
+  ['y-h-apartment-renovation', 'third'],
+  ['k-m-deck', 'third'],
+  ['c-m-kitchen', 'tall'],
+  ['f-s-barn', 'feature'],
+  ['triform-office', 'feature'],
+  ['r-b-barn-studio-addition', 'tall'],
+  ['k-m-kitchen-renovation-2', 'third'],
+  ['s-sc-kitchen', 'third'],
+  ['hvs-bus-shelter', 'third'],
+  ['j-j-barn-restoration', 'tall'],
+  ['m-p-house-addition', 'feature'],
+  ['blue-heron-farms', 'feature'],
+  ['me-k-potting-shed', 'tall'],
+]
+
+const projects = await getProjects()
+const bySlug = new Map(projects.map((p) => [p.id, p]))
+const curated = new Set(CURATED.map(([slug]) => slug))
+const cards = [...CURATED, ...projects.filter((p) => !curated.has(p.id)).map((p) => [p.id, 'third'] as [string, string])]
+  .map(([slug, size]) => ({ project: bySlug.get(slug), size }))
+  .filter((c) => c.project)
+
+// Wide cards render about 845px on a 12-column 1280px grid; the rest about 410px.
+const cardSizes = (size: string) =>
+  `(max-width: 560px) calc(100vw - 3rem), (max-width: 900px) calc((100vw - 3rem - 1.1rem) / 2), ${['feature', 'wide', 'half'].includes(size) ? '845px' : '410px'}`
+
+const subtitle =
+  page.data.subtitle ??
+  'A representative sample of project types and contexts from around the Hudson Valley &mdash; new construction, renovation, and the restoration of historic barns and houses.'
+---
+<Default path={page.data.permalink} title={page.data.title} description={page.data.description} bodyClass={page.data.body_class}>
+<!-- ═══ MASTHEAD ═══ -->
+<section class="iepm">
+  <div class="iepm__inner">
+    <div>
+      <p class="iepm__label">Selected Work</p>
+      <h1 class="iepm__title">{page.data.title || 'Projects'}</h1>
+    </div>
+    <div>
+      <p class="iepm__sub" set:html={subtitle} />
+      <p class="iepm__count"><strong>{projects.length}</strong> &nbsp;selected projects &nbsp;&middot;&nbsp; Hudson Valley, NY</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FILTERS ═══ -->
+<section class="ief">
+  <div class="ief__inner" data-filter-group>
+    <button class="ief__btn ief__btn--active" data-filter="all">All</button>
+    <button class="ief__btn" data-filter="New Construction">New Construction</button>
+    <button class="ief__btn" data-filter="Renovation">Renovation</button>
+    <button class="ief__btn" data-filter="Historical Restoration">Historical Restoration</button>
+    <span class="ief__count" id="filter-count">{projects.length} projects</span>
+  </div>
+</section>
+
+<!-- ═══ MAGAZINE GRID ═══ -->
+<section class="iemag">
+  <div class="iemag__inner" id="project-grid">{cards.map(({ project: p, size }) => {
+      const cover = projectCover(p!)
+      return (
+      <article class={`iemag__card iemag__card--${size}`} data-type={p!.data.type ?? ''}>
+        <a class="iemag__imgwrap" href={projectUrl(p!)}>{cover && <Img src={cover} alt={p!.data.title} sizes={cardSizes(size)} widths={LARGE} />}{p!.data.featured && <span class="iemag__tag">Featured</span>}</a>
+        <div class="iemag__body">
+          <div>
+            <p class="iemag__type">{p!.data.type}</p>
+            <h2 class="iemag__title"><a href={projectUrl(p!)}>{p!.data.title}</a></h2>
+          </div>{p!.data.location && <p class="iemag__loc">{p!.data.location}</p>}</div>
+      </article>
+      )
+    })}</div>
+</section>
+
+<script is:inline>
+  (function () {
+    const btns = document.querySelectorAll('.ief__btn');
+    const cards = Array.from(document.querySelectorAll('.iemag__card'));
+    const countEl = document.getElementById('filter-count');
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        btns.forEach((b) => b.classList.remove('ief__btn--active'));
+        btn.classList.add('ief__btn--active');
+        const f = btn.dataset.filter;
+        let shown = 0;
+        cards.forEach((card) => {
+          const match = f === 'all' || card.dataset.type === f;
+          card.hidden = !match;
+          if (match) shown++;
+        });
+        if (countEl) countEl.textContent = shown + (shown === 1 ? ' project' : ' projects');
+      });
+    });
+  })();
+</script>
+</Default>

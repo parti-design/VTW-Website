@@ -1,0 +1,14 @@
+---
+// Built to /404.html, which nginx serves for any address that does not exist.
+import Default from '../layouts/Default.astro'
+---
+<Default path="/404.html" title="Page Not Found">
+<div class="container">
+  <div class="error-page">
+    <p class="error-page__code">404</p>
+    <h1 class="error-page__heading">Page not found</h1>
+    <p>Sorry, the page you were looking for doesn't exist or has been moved.</p>
+    <p><a href="/">&larr; Return to the homepage</a></p>
+  </div>
+</div>
+</Default>

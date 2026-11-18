@@ -1,0 +1,308 @@
+---
+// The home page. Its settings are index.md's front matter; every text falls back to the
+// default below. The defaults are HTML (entities, &#10;) and are printed as such, as
+// Jekyll printed them. Was _layouts/home.html, which stood alone rather than extending
+// the default layout, and still does: fewer stylesheets, no <main class="im">.
+import { getCollection } from 'astro:content'
+import EditBridge from '../components/EditBridge.astro'
+import Head from '../components/Head.astro'
+import Img from '../components/Img.astro'
+import SiteFooter from '../components/SiteFooter.astro'
+import SiteHeader from '../components/SiteHeader.astro'
+import { getHome, getProjects, projectCover, projectUrl } from '../lib/content'
+import { backgroundVars, LARGE } from '../lib/images'
+
+const home = await getHome()
+const p = home.data
+
+const t = {
+  heroLabel: p.hero_label || 'Hudson Valley &mdash; Building Specialist',
+  heroHeading: p.hero_heading || 'Your advocate&#10;on every&#10;decision.',
+  heroSubheading: p.hero_subheading || 'New construction. Renovation. Historical restoration.&#10;Independent counsel with no conflicts of interest.',
+  heroCtaText: p.hero_cta_text || 'Start a conversation',
+  statementText: p.statement_text || 'Most people navigate their biggest financial decision without anyone truly in their corner.',
+  statementAside: p.statement_aside || 'That&rsquo;s where I come in.',
+  advocateLabel: p.advocate_label || 'The difference',
+  advocateQuote: p.advocate_quote || 'I have no financial relationship with any contractor, supplier, or architect I recommend. No markup on materials. No referral fees. My compensation comes from you &mdash; and my obligation belongs entirely to your project.',
+  advocateName: p.advocate_name || 'Severin Winter',
+  advocateContext: p.advocate_context || 'Forty years of building in the Hudson Valley. Now working exclusively as an independent advisor.',
+  ctaHeading: p.home_cta_heading || 'Let&rsquo;s start with&#10;a conversation.',
+  ctaSub: p.home_cta_sub || 'No obligation. Tell me about your project and where you are in the process.',
+  ctaLinkText: p.home_cta_link_text || 'Get in touch &rarr;',
+}
+/** Liquid's newline_to_br. */
+const nl2br = (s: string) => s.replace(/\r?\n/g, '<br />\n')
+
+// Every featured project, in file-name order. (The old template asked for `limit: 3`,
+// which is not a Liquid filter and did nothing; three are featured today.)
+const featured = (await getProjects()).filter((pr) => pr.data.featured)
+const testimonials = (await getCollection('testimonials'))
+  .filter((x) => x.data.featured)
+  .sort((a, b) => Number(a.id) - Number(b.id))
+
+const stylesheets = ['/assets/css/brand-tokens.css', '/assets/css/main.css', '/assets/css/home.css', '/assets/css/brand.css']
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <Head stylesheets={stylesheets} path="/" title={p.title} description={p.description} />
+</head>
+<body class="page-home">
+
+  <!-- ═══ NAV ═══════════════════════════════════════════════════════════════ -->
+  <SiteHeader current="/" />
+
+  <main>
+
+    <!-- ═══ HERO ══════════════════════════════════════════════════════════════ -->
+    <section class="hh">
+      <div class:list={['hh__photo', { 'has-image': p.hero_image }]} style={p.hero_image ? backgroundVars(p.hero_image) : undefined} aria-hidden="true"></div>
+      <div class="hh__inner">
+        <p class="hh__label" set:html={t.heroLabel} />
+        <h1 class="hh__heading">
+          <Fragment set:html={nl2br(t.heroHeading)} />
+        </h1>
+        <p class="hh__sub">
+          <Fragment set:html={nl2br(t.heroSubheading)} />
+        </p>
+        <a class="hh__cta" href="/contact/" set:html={t.heroCtaText} />
+      </div>
+      <div class="hh__scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="hh__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ═══ STATEMENT ═════════════════════════════════════════════════════════ -->
+    <section class="hs" data-animate>
+      <div class="hs__inner">
+        <p class="hs__text">
+          <Fragment set:html={t.statementText} />
+        </p>
+        <p class="hs__aside" set:html={t.statementAside} />
+      </div>
+      <div class:list={['hs__photo', { 'has-image': p.statement_image }]} style={p.statement_image ? backgroundVars(p.statement_image) : undefined} aria-hidden="true"></div>
+    </section>
+
+    <!-- ═══ ADVOCATE ══════════════════════════════════════════════════════════ -->
+    <section class="hav" data-animate>
+      <div class:list={['hav__photo', { 'has-image': p.advocate_image }]} style={p.advocate_image ? backgroundVars(p.advocate_image) : undefined} aria-hidden="true"></div>
+      <div class="hav__inner">
+        <div class="hav__label-col">
+          <span class="hav__label" set:html={t.advocateLabel} />
+        </div>
+        <div class="hav__body">
+          <blockquote class="hav__quote">
+            &ldquo;<Fragment set:html={t.advocateQuote} />&rdquo;
+          </blockquote>
+          <cite class="hav__cite" set:html={t.advocateName} />
+          <p class="hav__context">
+            <Fragment set:html={t.advocateContext} />
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SERVICES ══════════════════════════════════════════════════════════ -->
+    <section class="hsv" data-animate>
+      <div class="hsv__inner">
+        <p class="hsv__header-label">What I do</p>
+
+        <div class="hsv__item" data-animate data-delay="0">
+          <span class="hsv__num">01</span>
+          <div class="hsv__content">
+            <h3 class="hsv__title">Design &amp; Planning</h3>
+            <p class="hsv__desc">From concept to a buildable, budgeted plan. Working alongside your architect to make sure what is drawn can actually be built.</p>
+          </div>
+          <a class="hsv__link" href="/services/">Learn more</a>
+        </div>
+
+        <div class="hsv__item" data-animate data-delay="100">
+          <span class="hsv__num">02</span>
+          <div class="hsv__content">
+            <h3 class="hsv__title">New Construction</h3>
+            <p class="hsv__desc">Site assessment, contractor vetting, budget planning, and construction oversight. From the first shovel to the final walkthrough.</p>
+          </div>
+          <a class="hsv__link" href="/services/">Learn more</a>
+        </div>
+
+        <div class="hsv__item" data-animate data-delay="200">
+          <span class="hsv__num">03</span>
+          <div class="hsv__content">
+            <h3 class="hsv__title">Renovation</h3>
+            <p class="hsv__desc">Scope development, contractor selection, and owner&rsquo;s representation throughout. Protecting your interests when it matters most.</p>
+          </div>
+          <a class="hsv__link" href="/services/">Learn more</a>
+        </div>
+
+        <div class="hsv__item" data-animate data-delay="300">
+          <span class="hsv__num">04</span>
+          <div class="hsv__content">
+            <h3 class="hsv__title">Historical Restoration</h3>
+            <p class="hsv__desc">Specialist advisory for barns, farmhouses, and period structures. Grounded knowledge of traditional methods and how to apply them with care.</p>
+          </div>
+          <a class="hsv__link" href="/services/">Learn more</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ PROJECTS ══════════════════════════════════════════════════════════ -->{featured.length > 0 && (
+    <section class="hpj" data-animate>
+      <div class="hpj__inner">
+        <div class="hpj__header">
+          <p class="hpj__label">Selected work</p>
+          <a class="hpj__all" href="/projects/">View all &rarr;</a>
+        </div>
+        <div class="hpj__grid">{featured.map((project) => {
+          const cover = projectCover(project)
+          return (
+          <a class="hpj__card" href={projectUrl(project)}>
+            <div class="hpj__img-wrap">{cover ? (
+              <Img src={cover} alt={project.data.title} sizes="(max-width: 760px) calc(100vw - 3rem), 384px" widths={LARGE} />
+            ) : (
+              <div class="hpj__img-placeholder"></div>
+            )}</div>
+            <div class="hpj__card-body">
+              <span class="hpj__type">{project.data.type}</span>
+              <h3 class="hpj__title">{project.data.title}</h3>{project.data.location && <p class="hpj__location">{project.data.location}</p>}</div>
+          </a>
+          )
+        })}</div>
+      </div>
+    </section>
+    )}
+
+    <!-- ═══ TESTIMONIAL ═══════════════════════════════════════════════════════ -->{testimonials.length > 0 && (
+    <section class="htm" data-animate>
+      <div class="htminner" data-testimonial-slider>
+        <div class="htm__viewport">
+          <div class="htm__track">{testimonials.map((x) => (
+            <article class="htm__slide">
+              <blockquote class="htm__quote">
+                &ldquo;{x.data.quote}&rdquo;
+              </blockquote>
+              <footer class="htm__footer">
+                <span class="htm__name">{x.data.name}</span>{x.data.project && (
+                <span class="htm__project">{x.data.project}</span>
+                )}</footer>
+            </article>
+          ))}</div>
+        </div>{testimonials.length > 1 && (
+        <div class="htm__controls">
+          <button class="htm__btn" type="button" data-testimonial-prev aria-label="Previous testimonial">&larr;</button>
+          <div class="htm__dots">{testimonials.map((_, i) => (
+            <button class:list={['htm__dot', { 'is-active': i === 0 }]} type="button" data-testimonial-to={i} aria-label={`Go to testimonial ${i + 1}`}></button>
+          ))}</div>
+          <button class="htm__btn" type="button" data-testimonial-next aria-label="Next testimonial">&rarr;</button>
+        </div>
+        )}</div>
+    </section>
+    )}
+
+    <!-- ═══ CTA ═══════════════════════════════════════════════════════════════ -->
+    <section class="hct" data-animate>
+      <div class="hct__inner">
+        <h2 class="hct__heading" set:html={nl2br(t.ctaHeading)} />
+        <p class="hct__sub" set:html={t.ctaSub} />
+        <a class="hct__link" href="/contact/" set:html={t.ctaLinkText} />
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ════════════════════════════════════════════════════════════ -->
+  <SiteFooter />
+
+  <!-- ═══ SCRIPTS ═══════════════════════════════════════════════════════════ -->
+  <script is:inline>
+    // Nav: become opaque on scroll
+    const nav = document.getElementById('hn');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('hn--scrolled', window.scrollY > 80);
+    }, { passive: true });
+
+    // Mobile menu toggle
+    const navToggle = document.getElementById('hn-toggle');
+    const navMenu = document.getElementById('hn-nav');
+    if (navToggle && navMenu) {
+      const setMenu = (open) => {
+        navToggle.setAttribute('aria-expanded', String(open));
+        navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        navMenu.classList.toggle('is-open', open);
+        document.body.classList.toggle('nav-open', open);
+      };
+      navToggle.addEventListener('click', () => {
+        setMenu(navToggle.getAttribute('aria-expanded') !== 'true');
+      });
+      navMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMenu(false));
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setMenu(false);
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 760) setMenu(false);
+      });
+    }
+
+    // Scroll-reveal animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => entry.target.classList.add('is-visible'), Number(delay));
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+    // Testimonial slider
+    document.querySelectorAll('[data-testimonial-slider]').forEach((slider) => {
+      const track = slider.querySelector('.htm__track');
+      const slides = Array.from(slider.querySelectorAll('.htm__slide'));
+      const dots = Array.from(slider.querySelectorAll('[data-testimonial-to]'));
+      const prev = slider.querySelector('[data-testimonial-prev]');
+      const next = slider.querySelector('[data-testimonial-next]');
+      let index = 0;
+      let intervalId;
+
+      if (!track || slides.length <= 1) return;
+
+      const goTo = (newIndex) => {
+        index = (newIndex + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        slides.forEach((slide, slideIndex) => {
+          slide.classList.toggle('is-active', slideIndex === index);
+        });
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle('is-active', dotIndex === index);
+        });
+      };
+
+      const restartAuto = () => {
+        window.clearInterval(intervalId);
+        intervalId = window.setInterval(() => goTo(index + 1), 6000);
+      };
+
+      prev?.addEventListener('click', () => { goTo(index - 1); restartAuto(); });
+      next?.addEventListener('click', () => { goTo(index + 1); restartAuto(); });
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          goTo(Number(dot.dataset.testimonialTo));
+          restartAuto();
+        });
+      });
+
+      window.addEventListener('resize', () => goTo(index));
+      goTo(index);
+      restartAuto();
+    });
+  </script>
+
+  <EditBridge />
+
+</body>
+</html>

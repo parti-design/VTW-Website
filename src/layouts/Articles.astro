@@ -1,0 +1,66 @@
+---
+// The articles index: the newest article large, the rest as a list. Was
+// _layouts/articles.html. Parked articles never appear (getPosts).
+import { getPosts, postUrl, type Page, type Post } from '../lib/content'
+import { longDate, xmlschema } from '../lib/dates'
+import { markdownify, renderLiquid, stripHtml } from '../lib/jekyll'
+import Default from './Default.astro'
+
+interface Props {
+  page: Page
+}
+const { page } = Astro.props
+const posts = await getPosts()
+const [latest, ...rest] = posts
+
+/** Liquid's truncate: n characters in all, the last three of them "...". */
+const truncate = (s: string, n: number) => (s.length > n ? s.slice(0, n - 3) + '...' : s)
+
+/** Description, else the first paragraph as plain text (Jekyll's excerpt). */
+function summary(p: Post, n: number): string | undefined {
+  if (p.data.description) return p.data.description
+  const first = (p.body ?? '').trim().split(/\n\s*\n/)[0]
+  if (!first) return undefined
+  return truncate(stripHtml(markdownify(renderLiquid(first, p.filePath ?? p.id))).trim(), n)
+}
+---
+<Default path={page.data.permalink} title={page.data.title} description={page.data.description} bodyClass={page.data.body_class}>
+<section class="ip ip--articles">
+  <div class="ip__inner ip__inner--wide">
+    <header class="ip__head">
+      <p class="ip__label">Field Notes</p>
+      <h1 class="ip__title">{page.data.title}</h1>
+      <p class="ip__subtitle">Insights and observations on building in the Hudson Valley.</p>
+    </header>
+
+    {posts.length > 0 ? (
+      <Fragment>
+      {latest && (
+      <article class="article-feature">
+        <p class="article-feature__kicker">Latest</p>
+        <h2 class="article-feature__title">
+          <a href={postUrl(latest)}>{latest.data.title}</a>
+        </h2>
+        <p class="article-feature__meta">{longDate(latest.data.date)}</p>{summary(latest, 240) && <p class="article-feature__excerpt">{summary(latest, 240)}</p>}<a class="article-feature__link" href={postUrl(latest)}>Read article</a>
+      </article>
+      )}
+
+    <div class="article-list">{rest.map((post) => (
+      <article class="article-item">
+        <time class="article-item__date" datetime={xmlschema(post.data.date)}>
+          {longDate(post.data.date)}
+        </time>
+        <div class="article-item__body">
+          <h2 class="article-item__title">
+            <a href={postUrl(post)}>{post.data.title}</a>
+          </h2>{summary(post, 200) && <p class="article-item__excerpt">{summary(post, 200)}</p>}<a class="article-item__link" href={postUrl(post)}>Read more</a>
+        </div>
+      </article>
+    ))}</div>
+      </Fragment>
+    ) : (
+    <p class="articles-empty">Articles coming soon.</p>
+    )}
+  </div>
+</section>
+</Default>

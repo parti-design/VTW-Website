@@ -1,0 +1,104 @@
+---
+// The contact page. Phone and email are printed reversed, in pieces, and put back
+// together by the script below, so a scraper reading the HTML finds neither. There is
+// no form. Was _layouts/contact.html.
+import type { Page } from '../lib/content'
+import Default from './Default.astro'
+
+interface Props {
+  page: Page
+  html: string
+}
+const { page, html } = Astro.props
+const d = page.data
+
+let phone = { area: d.phone_area ?? '', prefix: d.phone_prefix ?? '', line: d.phone_line ?? '' }
+if (!phone.area && !phone.prefix && !phone.line && d.phone) {
+  const digits = d.phone.replace(/[\s\-().]/g, '')
+  phone = { area: digits.slice(0, 3), prefix: digits.slice(3, 6), line: digits.slice(6, 10) }
+}
+let email = { user: d.email_user ?? '', domain: d.email_domain ?? '' }
+if (!email.user && d.email) {
+  const [user = '', domain = ''] = d.email.split('@')
+  email = { user, domain }
+}
+const rev = (s: string) => [...s].reverse().join('')
+---
+<Default path={d.permalink} title={d.title} description={d.description} bodyClass={d.body_class}>
+<!-- ═══ OPENING ═══ -->
+<section class="cmast">
+  <div class="cmast__inner">
+    <p class="cmast__kicker">Start a conversation</p>
+    <h1 class="cmast__lead">Tell me where you are &mdash; and what decisions are <em>ahead.</em></h1>
+    <div class="cmast__intro">
+      <Fragment set:html={html} />
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GUIDANCE + DETAILS ═══ -->
+<section class="cbody" data-animate>
+  <div class="cbody__inner">
+    <div class="cbody__guide">
+      <p class="cbody__label">What to include</p>
+      <ul class="cbody__list">
+        <li>Project location and type</li>
+        <li>Current phase and timeline</li>
+        <li>Where you want outside guidance</li>
+      </ul>
+    </div>
+
+    <div class="cbody__details">{phone.area && phone.prefix && phone.line && (
+      <div class="cdetail">
+        <span class="cdetail__label">Phone</span>
+        <a
+          class="cdetail__value"
+          href="#"
+          data-phone-link
+          data-area-rev={rev(phone.area)}
+          data-prefix-rev={rev(phone.prefix)}
+          data-line-rev={rev(phone.line)}
+        >Available with JavaScript enabled</a>
+        <noscript><span class="cdetail__value">Please email to request the phone number.</span></noscript>
+      </div>
+      )}{email.user && email.domain && (
+      <div class="cdetail">
+        <span class="cdetail__label">Email</span>
+        <a
+          class="cdetail__value"
+          href="#"
+          data-email-link
+          data-user-rev={rev(email.user)}
+          data-domain-rev={rev(email.domain)}
+        >Available with JavaScript enabled</a>
+        <noscript><span class="cdetail__value">Please call to request the email address.</span></noscript>
+      </div>
+      )}
+
+      <div class="cdetail">
+        <span class="cdetail__label">Based in</span>
+        <span class="cdetail__value">Hudson Valley, NY</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.querySelectorAll('[data-phone-link]').forEach((link) => {
+    const area = (link.dataset.areaRev || '').split('').reverse().join('');
+    const prefix = (link.dataset.prefixRev || '').split('').reverse().join('');
+    const line = (link.dataset.lineRev || '').split('').reverse().join('');
+    if (!area || !prefix || !line) return;
+    link.href = `tel:${area}${prefix}${line}`;
+    link.textContent = `${area} ${prefix} ${line}`;
+  });
+
+  document.querySelectorAll('[data-email-link]').forEach((link) => {
+    const user = (link.dataset.userRev || '').split('').reverse().join('');
+    const domain = (link.dataset.domainRev || '').split('').reverse().join('');
+    if (!user || !domain) return;
+    link.href = `mailto:${user}@${domain}`;
+    link.textContent = `${user}@${domain}`;
+  });
+</script>
+</Default>

@@ -1,0 +1,32 @@
+---
+// Every page in _pages/, at the permalink its front matter gives, in the layout it
+// names. Jekyll did the same with its `layout` and `permalink` keys.
+import { getPages, type Page } from '../lib/content'
+import { renderBody } from '../lib/jekyll'
+import Articles from '../layouts/Articles.astro'
+import Contact from '../layouts/Contact.astro'
+import Default from '../layouts/Default.astro'
+import GenericPage from '../layouts/Page.astro'
+import Projects from '../layouts/Projects.astro'
+
+export async function getStaticPaths() {
+  return (await getPages()).map((page) => ({
+    params: { page: page.data.permalink.replace(/^\/|\/$/g, '') },
+    props: { page },
+  }))
+}
+
+const { page } = Astro.props as { page: Page }
+const d = page.data
+const seo = { path: d.permalink, title: d.title, description: d.description }
+const html = renderBody(page)
+---
+{d.layout === 'default' && (
+  <Default {...seo} bodyClass={d.body_class}>
+    <Fragment set:html={html} />
+  </Default>
+)}
+{d.layout === 'page' && <GenericPage page={page} html={html} />}
+{d.layout === 'articles' && <Articles page={page} />}
+{d.layout === 'projects' && <Projects page={page} />}
+{d.layout === 'contact' && <Contact page={page} html={html} />}
