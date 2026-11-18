@@ -71,8 +71,6 @@ project:
   info_location: Location
   info_role: Role
   info_scope: Scope
-  # The heading of the description box.
-  about: About the project
   gallery: Gallery
   back: Back to projects
 

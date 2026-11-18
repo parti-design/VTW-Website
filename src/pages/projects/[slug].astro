@@ -6,8 +6,8 @@
 // empty so they can be clicked in the editor; on the live site CSS hides an empty row, and
 // without a description the info runs across the page instead (main.css, "Project info").
 // The photos are not labelled yet (see docs/editor.md); their alt text is the project
-// title. The frame's texts (row names, headings, Gallery, Back to projects) are in
-// _data/site.yml.
+// title. The frame's texts (the info box's heading and row names, Gallery, Back to
+// projects) are in _data/site.yml.
 import Img from '../../components/Img.astro'
 import Default from '../../layouts/Default.astro'
 import { galleryImages, getProjects, getSite, projectCover, projectLabels, projectUrl, SITE_FILE, type Project } from '../../lib/content'
@@ -61,8 +61,7 @@ const info = [
             <div class="project-info__row"><dt {...edit(SITE_FILE, `/project/info_${row.key}`, { label: `Project pages: name of the ${row.key} row` })}>{row.name}</dt><dd {...edit(file, `/${row.key}`, projectLabels[row.key])}>{row.value}</dd></div>
           ))}</dl>
         </aside>
-        <section class="project-about" aria-labelledby="project-about-title">
-          <h2 class="project-about__title" id="project-about-title" {...edit(SITE_FILE, '/project/about', { label: 'Project pages: description heading' })}>{t.about}</h2>
+        <section class="project-about" aria-label={d.title}>
           <div class="project-page__body ip__content" {...edit(file, 'body', { type: 'rich', label: 'Project description', placeholder: 'Add a description: what was there, what you did, what makes it special' })} set:html={body} />
         </section>
       </div>{gallery.length > 0 && (

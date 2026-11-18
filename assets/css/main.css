@@ -698,14 +698,6 @@ html:not([data-editing]) .project-info__row:has(> dd:empty) {
   border: 1px solid var(--vtw-rule);
 }
 
-.project-about__title {
-  margin: 0 0 1.1rem;
-  font-family: var(--font-display);
-  font-size: var(--vtw-h3);
-  font-weight: 500;
-  line-height: 1.1;
-}
-
 .project-page__body {
   max-width: var(--vtw-measure);
 }

@@ -265,7 +265,6 @@ const site = defineCollection({
       info_location: z.string(),
       info_role: z.string(),
       info_scope: z.string(),
-      about: z.string(),
       gallery: z.string(),
       back: z.string(),
     }),

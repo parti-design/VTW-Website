@@ -99,7 +99,7 @@ A project page has a project info box (type, year, location, role, scope) beside
 description box. Every row and the description always render, even when empty, so they can
 be clicked; on the live site CSS hides an empty row, and a project without a description
 shows its info across the page instead (`main.css`, "Project info"). The row names and the
-box headings are site-wide texts in `_data/site.yml` under `project`.
+info box's heading are site-wide texts in `_data/site.yml` under `project`.
 
 The projects page keeps its curated order and card sizes (`src/layouts/Projects.astro`), and
 lists any project missing from that order after it as a third-width card, so a project added
