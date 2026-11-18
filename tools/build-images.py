@@ -44,8 +44,9 @@ RASTER = (".jpg", ".jpeg", ".png")
 
 def large_set():
     """Paths the site displays big, read out of the content's front matter."""
+    # `src` is a page photo's path ({src, alt} under image:), indented in its block.
     keys = re.compile(
-        r'^(?:cover_image|photo|hero_image|statement_image|advocate_image|portrait_image)'
+        r'^\s*(?:cover_image|photo|hero_image|statement_image|advocate_image|portrait_image|src)'
         r':\s*"?(/assets/images/[^"\s]+)"?\s*$',
         re.M,
     )

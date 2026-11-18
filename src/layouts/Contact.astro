@@ -1,36 +1,39 @@
 ---
 // The contact page. Phone and email are printed reversed, in pieces, and put back
 // together by the script below, so a scraper reading the HTML finds neither. There is
-// no form. Was _layouts/contact.html.
-import type { Page } from '../lib/content'
+// no form. Was _layouts/contact.html. Every text is in _pages/contact.md.
+//
+// Two of them have no label: the "Available with JavaScript enabled" placeholder, which
+// the script replaces before anyone can click it, and the <noscript> notes, which a
+// browser running scripts (the editor's included) never puts on the page. They are
+// edited in the file.
+import type { PageWith } from '../lib/content'
+import { edit, type EditOptions } from '../lib/edit'
+import { markdownInline } from '../lib/jekyll'
 import Default from './Default.astro'
 
 interface Props {
-  page: Page
+  page: PageWith<'contact'>
   html: string
 }
 const { page, html } = Astro.props
 const d = page.data
+const file = page.filePath
+const label = (key: string, name: string, more: EditOptions = {}) => edit(file, `/${key}`, { label: name, ...more })
 
-let phone = { area: d.phone_area ?? '', prefix: d.phone_prefix ?? '', line: d.phone_line ?? '' }
-if (!phone.area && !phone.prefix && !phone.line && d.phone) {
-  const digits = d.phone.replace(/[\s\-().]/g, '')
-  phone = { area: digits.slice(0, 3), prefix: digits.slice(3, 6), line: digits.slice(6, 10) }
-}
-let email = { user: d.email_user ?? '', domain: d.email_domain ?? '' }
-if (!email.user && d.email) {
-  const [user = '', domain = ''] = d.email.split('@')
-  email = { user, domain }
-}
+const digits = (d.phone ?? '').replace(/[^\d]/g, '')
+const phone = { area: digits.slice(0, 3), prefix: digits.slice(3, 6), line: digits.slice(6, 10) }
+const [user = '', domain = ''] = (d.email ?? '').split('@')
+const email = { user, domain }
 const rev = (s: string) => [...s].reverse().join('')
 ---
-<Default path={d.permalink} title={d.title} description={d.description} bodyClass={d.body_class}>
+<Default path={d.permalink} title={d.title} description={d.description} bodyClass={d.body_class} file={file}>
 <!-- ═══ OPENING ═══ -->
 <section class="cmast">
   <div class="cmast__inner">
-    <p class="cmast__kicker">Start a conversation</p>
-    <h1 class="cmast__lead">Tell me where you are &mdash; and what decisions are <em>ahead.</em></h1>
-    <div class="cmast__intro">
+    <p class="cmast__kicker" {...label('kicker', 'Small line above the heading')}>{d.kicker}</p>
+    <h1 class="cmast__lead" {...label('lead', 'Heading', { type: 'rich', marks: 'bold italic' })} set:html={markdownInline(d.lead)} />
+    <div class="cmast__intro" {...edit(file, 'body', { type: 'rich', label: 'Introduction' })}>
       <Fragment set:html={html} />
     </div>
   </div>
@@ -40,17 +43,14 @@ const rev = (s: string) => [...s].reverse().join('')
 <section class="cbody" data-animate>
   <div class="cbody__inner">
     <div class="cbody__guide">
-      <p class="cbody__label">What to include</p>
-      <ul class="cbody__list">
-        <li>Project location and type</li>
-        <li>Current phase and timeline</li>
-        <li>Where you want outside guidance</li>
+      <p class="cbody__label" {...label('include_label', 'List heading')}>{d.include_label}</p>
+      <ul class="cbody__list">{d.include.map((item, i) => (<Fragment>{'\n        '}<li {...label(`include/${i}`, `List item ${i + 1}`)}>{item}</li></Fragment>))}
       </ul>
     </div>
 
     <div class="cbody__details">{phone.area && phone.prefix && phone.line && (
       <div class="cdetail">
-        <span class="cdetail__label">Phone</span>
+        <span class="cdetail__label" {...label('phone_label', 'Phone: label')}>{d.phone_label}</span>
         <a
           class="cdetail__value"
           href="#"
@@ -58,26 +58,28 @@ const rev = (s: string) => [...s].reverse().join('')
           data-area-rev={rev(phone.area)}
           data-prefix-rev={rev(phone.prefix)}
           data-line-rev={rev(phone.line)}
-        >Available with JavaScript enabled</a>
-        <noscript><span class="cdetail__value">Please email to request the phone number.</span></noscript>
+          {...label('phone', 'Phone number')}
+        >{d.script_needed}</a>
+        <noscript><span class="cdetail__value">{d.phone_noscript}</span></noscript>
       </div>
       )}{email.user && email.domain && (
       <div class="cdetail">
-        <span class="cdetail__label">Email</span>
+        <span class="cdetail__label" {...label('email_label', 'Email: label')}>{d.email_label}</span>
         <a
           class="cdetail__value"
           href="#"
           data-email-link
           data-user-rev={rev(email.user)}
           data-domain-rev={rev(email.domain)}
-        >Available with JavaScript enabled</a>
-        <noscript><span class="cdetail__value">Please call to request the email address.</span></noscript>
+          {...label('email', 'Email address')}
+        >{d.script_needed}</a>
+        <noscript><span class="cdetail__value">{d.email_noscript}</span></noscript>
       </div>
       )}
 
       <div class="cdetail">
-        <span class="cdetail__label">Based in</span>
-        <span class="cdetail__value">Hudson Valley, NY</span>
+        <span class="cdetail__label" {...label('based_label', 'Location: label')}>{d.based_label}</span>
+        <span class="cdetail__value" {...label('based', 'Location')}>{d.based}</span>
       </div>
     </div>
   </div>

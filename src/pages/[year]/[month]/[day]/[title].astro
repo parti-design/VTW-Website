@@ -2,8 +2,9 @@
 // One page per live article, at /:year/:month/:day/:title/ (Jekyll's permalink).
 // Parked articles (published: false) get no page. Was _layouts/post.html.
 import Default from '../../../../layouts/Default.astro'
-import { getPosts, postSlug, postUrl, type Post } from '../../../../lib/content'
+import { getPosts, getSite, postSlug, postUrl, SITE_FILE, type Post } from '../../../../lib/content'
 import { longDate, xmlschema } from '../../../../lib/dates'
+import { edit } from '../../../../lib/edit'
 import { renderBody } from '../../../../lib/jekyll'
 
 export async function getStaticPaths() {
@@ -15,6 +16,10 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props as { post: Post }
 const d = post.data
+const file = post.filePath
+const t = (await getSite()).post
+// The date is not labelled: it is part of the article's address (/2025/08/29/...), so
+// changing it would move the page and break every link to it.
 ---
 <Default
   path={postUrl(post)}
@@ -23,13 +28,14 @@ const d = post.data
   body={post.body}
   date={d.date}
   author={d.author}
+  file={file}
 >
 <section class="ip ip--post">
   <div class="ip__inner ip__inner--wide">
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
       <header class="ip__head">
-        <p class="ip__label">Articles</p>
-        <h1 class="ip__title" itemprop="name headline">{d.title}</h1>
+        <p class="ip__label" {...edit(SITE_FILE, '/post/label', { label: 'Article pages: small line above the title' })}>{t.label}</p>
+        <h1 class="ip__title" itemprop="name headline" {...edit(file, '/title', { label: 'Article title' })}>{d.title}</h1>
         <div class="ip-post__title-rule" aria-hidden="true"></div>
       </header>
 
@@ -40,17 +46,17 @@ const d = post.data
               {longDate(d.date)}
             </time>{d.author && (<Fragment><span>&middot;</span>
             <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-              <span itemprop="name">{d.author}</span>
+              <span itemprop="name" {...edit(file, '/author', { label: 'Author' })}>{d.author}</span>
             </span></Fragment>)}</p>
         </aside>
 
         <div class="ip-post__main">
-          <div class="ip__content" itemprop="articleBody">
+          <div class="ip__content" itemprop="articleBody" {...edit(file, 'body', { type: 'rich', label: 'Article text', headings: '2 3' })}>
             <Fragment set:html={renderBody(post)} />
           </div>
 
           <footer class="ip__foot">
-            <a class="ip__back" href="/articles/">Back to articles</a>
+            <a class="ip__back" href="/articles/" {...edit(SITE_FILE, '/post/back', { label: 'Article pages: link back to the list' })}>{t.back}</a>
           </footer>
         </div>
       </div>

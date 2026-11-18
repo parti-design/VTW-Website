@@ -1,15 +1,24 @@
 ---
 // The articles index: the newest article large, the rest as a list. Was
-// _layouts/articles.html. Parked articles never appear (getPosts).
-import { getPosts, postUrl, type Page, type Post } from '../lib/content'
+// _layouts/articles.html. Parked articles never appear (getPosts). The page's texts
+// are in _pages/articles.md; each article's title and summary in its own file. Dates are
+// not labelled: they are part of each article's address.
+import { getPosts, postUrl, type PageWith, type Post } from '../lib/content'
 import { longDate, xmlschema } from '../lib/dates'
+import { edit, type EditOptions } from '../lib/edit'
 import { markdownify, renderLiquid, stripHtml } from '../lib/jekyll'
 import Default from './Default.astro'
 
 interface Props {
-  page: Page
+  page: PageWith<'articles'>
 }
 const { page } = Astro.props
+const d = page.data
+const file = page.filePath
+const label = (key: string, name: string, more: EditOptions = {}) => edit(file, `/${key}`, { label: name, ...more })
+const titleLabel = (p: Post) => edit(p.filePath, '/title', { label: 'Article title' })
+const summaryLabel = (p: Post) =>
+  edit(p.filePath, '/description', { label: 'Article summary (also shown in search results)', optional: true, multiline: true })
 const posts = await getPosts()
 const [latest, ...rest] = posts
 
@@ -24,24 +33,24 @@ function summary(p: Post, n: number): string | undefined {
   return truncate(stripHtml(markdownify(renderLiquid(first, p.filePath ?? p.id))).trim(), n)
 }
 ---
-<Default path={page.data.permalink} title={page.data.title} description={page.data.description} bodyClass={page.data.body_class}>
+<Default path={d.permalink} title={d.title} description={d.description} bodyClass={d.body_class} file={file}>
 <section class="ip ip--articles">
   <div class="ip__inner ip__inner--wide">
     <header class="ip__head">
-      <p class="ip__label">Field Notes</p>
-      <h1 class="ip__title">{page.data.title}</h1>
-      <p class="ip__subtitle">Insights and observations on building in the Hudson Valley.</p>
+      <p class="ip__label" {...label('kicker', 'Small line above the title')}>{d.kicker}</p>
+      <h1 class="ip__title" {...label('title', 'Page title')}>{d.title}</h1>
+      <p class="ip__subtitle" {...label('subtitle', 'Introduction')}>{d.subtitle}</p>
     </header>
 
     {posts.length > 0 ? (
       <Fragment>
       {latest && (
       <article class="article-feature">
-        <p class="article-feature__kicker">Latest</p>
+        <p class="article-feature__kicker" {...label('latest_label', 'Label on the newest article')}>{d.latest_label}</p>
         <h2 class="article-feature__title">
-          <a href={postUrl(latest)}>{latest.data.title}</a>
+          <a href={postUrl(latest)} {...titleLabel(latest)}>{latest.data.title}</a>
         </h2>
-        <p class="article-feature__meta">{longDate(latest.data.date)}</p>{summary(latest, 240) && <p class="article-feature__excerpt">{summary(latest, 240)}</p>}<a class="article-feature__link" href={postUrl(latest)}>Read article</a>
+        <p class="article-feature__meta">{longDate(latest.data.date)}</p>{summary(latest, 240) && <p class="article-feature__excerpt" {...summaryLabel(latest)}>{summary(latest, 240)}</p>}<a class="article-feature__link" href={postUrl(latest)} {...label('read_article', 'Link under the newest article')}>{d.read_article}</a>
       </article>
       )}
 
@@ -52,14 +61,14 @@ function summary(p: Post, n: number): string | undefined {
         </time>
         <div class="article-item__body">
           <h2 class="article-item__title">
-            <a href={postUrl(post)}>{post.data.title}</a>
-          </h2>{summary(post, 200) && <p class="article-item__excerpt">{summary(post, 200)}</p>}<a class="article-item__link" href={postUrl(post)}>Read more</a>
+            <a href={postUrl(post)} {...titleLabel(post)}>{post.data.title}</a>
+          </h2>{summary(post, 200) && <p class="article-item__excerpt" {...summaryLabel(post)}>{summary(post, 200)}</p>}<a class="article-item__link" href={postUrl(post)} {...label('read_more', 'Link under each article')}>{d.read_more}</a>
         </div>
       </article>
     ))}</div>
       </Fragment>
     ) : (
-    <p class="articles-empty">Articles coming soon.</p>
+    <p class="articles-empty" {...label('empty', 'Shown when there are no articles')}>{d.empty}</p>
     )}
   </div>
 </section>

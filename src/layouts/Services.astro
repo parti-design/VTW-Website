@@ -1,0 +1,87 @@
+---
+// The services page. Its markup was the body of _pages/services.md; its texts are now
+// that file's front matter, each labelled, and each area's photo is labelled as an image.
+// The numbers (01-04, 1-4), the section anchors and the alternating sides follow the
+// order of the areas and steps; they are layout, not text.
+import Img from '../components/Img.astro'
+import type { PageWith } from '../lib/content'
+import { edit, type EditOptions } from '../lib/edit'
+import { LARGE } from '../lib/images'
+import { markdownInline } from '../lib/jekyll'
+import Default from './Default.astro'
+
+interface Props {
+  page: PageWith<'services'>
+}
+const { page } = Astro.props
+const d = page.data
+const file = page.filePath
+const label = (key: string, name: string, more: EditOptions = {}) => edit(file, `/${key}`, { label: name, ...more })
+const two = (i: number) => String(i + 1).padStart(2, '0')
+---
+<Default path={d.permalink} title={d.title} description={d.description} bodyClass={d.body_class} file={file}>
+<!-- ═══ OPENING: LEAD + CONTENTS ═══ -->
+<section class="smast">
+  <div class="smast__inner">
+    <div>
+      <p class="smast__kicker" {...label('kicker', 'Small line above the heading')}>{d.kicker}</p>
+      <h1 class="smast__lead" {...label('lead', 'Heading', { type: 'rich', marks: 'bold italic' })} set:html={markdownInline(d.lead)} />
+    </div>
+    <nav class="smast__toc" aria-label="Services contents">
+      <p class="smast__toc-label" {...label('toc_label', 'List of areas: heading')}>{d.toc_label}</p>
+{d.areas.map((area, i) => (<Fragment>{'\n      '}<a class="smast__link" href={`#s${two(i)}`}><span class="n">{two(i)}</span><span class="t" {...label(`areas/${i}/toc_title`, `List of areas, line ${i + 1}: name`)}>{area.toc_title}</span><span class="meta" {...label(`areas/${i}/toc_note`, `List of areas, line ${i + 1}: note`)}>{area.toc_note}</span></a></Fragment>))}
+    </nav>
+  </div>
+</section>
+{d.areas.map((area, i) => (<Fragment>
+
+<!-- ═══ ENTRY {two(i)} ═══ -->
+<section class:list={['sentry', { 'sentry--alt': i % 2 === 1 }]} id={`s${two(i)}`} data-animate>
+  <div class="sentry__inner">
+    <figure class="sentry__media"><Img
+        src={area.image.src}
+        alt={area.image.alt}
+        sizes="(max-width: 900px) calc(100vw - 3rem), 660px"
+        widths={LARGE}
+        attrs={label(`areas/${i}/image`, `Area ${i + 1}: photo`, { type: 'image' })}
+      />
+</figure>
+    <div class="sentry__content">
+      <span class="sentry__num">{two(i)}</span>
+      <h2 class="sentry__title" {...label(`areas/${i}/title`, `Area ${i + 1}: heading`)}>{area.title}</h2>
+      <p class="sentry__lead" {...label(`areas/${i}/lead`, `Area ${i + 1}: introduction`)}>{area.lead}</p>
+      <ul class="sentry__caps">{area.points.map((point, j) => (<Fragment>{'\n        '}<li {...label(`areas/${i}/points/${j}`, `Area ${i + 1}: point ${j + 1}`)}>{point}</li></Fragment>))}
+      </ul>
+    </div>
+  </div>
+</section>
+</Fragment>))}
+
+<!-- ═══ BILLING ═══ -->
+<section class="sbill" data-animate>
+  <div class="sbill__inner">
+    <p class="sbill__label" {...label('billing/label', 'Billing: small label')}>{d.billing.label}</p>
+    <div>
+      <p class="sbill__stmt" {...label('billing/statement', 'Billing: statement')}>{d.billing.statement}</p>
+      <p class="sbill__note" {...label('billing/note', 'Billing: note')}>{d.billing.note}</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROCESS TIMELINE ═══ -->
+<section class="sproc" data-animate>
+  <div class="sproc__inner">
+    <div class="sproc__head">
+      <p class="sproc__label" {...label('process/label', 'How it works: small label')}>{d.process.label}</p>
+      <h2 class="sproc__h" {...label('process/heading', 'How it works: heading')}>{d.process.heading}</h2>
+    </div>
+    <div class="sproc__steps">
+{d.process.steps.map((step, i) => (<Fragment>{'\n      '}<div class="sproc__step">
+        <div class="sproc__num">{i + 1}</div>
+        <h3 class="sproc__t" {...label(`process/steps/${i}/title`, `Step ${i + 1}: name`)}>{step.title}</h3>
+        <p class="sproc__x" {...label(`process/steps/${i}/text`, `Step ${i + 1}: text`)}>{step.text}</p>
+      </div></Fragment>))}
+    </div>
+  </div>
+</section>
+</Default>

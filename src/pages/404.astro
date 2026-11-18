@@ -1,14 +1,24 @@
 ---
-// Built to /404.html, which nginx serves for any address that does not exist.
+// Built to /404.html, which nginx serves for any address that does not exist. Its texts
+// are in _data/site.yml under not_found. "404" itself is the status code, not copy.
 import Default from '../layouts/Default.astro'
+import { getSite, SITE_FILE } from '../lib/content'
+import { edit } from '../lib/edit'
+
+const t = (await getSite()).not_found
 ---
-<Default path="/404.html" title="Page Not Found">
+<Default
+  path="/404.html"
+  title={t.title}
+  titleLabel={edit(SITE_FILE, '/not_found/title', { label: 'Page not found: browser tab title' })}
+  descriptionLabel={edit(SITE_FILE, '/description', { label: 'Description shown in search results for pages without their own', multiline: true })}
+>
 <div class="container">
   <div class="error-page">
     <p class="error-page__code">404</p>
-    <h1 class="error-page__heading">Page not found</h1>
-    <p>Sorry, the page you were looking for doesn't exist or has been moved.</p>
-    <p><a href="/">&larr; Return to the homepage</a></p>
+    <h1 class="error-page__heading" {...edit(SITE_FILE, '/not_found/heading', { label: 'Page not found: heading' })}>{t.heading}</h1>
+    <p {...edit(SITE_FILE, '/not_found/text', { label: 'Page not found: text' })}>{t.text}</p>
+    <p><a href="/" {...edit(SITE_FILE, '/not_found/link', { label: 'Page not found: link home' })}>{t.link}</a></p>
   </div>
 </div>
 </Default>

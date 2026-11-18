@@ -1,7 +1,17 @@
 ---
-// The footer on every page. Its Articles link is the only internal path to /articles/
-// (articles are deliberately kept out of the main menu), so it stays.
+// The footer on every page, its texts from _data/site.yml. Its Articles link is the only
+// internal path to /articles/ (articles are deliberately kept out of the main menu), so
+// it stays.
+//
+// The VTW monogram is the mark, not text: its tracking and size are worked out from
+// the letters' ink widths (brand.css), so it is not editable.
+import { getSite, SITE_FILE } from '../lib/content'
+import { edit } from '../lib/edit'
+
 const year = new Date().getUTCFullYear()
+const f = (await getSite()).footer
+/** Multi-line text with a <br /> at each line break, as the address was written. */
+const lines = (s: string) => s.split('\n')
 ---
 <footer class="hft">
   <div class="vtw-rule hft__rule" role="presentation"></div>
@@ -14,26 +24,23 @@ const year = new Date().getUTCFullYear()
         <span class="vtw__t"><span>VTW</span></span>
         <img src="/assets/images/vtw-wave.svg" alt="" />
       </span>
-      <p class="hft__entity">Enterprises&nbsp;LLC</p>
+      <p class="hft__entity" {...edit(SITE_FILE, '/footer/entity', { label: 'Footer: under the monogram' })}>{f.entity}</p>
     </div>
 
     <div class="hft__cols">
       <div class="hft__col">
-        <h2 class="hft__ct">Office</h2>
-        <p class="hft__cv">P.O. Box 310<br />West Hurley, NY 12491</p>
+        <h2 class="hft__ct" {...edit(SITE_FILE, '/footer/office_heading', { label: 'Footer: address heading' })}>{f.office_heading}</h2>
+        <p class="hft__cv" {...edit(SITE_FILE, '/footer/office', { label: 'Footer: postal address', multiline: true })}>{lines(f.office).map((l, i) => (<Fragment>{i > 0 && <br />}{l}</Fragment>))}</p>
       </div>
 
       <div class="hft__col">
-        <h2 class="hft__ct">Working across</h2>
-        <p class="hft__cv">Columbia, Dutchess, Greene<br />and Ulster counties, New York</p>
+        <h2 class="hft__ct" {...edit(SITE_FILE, '/footer/area_heading', { label: 'Footer: area heading' })}>{f.area_heading}</h2>
+        <p class="hft__cv" {...edit(SITE_FILE, '/footer/area', { label: 'Footer: where you work', multiline: true })}>{lines(f.area).map((l, i) => (<Fragment>{i > 0 && <br />}{l}</Fragment>))}</p>
       </div>
 
       <nav class="hft__col" aria-label="Secondary">
-        <h2 class="hft__ct">More</h2>
-        <ul class="hft__list">
-          <li><a class="hft__link" href="/articles/">Articles</a></li>
-          <li><a class="hft__link" href="/faq/">FAQ</a></li>
-          <li><a class="hft__link" href="/contact/">Contact</a></li>
+        <h2 class="hft__ct" {...edit(SITE_FILE, '/footer/links_heading', { label: 'Footer: links heading' })}>{f.links_heading}</h2>
+        <ul class="hft__list">{f.links.map((link, i) => (<Fragment>{'\n          '}<li><a class="hft__link" href={link.url} {...edit(SITE_FILE, `/footer/links/${i}/title`, { label: `Footer link ${i + 1}` })}>{link.title}</a></li></Fragment>))}
         </ul>
       </nav>
     </div>
@@ -41,6 +48,6 @@ const year = new Date().getUTCFullYear()
   </div>
 
   <div class="hft__base">
-    <p class="hft__copy">&copy; {year} Von Trapp Winter Enterprises LLC. Hudson Valley, NY.</p>
+    <p class="hft__copy" {...edit(SITE_FILE, '/footer/copyright', { label: 'Footer: copyright line (after © and the year)' })}>&copy; {year} {f.copyright}</p>
   </div>
 </footer>

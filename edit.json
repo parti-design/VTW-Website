@@ -3,10 +3,13 @@
   "name": "Von Trapp Winter",
   "url": "https://vontrappwinter.com",
   "branch": "main",
-  "editable": ["_projects/*.md", "_posts/*.md", "_data/*.yml"],
+  "editable": ["index.md", "_pages/*.md", "_projects/*.md", "_posts/*.md", "_data/*.yml"],
   "media": "assets/images/uploads",
   "deploy": { "typicalSeconds": 90 },
   "modules": {
+    "media-s3": {},
+    "media-library": {},
+    "image": { "variants": [400, 800, 1200, 1600] },
     "collections": {
       "projects": {
         "label": "Projects", "singular": "project", "folder": "_projects", "url": "/projects/{slug}/",

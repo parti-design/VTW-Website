@@ -5,12 +5,17 @@ import EditBridge from '../components/EditBridge.astro'
 import Head from '../components/Head.astro'
 import SiteFooter from '../components/SiteFooter.astro'
 import SiteHeader from '../components/SiteHeader.astro'
+import { getSite, SITE_FILE } from '../lib/content'
+import { edit } from '../lib/edit'
 import type { SeoInput } from '../lib/seo'
 
 interface Props extends SeoInput {
   bodyClass?: string | null
+  titleLabel?: Record<string, string>
+  descriptionLabel?: Record<string, string>
 }
 const { bodyClass, ...seo } = Astro.props
+const { cta } = await getSite()
 
 const stylesheets = [
   '/assets/css/brand-tokens.css',
@@ -38,8 +43,8 @@ const stylesheets = [
     <section class="ip ip--site-cta">
       <div class="ip__inner ip__inner--wide">
         <div class="ip__cta">
-          <p class="ip__cta-text">Have a project in mind and want a grounded second set of eyes?</p>
-          <a class="ip__cta-link" href="/contact/">Start a conversation</a>
+          <p class="ip__cta-text" {...edit(SITE_FILE, '/cta/text', { label: 'Call to action at the foot of each page' })}>{cta.text}</p>
+          <a class="ip__cta-link" href="/contact/" {...edit(SITE_FILE, '/cta/link', { label: 'Call to action: button' })}>{cta.link}</a>
         </div>
       </div>
     </section>
