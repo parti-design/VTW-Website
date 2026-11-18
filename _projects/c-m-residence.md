@@ -24,7 +24,6 @@ featured: true
 year: 2006
 location: "Hudson Valley, NY"
 ---
-
 Perched on a hilltop looking out to the Catskill Mountains, this historic mansion is a local landmark in a quiet Hudson Valley town. The clients wanted more than a careful restoration: they wanted the house brought back to its former glory and thoughtfully developed for the way they live today. Severin carried the project from concept to completion, providing full design and build services in close collaboration with the clients.
 
-The restoration preserved as much of the original structure as possible, working with natural materials and the local vernacular throughout. Trees on the property that had to come down for safety were milled on site with a portable sawmill and turned into paneling for the custom kitchen cabinets. A new wraparound porch anchors the house to its hilltop and opens the interior to the landscape and the mountain view beyond.
+The restoration preserved as much of the original structure as possible. While working with natural materials and the local vernacular throughout. Trees on the property that had to come down for safety were milled on site with a portable sawmill and turned into paneling for the custom kitchen cabinets. A new wraparound porch anchors the house to its hilltop and opens the interior to the landscape and the mountain view beyond.
