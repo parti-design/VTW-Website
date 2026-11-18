@@ -40,5 +40,7 @@ EXPOSE 80
 
 # 127.0.0.1, not localhost: inside the container localhost resolves to ::1 first,
 # nginx listens on IPv4 only, and the check would fail while the site serves fine.
-HEALTHCHECK --interval=15s --timeout=3s --start-period=1s --retries=3 \
+# Coolify waits the start period, then reads the status; checking every second during it
+# means the new container is already healthy when Coolify looks.
+HEALTHCHECK --interval=30s --timeout=3s --start-period=2s --start-interval=1s --retries=3 \
   CMD wget -qO /dev/null http://127.0.0.1/ || exit 1
