@@ -33,9 +33,9 @@ const t = {
 /** Liquid's newline_to_br. */
 const nl2br = (s: string) => s.replace(/\r?\n/g, '<br />\n')
 
-// Every featured project, in file-name order. (The old template asked for `limit: 3`,
-// which is not a Liquid filter and did nothing; three are featured today.)
-const featured = (await getProjects()).filter((pr) => pr.data.featured)
+// The first three featured projects, in file-name order. Marking a fourth as featured
+// does not push one off by surprise elsewhere: the projects page still tags them all.
+const featured = (await getProjects()).filter((pr) => pr.data.featured).slice(0, 3)
 const testimonials = (await getCollection('testimonials'))
   .filter((x) => x.data.featured)
   .sort((a, b) => Number(a.id) - Number(b.id))
