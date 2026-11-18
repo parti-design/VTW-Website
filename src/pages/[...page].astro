@@ -1,7 +1,7 @@
 ---
 // Every page in _pages/, at the permalink its front matter gives, in the layout it
 // names. Jekyll did the same with its `layout` and `permalink` keys.
-import { getPages, type Page } from '../lib/content'
+import { getPages, type Page, type PageWith } from '../lib/content'
 import { renderBody } from '../lib/jekyll'
 import Articles from '../layouts/Articles.astro'
 import Contact from '../layouts/Contact.astro'
@@ -18,15 +18,18 @@ export async function getStaticPaths() {
 
 const { page } = Astro.props as { page: Page }
 const d = page.data
-const seo = { path: d.permalink, title: d.title, description: d.description }
 const html = renderBody(page)
+// Narrows the page to its layout's fields for the template that renders it.
+const as = <L extends Page['data']['layout']>(_: L) => page as PageWith<L>
 ---
+{/* A page whose body is HTML, printed as it is. No current page; not labelled, since the
+    editor cannot safely edit raw HTML. */}
 {d.layout === 'default' && (
-  <Default {...seo} bodyClass={d.body_class}>
+  <Default path={d.permalink} title={d.title} description={d.description} bodyClass={d.body_class} file={page.filePath}>
     <Fragment set:html={html} />
   </Default>
 )}
-{d.layout === 'page' && <GenericPage page={page} html={html} />}
-{d.layout === 'articles' && <Articles page={page} />}
-{d.layout === 'projects' && <Projects page={page} />}
-{d.layout === 'contact' && <Contact page={page} html={html} />}
+{d.layout === 'page' && <GenericPage page={as('page')} html={html} />}
+{d.layout === 'articles' && <Articles page={as('articles')} />}
+{d.layout === 'projects' && <Projects page={as('projects')} />}
+{d.layout === 'contact' && <Contact page={as('contact')} html={html} />}

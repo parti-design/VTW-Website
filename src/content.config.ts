@@ -60,25 +60,125 @@ const posts = defineCollection({
   }),
 })
 
+// A photograph with its description, the shape the editor's image field keeps.
+const image = z.object({ src: z.string(), alt: copy })
+
+// Each page names its template in `layout` (src/pages/[...page].astro), and each
+// template has its own texts. Every text on a page is a key in its file.
+const pageBase = {
+  title: z.string(),
+  permalink: z.string().regex(/^\/(.+\/)?$/, 'a permalink starts and ends with /'),
+  body_class: text,
+  description: text,
+}
+const pageLayouts = z.discriminatedUnion('layout', [
+  // Title, subtitle and a Markdown body. Jekyll's default for pages.
+  z.object({ ...pageBase, layout: z.literal('page'), subtitle: text }),
+  // The body as it is, HTML and all (no current page).
+  z.object({ ...pageBase, layout: z.literal('default') }),
+  z.object({
+    ...pageBase,
+    layout: z.literal('articles'),
+    kicker: copy,
+    subtitle: copy,
+    latest_label: copy,
+    read_article: copy,
+    read_more: copy,
+    empty: copy,
+  }),
+  z.object({
+    ...pageBase,
+    layout: z.literal('projects'),
+    kicker: copy,
+    subtitle: copy,
+    // After the number of projects: "selected projects · Hudson Valley, NY".
+    count_text: copy,
+    // The filter buttons. `type` must be a project type, or "all".
+    filters: z.array(z.object({ label: copy, type: z.string() })).default([]),
+    count_one: copy,
+    count_many: copy,
+    featured_label: copy,
+  }),
+  z.object({
+    ...pageBase,
+    layout: z.literal('contact'),
+    kicker: copy,
+    lead: copy,
+    include_label: copy,
+    include: z.array(copy).default([]),
+    // Phone and email are printed reversed and in pieces, and put together by a script,
+    // so a scraper reading the HTML finds neither (src/layouts/Contact.astro).
+    phone_label: copy,
+    phone: text,
+    phone_noscript: copy,
+    email_label: copy,
+    email: text,
+    email_noscript: copy,
+    // Shown in place of the phone and email until the script has run.
+    script_needed: copy,
+    based_label: copy,
+    based: copy,
+  }),
+  z.object({
+    ...pageBase,
+    layout: z.literal('about'),
+    hero: z.object({
+      label: copy,
+      place: copy,
+      lead: copy,
+      name: copy,
+      role: copy,
+      image,
+      caption: copy,
+    }),
+    portrait: copy,
+    facts: z.array(z.object({ label: copy, value: copy })).default([]),
+    work: z.object({ heading: copy, paragraphs: z.array(copy).default([]) }),
+    region: z.object({
+      heading: copy,
+      lead: copy,
+      notes: z.array(z.object({ label: copy, text: copy })).default([]),
+    }),
+    heritage: z.object({ label: copy, lead: copy, body: copy }),
+  }),
+  z.object({
+    ...pageBase,
+    layout: z.literal('services'),
+    kicker: copy,
+    lead: copy,
+    toc_label: copy,
+    areas: z
+      .array(
+        z.object({
+          toc_title: copy,
+          toc_note: copy,
+          title: copy,
+          lead: copy,
+          image,
+          points: z.array(copy).default([]),
+        }),
+      )
+      .default([]),
+    billing: z.object({ label: copy, statement: copy, note: copy }),
+    process: z.object({
+      label: copy,
+      heading: copy,
+      steps: z.array(z.object({ title: copy, text: copy })).default([]),
+    }),
+  }),
+  z.object({
+    ...pageBase,
+    layout: z.literal('faq'),
+    kicker: copy,
+    lead: copy,
+    questions: z.array(z.object({ question: copy, answer: copy })).default([]),
+  }),
+])
+
 const pages = defineCollection({
   loader: glob({ base: '_pages', pattern: '*.md' }),
-  schema: z.object({
-    // Which template renders the page; see src/pages/[...page].astro.
-    layout: z.enum(['default', 'page', 'articles', 'projects', 'contact']).default('page'),
-    title: z.string(),
-    permalink: z.string().regex(/^\/(.+\/)?$/, 'a permalink starts and ends with /'),
-    body_class: text,
-    description: text,
-    subtitle: text,
-    // Contact details, kept apart so no scraper reads them whole (the contact layout).
-    phone: text,
-    phone_area: text,
-    phone_prefix: text,
-    phone_line: text,
-    email: text,
-    email_user: text,
-    email_domain: text,
-  }),
+  // A page that names no layout gets the plain one, as in Jekyll.
+  schema: z.preprocess((v) => ({ layout: 'page', ...(v as object) }), pageLayouts),
 })
 
 // index.md: the home page has no body; every text on it is a key here.

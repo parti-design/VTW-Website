@@ -1,15 +1,20 @@
 ---
 // The projects index: a magazine grid in a curated order, with type filters. Was
-// _layouts/projects.html.
+// _layouts/projects.html. The page's texts are in _pages/projects.md; each card's in its
+// project's file. The card order and sizes below are layout, not text.
 import Img from '../components/Img.astro'
-import { getProjects, projectCover, projectUrl, type Page } from '../lib/content'
+import { getProjects, projectCover, projectLabels, projectUrl, type PageWith } from '../lib/content'
+import { edit, type EditOptions } from '../lib/edit'
 import { LARGE } from '../lib/images'
 import Default from './Default.astro'
 
 interface Props {
-  page: Page
+  page: PageWith<'projects'>
 }
 const { page } = Astro.props
+const d = page.data
+const file = page.filePath
+const label = (key: string, name: string, more: EditOptions = {}) => edit(file, `/${key}`, { label: name, ...more })
 
 // Curated magazine rhythm: file name and card size, in display order. A project missing
 // from this list (one just added in the editor, say) follows it as a "third" card, so a
@@ -43,22 +48,18 @@ const cards = [...CURATED, ...projects.filter((p) => !curated.has(p.id)).map((p)
 // Wide cards render about 845px on a 12-column 1280px grid; the rest about 410px.
 const cardSizes = (size: string) =>
   `(max-width: 560px) calc(100vw - 3rem), (max-width: 900px) calc((100vw - 3rem - 1.1rem) / 2), ${['feature', 'wide', 'half'].includes(size) ? '845px' : '410px'}`
-
-const subtitle =
-  page.data.subtitle ??
-  'A representative sample of project types and contexts from around the Hudson Valley &mdash; new construction, renovation, and the restoration of historic barns and houses.'
 ---
-<Default path={page.data.permalink} title={page.data.title} description={page.data.description} bodyClass={page.data.body_class}>
+<Default path={d.permalink} title={d.title} description={d.description} bodyClass={d.body_class} file={file}>
 <!-- ═══ MASTHEAD ═══ -->
 <section class="iepm">
   <div class="iepm__inner">
     <div>
-      <p class="iepm__label">Selected Work</p>
-      <h1 class="iepm__title">{page.data.title || 'Projects'}</h1>
+      <p class="iepm__label" {...label('kicker', 'Small line above the title')}>{d.kicker}</p>
+      <h1 class="iepm__title" {...label('title', 'Page title')}>{d.title}</h1>
     </div>
     <div>
-      <p class="iepm__sub" set:html={subtitle} />
-      <p class="iepm__count"><strong>{projects.length}</strong> &nbsp;selected projects &nbsp;&middot;&nbsp; Hudson Valley, NY</p>
+      <p class="iepm__sub" {...label('subtitle', 'Introduction')}>{d.subtitle}</p>
+      <p class="iepm__count" {...label('count_text', 'Text after the number of projects')}><strong>{projects.length}</strong> &nbsp;{d.count_text}</p>
     </div>
   </div>
 </section>
@@ -66,11 +67,10 @@ const subtitle =
 <!-- ═══ FILTERS ═══ -->
 <section class="ief">
   <div class="ief__inner" data-filter-group>
-    <button class="ief__btn ief__btn--active" data-filter="all">All</button>
-    <button class="ief__btn" data-filter="New Construction">New Construction</button>
-    <button class="ief__btn" data-filter="Renovation">Renovation</button>
-    <button class="ief__btn" data-filter="Historical Restoration">Historical Restoration</button>
-    <span class="ief__count" id="filter-count">{projects.length} projects</span>
+{d.filters.map((f, i) => (<Fragment>
+    <button class:list={['ief__btn', { 'ief__btn--active': i === 0 }]} data-filter={f.type} {...label(`filters/${i}/label`, `Filter button ${i + 1}`)}>{f.label}</button>
+</Fragment>))}
+    <span class="ief__count" id="filter-count" data-one={d.count_one} data-many={d.count_many} {...label('count_many', 'Next to the filters: the word after the number')}>{projects.length} {projects.length === 1 ? d.count_one : d.count_many}</span>
   </div>
 </section>
 
@@ -80,12 +80,12 @@ const subtitle =
       const cover = projectCover(p!)
       return (
       <article class={`iemag__card iemag__card--${size}`} data-type={p!.data.type ?? ''}>
-        <a class="iemag__imgwrap" href={projectUrl(p!)}>{cover && <Img src={cover} alt={p!.data.title} sizes={cardSizes(size)} widths={LARGE} />}{p!.data.featured && <span class="iemag__tag">Featured</span>}</a>
+        <a class="iemag__imgwrap" href={projectUrl(p!)}>{cover && <Img src={cover} alt={p!.data.title} sizes={cardSizes(size)} widths={LARGE} />}{p!.data.featured && <span class="iemag__tag" {...label('featured_label', 'Tag on projects shown on the home page')}>{d.featured_label}</span>}</a>
         <div class="iemag__body">
           <div>
-            <p class="iemag__type">{p!.data.type}</p>
-            <h2 class="iemag__title"><a href={projectUrl(p!)}>{p!.data.title}</a></h2>
-          </div>{p!.data.location && <p class="iemag__loc">{p!.data.location}</p>}</div>
+            <p class="iemag__type" {...edit(p!.filePath, '/type', projectLabels.type)}>{p!.data.type}</p>
+            <h2 class="iemag__title"><a href={projectUrl(p!)} {...edit(p!.filePath, '/title', projectLabels.title)}>{p!.data.title}</a></h2>
+          </div>{p!.data.location && <p class="iemag__loc" {...edit(p!.filePath, '/location', projectLabels.location)}>{p!.data.location}</p>}</div>
       </article>
       )
     })}</div>
@@ -107,7 +107,7 @@ const subtitle =
           card.hidden = !match;
           if (match) shown++;
         });
-        if (countEl) countEl.textContent = shown + (shown === 1 ? ' project' : ' projects');
+        if (countEl) countEl.textContent = shown + ' ' + (shown === 1 ? countEl.dataset.one : countEl.dataset.many);
       });
     });
   })();

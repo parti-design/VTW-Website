@@ -6,6 +6,8 @@ import { buildTime, datePath } from './dates'
 export type Project = CollectionEntry<'projects'>
 export type Post = CollectionEntry<'posts'>
 export type Page = CollectionEntry<'pages'>
+/** A page known to use one layout, with that layout's fields. */
+export type PageWith<L extends Page['data']['layout']> = Page & { data: Extract<Page['data'], { layout: L }> }
 
 /** /projects/<file name>/ */
 export const projectUrl = (p: Project) => `/projects/${p.id}/`

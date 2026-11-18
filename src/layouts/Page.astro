@@ -1,12 +1,12 @@
 ---
 // A plain page: label, title, subtitle, body. Was _layouts/page.html, Jekyll's default
 // for pages. No current page uses it, but a new one without a layout gets it.
-import { getSite, SITE_FILE, type Page } from '../lib/content'
+import { getSite, SITE_FILE, type PageWith } from '../lib/content'
 import { edit } from '../lib/edit'
 import Default from './Default.astro'
 
 interface Props {
-  page: Page
+  page: PageWith<'page'>
   html: string
 }
 const { page, html } = Astro.props

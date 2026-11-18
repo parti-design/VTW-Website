@@ -207,6 +207,18 @@ export function markdownify(md: string): string {
   return html.replace(/<!--vtw-html-block-(\d+)-->/g, (_, n) => blocks[Number(n)])
 }
 
+/**
+ * A one-paragraph front-matter text with Markdown in it (*italics*, **bold**, links), for
+ * an element that is itself the paragraph: a heading, a <p>. The editor's rich field
+ * edits these in place.
+ */
+export function markdownInline(md: string): string {
+  const html = markdownify(md).trim()
+  const m = html.match(/^<p>([\s\S]*)<\/p>$/)
+  if (!m || m[1].includes('<p>')) throw new Error(`Expected one paragraph of Markdown: ${JSON.stringify(md)}`)
+  return m[1]
+}
+
 const cache = new Map<string, string>()
 
 /** A content file's body as HTML: its Liquid run, then its Markdown rendered. */
