@@ -566,6 +566,32 @@ body {
   object-fit: cover;
 }
 
+/* A project without a cover photo shows nothing on the site. While editing, an empty frame
+   to click; the editor shows the chosen photo as its background until it is published. */
+.project-cover--empty {
+  display: none;
+}
+
+html[data-editing] .project-cover--empty {
+  position: relative;
+  display: block;
+  height: clamp(340px, 56vw, 620px);
+  background: var(--vtw-placeholder);
+  background-size: cover;
+  background-position: center;
+}
+
+html[data-editing] .project-cover--empty:not([style*="background-image"])::after {
+  content: attr(data-edit-placeholder);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: var(--vtw-small);
+  letter-spacing: 0.04em;
+  color: var(--vtw-body);
+}
+
 .project-slider {
   margin-bottom: 2rem;
 }

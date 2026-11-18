@@ -5,8 +5,9 @@
 // description box (the Markdown body). Every row and the description render even when
 // empty so they can be clicked in the editor; on the live site CSS hides an empty row, and
 // without a description the info runs across the page instead (main.css, "Project info").
-// The photos are not labelled yet (see docs/editor.md); their alt text is the project
-// title. The frame's texts (the info box's heading and row names, Gallery, Back to
+// The cover photo is labelled (picked from the media library in the editor); a project
+// without one gets an empty frame that only shows while editing. Photo alt text is the
+// project title. The frame's texts (the info box's heading and row names, Gallery, Back to
 // projects) are in _data/site.yml.
 import Img from '../../components/Img.astro'
 import Default from '../../layouts/Default.astro'
@@ -51,9 +52,10 @@ const info = [
       <header class="ip__head">
         <p class="ip__label" {...edit(file, '/type', projectLabels.type)}>{d.type || t.default_type}</p>
         <h1 class="ip__title" {...edit(file, '/title', projectLabels.title)}>{d.title}</h1>
-      </header>{cover && (
-      <figure class="project-cover"><Img src={cover} alt={d.title} sizes="(max-width: 980px) calc(100vw - 2.8rem), 1160px" widths={LARGE} loading="eager" decoding="sync" fetchpriority="high" />
-      </figure>)}
+      </header>{cover ? (
+      <figure class="project-cover"><Img src={cover} alt={d.title} sizes="(max-width: 980px) calc(100vw - 2.8rem), 1160px" widths={LARGE} loading="eager" decoding="sync" fetchpriority="high" attrs={edit(file, '/cover_image', projectLabels.cover)} />
+      </figure>) : (
+      <figure class="project-cover project-cover--empty" {...edit(file, '/cover_image', projectLabels.cover)}></figure>)}
       <div class="project-info-layout">
         <aside class="project-info" aria-labelledby="project-info-title">
           <h2 class="project-info__title" id="project-info-title" {...edit(SITE_FILE, '/project/info', { label: 'Project pages: info box heading' })}>{t.info}</h2>
