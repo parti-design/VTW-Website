@@ -1,0 +1,40 @@
+---
+// The FAQ page. Its markup was the body of _pages/faq.md; its texts are now that file's
+// front matter, each labelled. Answers are Markdown (paragraphs, lists, links). The
+// numbers 01-06 follow the order of the questions.
+import type { PageWith } from '../lib/content'
+import { edit, type EditOptions } from '../lib/edit'
+import { markdownify } from '../lib/jekyll'
+import Default from './Default.astro'
+
+interface Props {
+  page: PageWith<'faq'>
+}
+const { page } = Astro.props
+const d = page.data
+const file = page.filePath
+const label = (key: string, name: string, more: EditOptions = {}) => edit(file, `/${key}`, { label: name, ...more })
+---
+<Default path={d.permalink} title={d.title} description={d.description} bodyClass={d.body_class} file={file}>
+<!-- ═══ OPENING ═══ -->
+<section class="faqh">
+  <div class="faqh__inner">
+    <p class="faqh__kicker" {...label('kicker', 'Small line above the heading')}>{d.kicker}</p>
+    <h1 class="faqh__lead" {...label('lead', 'Heading')}>{d.lead}</h1>
+  </div>
+</section>
+
+<!-- ═══ Q&A ═══ -->
+<section class="faq">
+  <div class="faq__inner">
+{d.questions.map((q, i) => (<Fragment>{'\n\n    '}<article class="faq__item" data-animate>
+      <div class="faq__num">{String(i + 1).padStart(2, '0')}</div>
+      <div class="faq__qa">
+        <h2 class="faq__q" {...label(`questions/${i}/question`, `Question ${i + 1}`)}>{q.question}</h2>
+        <div class="faq__a" {...label(`questions/${i}/answer`, `Answer ${i + 1}`, { type: 'rich' })} set:html={markdownify(q.answer)} />
+      </div>
+    </article></Fragment>))}
+
+  </div>
+</section>
+</Default>

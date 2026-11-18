@@ -3,11 +3,14 @@
 // names. Jekyll did the same with its `layout` and `permalink` keys.
 import { getPages, type Page, type PageWith } from '../lib/content'
 import { renderBody } from '../lib/jekyll'
+import About from '../layouts/About.astro'
 import Articles from '../layouts/Articles.astro'
 import Contact from '../layouts/Contact.astro'
 import Default from '../layouts/Default.astro'
+import Faq from '../layouts/Faq.astro'
 import GenericPage from '../layouts/Page.astro'
 import Projects from '../layouts/Projects.astro'
+import Services from '../layouts/Services.astro'
 
 export async function getStaticPaths() {
   return (await getPages()).map((page) => ({
@@ -33,3 +36,6 @@ const as = <L extends Page['data']['layout']>(_: L) => page as PageWith<L>
 {d.layout === 'articles' && <Articles page={as('articles')} />}
 {d.layout === 'projects' && <Projects page={as('projects')} />}
 {d.layout === 'contact' && <Contact page={as('contact')} html={html} />}
+{d.layout === 'about' && <About page={as('about')} />}
+{d.layout === 'services' && <Services page={as('services')} />}
+{d.layout === 'faq' && <Faq page={as('faq')} />}

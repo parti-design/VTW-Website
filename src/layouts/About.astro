@@ -1,0 +1,93 @@
+---
+// The about page. Its markup was the body of _pages/about.md; its texts are now that
+// file's front matter, each labelled, and the photo is labelled as an image (replace it,
+// or edit its description).
+import Img from '../components/Img.astro'
+import type { PageWith } from '../lib/content'
+import { edit, type EditOptions } from '../lib/edit'
+import { LARGE } from '../lib/images'
+import { markdownify, markdownInline } from '../lib/jekyll'
+import Default from './Default.astro'
+
+interface Props {
+  page: PageWith<'about'>
+}
+const { page } = Astro.props
+const d = page.data
+const file = page.filePath
+const label = (key: string, name: string, more: EditOptions = {}) => edit(file, `/${key}`, { label: name, ...more })
+const rich = { type: 'rich', marks: 'bold italic' } as const
+---
+<Default path={d.permalink} title={d.title} description={d.description} bodyClass={d.body_class} file={file}>
+<!-- ═══ HERO — text + image ═══ -->
+<section class="amast amast--hero">
+  <div class="amast__inner amast__inner--hero">
+    <div class="amast__text">
+      <div class="amast__top">
+        <span class="gold" {...label('hero/label', 'Top: small label')}>{d.hero.label}</span>
+        <span {...label('hero/place', 'Top: place')}>{d.hero.place}</span>
+      </div>
+      <p class="amast__lead" {...label('hero/lead', 'Top: headline', rich)} set:html={markdownInline(d.hero.lead)} />
+      <div class="amast__byline">
+        <strong {...label('hero/name', 'Top: name')}>{d.hero.name}</strong>
+        <span {...label('hero/role', 'Top: role')}>{d.hero.role}</span>
+      </div>
+    </div>
+    <figure class="amast__media"><Img
+        src={d.hero.image.src}
+        alt={d.hero.image.alt}
+        sizes="(max-width: 900px) calc(100vw - 3rem), 470px"
+        widths={LARGE}
+        loading="eager"
+        attrs={label('hero/image', 'Top: photo', { type: 'image' })}
+      />
+<figcaption class="amast__cap" {...label('hero/caption', 'Top: photo caption')}>{d.hero.caption}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═══ DOSSIER + NARRATIVE ═══ -->
+<section class="adoss" data-animate>
+  <div class="adoss__inner">
+    <aside class="adoss__aside">
+      <div class="adoss__portrait"><span {...label('portrait', 'Portrait placeholder')}>{d.portrait}</span></div>
+{d.facts.map((fact, i) => (<Fragment>{'\n      '}<div class="adoss__row">
+        <span class="adoss__k" {...label(`facts/${i}/label`, `Fact ${i + 1}: label`)}>{fact.label}</span>
+        <span class="adoss__v" {...label(`facts/${i}/value`, `Fact ${i + 1}`)}>{fact.value}</span>
+      </div></Fragment>))}
+    </aside>
+
+    <div class="adoss__body">
+      <h2 class="adoss__h" {...label('work/heading', 'The work: heading')}>{d.work.heading}</h2>
+{d.work.paragraphs.map((text, i) => (<Fragment>{'\n      '}<p {...label(`work/paragraphs/${i}`, `The work: paragraph ${i + 1}`)}>{text}</p></Fragment>))}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ THE REGION ═══ -->
+<section class="areg" data-animate>
+  <div class="areg__inner">
+    <div>
+      <h2 class="areg__h" {...label('region/heading', 'The region: heading')}>{d.region.heading}</h2>
+      <p class="areg__lead" {...label('region/lead', 'The region: introduction')}>{d.region.lead}</p>
+    </div>
+    <div class="areg__notes">
+{d.region.notes.map((note, i) => (<Fragment>{'\n      '}<div class="areg__note">
+        <span class="areg__nk" {...label(`region/notes/${i}/label`, `The region, note ${i + 1}: label`)}>{note.label}</span>
+        <p class="areg__nv" {...label(`region/notes/${i}/text`, `The region, note ${i + 1}`)}>{note.text}</p>
+      </div></Fragment>))}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HERITAGE ═══ -->
+<section class="aher" data-animate>
+  <div class="aher__inner">
+    <div>
+      <p class="aher__label" {...label('heritage/label', 'Heritage: small label')}>{d.heritage.label}</p>
+      <p class="aher__lead" {...label('heritage/lead', 'Heritage: headline')}>{d.heritage.lead}</p>
+    </div>
+    <div class="aher__body" {...label('heritage/body', 'Heritage: text', rich)} set:html={markdownify(d.heritage.body)} />
+  </div>
+</section>
+</Default>
