@@ -80,7 +80,7 @@ const cardSizes = (size: string) =>
       const cover = projectCover(p!)
       return (
       <article class={`iemag__card iemag__card--${size}`} data-type={p!.data.type ?? ''}>
-        <a class="iemag__imgwrap" href={projectUrl(p!)}>{cover && <Img src={cover} alt={p!.data.title} sizes={cardSizes(size)} widths={LARGE} />}{p!.data.featured && <span class="iemag__tag" {...label('featured_label', 'Tag on projects shown on the home page')}>{d.featured_label}</span>}</a>
+        <a class="iemag__imgwrap" href={projectUrl(p!)}>{cover && <Img src={cover} alt={p!.data.title} sizes={cardSizes(size)} widths={LARGE} attrs={edit(p!.filePath, '/cover_image', projectLabels.cover)} />}{p!.data.featured && <span class="iemag__tag" {...label('featured_label', 'Tag on projects shown on the home page')}>{d.featured_label}</span>}</a>
         <div class="iemag__body">
           <div>
             <p class="iemag__type" {...edit(p!.filePath, '/type', projectLabels.type)}>{p!.data.type}</p>

@@ -53,7 +53,7 @@ const stylesheets = ['/assets/css/brand-tokens.css', '/assets/css/main.css', '/a
 
     <!-- ═══ HERO ══════════════════════════════════════════════════════════════ -->
     <section class="hh">
-      <div class:list={['hh__photo', { 'has-image': p.hero_image }]} style={p.hero_image ? backgroundVars(p.hero_image) : undefined} aria-hidden="true"></div>
+      <div class:list={['hh__photo', { 'has-image': p.hero_image }]} style={p.hero_image ? backgroundVars(p.hero_image) : undefined} aria-hidden="true" {...label('hero_image', 'Top: photo', { type: 'image', optional: true })}></div>
       <div class="hh__inner">
         <p class="hh__label" {...label('hero_label', 'Top: small line above the headline')}>{p.hero_label}</p>
         <h1 class="hh__heading" {...label('hero_heading', 'Top: headline', { multiline: true })}>{lines(p.hero_heading).map((l, i) => (<Fragment>{i > 0 && <br />}{l}</Fragment>))}</h1>
@@ -72,12 +72,12 @@ const stylesheets = ['/assets/css/brand-tokens.css', '/assets/css/main.css', '/a
         <p class="hs__text" {...label('statement_text', 'Statement')}>{p.statement_text}</p>
         <p class="hs__aside" {...label('statement_aside', 'Statement: the line after it')}>{p.statement_aside}</p>
       </div>
-      <div class:list={['hs__photo', { 'has-image': p.statement_image }]} style={p.statement_image ? backgroundVars(p.statement_image) : undefined} aria-hidden="true"></div>
+      <div class:list={['hs__photo', { 'has-image': p.statement_image }]} style={p.statement_image ? backgroundVars(p.statement_image) : undefined} aria-hidden="true" {...label('statement_image', 'Statement: photo', { type: 'image', optional: true })}></div>
     </section>
 
     <!-- ═══ ADVOCATE ══════════════════════════════════════════════════════════ -->
     <section class="hav" data-animate>
-      <div class:list={['hav__photo', { 'has-image': p.advocate_image }]} style={p.advocate_image ? backgroundVars(p.advocate_image) : undefined} aria-hidden="true"></div>
+      <div class:list={['hav__photo', { 'has-image': p.advocate_image }]} style={p.advocate_image ? backgroundVars(p.advocate_image) : undefined} aria-hidden="true" {...label('advocate_image', 'Quote: photo', { type: 'image', optional: true })}></div>
       <div class="hav__inner">
         <div class="hav__label-col">
           <span class="hav__label" {...label('advocate_label', 'Quote: small heading')}>{p.advocate_label}</span>
@@ -120,7 +120,7 @@ const stylesheets = ['/assets/css/brand-tokens.css', '/assets/css/main.css', '/a
           return (
           <a class="hpj__card" href={projectUrl(project)}>
             <div class="hpj__img-wrap">{cover ? (
-              <Img src={cover} alt={project.data.title} sizes="(max-width: 760px) calc(100vw - 3rem), 384px" widths={LARGE} />
+              <Img src={cover} alt={project.data.title} sizes="(max-width: 760px) calc(100vw - 3rem), 384px" widths={LARGE} attrs={edit(pf, '/cover_image', projectLabels.cover)} />
             ) : (
               <div class="hpj__img-placeholder"></div>
             )}</div>

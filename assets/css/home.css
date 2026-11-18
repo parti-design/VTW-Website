@@ -1003,3 +1003,15 @@ body.nav-open { overflow: hidden; }
   .hn__nav,
   .hn__toggle-bar { transition: none; }
 }
+
+/* While editing, a click in the empty space over the three photos reaches the photo, so it
+   can be chosen in the editor; the texts and links on top stay clickable. */
+html[data-editing] :is(.hh__inner, .hs__inner, .hav__inner) {
+  pointer-events: none;
+}
+html[data-editing] :is(.hh__inner, .hs__inner, .hav__inner) :is([data-edit], a, button) {
+  pointer-events: auto;
+}
+html[data-editing] :is(.hh, .hh__photo)::after {
+  pointer-events: none;
+}
