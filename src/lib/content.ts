@@ -72,7 +72,7 @@ export const projectLabels = {
   title: { label: 'Project title' },
   location: { label: 'Location', placeholder: 'Add the town or area', optional: true },
   year: { label: 'Year finished', placeholder: 'Add the year', optional: true },
-  role: { label: 'Your role', placeholder: 'Add your role, e.g. design and build', optional: true },
+  role: { label: 'Your role', placeholder: 'Add your role, e.g. design and construction', optional: true },
   scope: { label: 'Scope of work', placeholder: 'Add what was done, e.g. new porch, kitchen, restored frame', optional: true },
 } as const
 
