@@ -1,4 +1,0 @@
-# Local testing against the visual editor running on this machine (docs/editor.md):
-#   bundle exec jekyll serve --config _config.yml,_config.editor-local.yml --port 4010
-editor_url: "http://localhost:8787"
-url: "http://localhost:4010"
