@@ -1,10 +1,10 @@
 // edit-bridge.js: copy this file into your site and load it once in the shared layout:
-//   <script src="/edit-bridge.js" data-editor="https://edit.parti.design" async></script>
+//   <script src="/edit-bridge.js" data-editor="https://grove.parti.design" async></script>
 // For visitors it does nothing and loads nothing. Adding ?edit to any page opens it in the editor.
 // Only when the editor frames the page does it load the editing layer, from the editor's origin.
 (function () {
   var me = document.currentScript
-  var EDITOR = ((me && me.getAttribute('data-editor')) || 'https://edit.parti.design').replace(/\/$/, '')
+  var EDITOR = ((me && me.getAttribute('data-editor')) || 'https://grove.parti.design').replace(/\/$/, '')
   if (window.parent === window) {
     if (/[?&]edit(=|&|$)/.test(location.search))
       location.href = EDITOR + '/go?url=' + encodeURIComponent(location.origin + location.pathname)
