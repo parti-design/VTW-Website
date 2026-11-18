@@ -123,12 +123,16 @@ photos; `assets/images/` has only the mark, the wave, the cursors and the icons.
   trusts the copies are there); the page shows a copy and the lightbox opens the master. The
   12 characters before the width are the start of the master's SHA-256, so a stored file
   never changes and is sent with `Cache-Control: public, max-age=31536000, immutable`.
-- **Editing.** The about and services photos are labelled as images (replace, or edit the
-  description). With `media-s3` and `media-library` on in `edit.json`, an upload goes to the
-  bucket under `grove/vtw/<year>/<month>/`, with the copies `modules.image.variants` lists
-  (the editor leaves out any wider than the photo). The **Media** panel lists every photo and
-  where it is used, found by searching the repo's text files for the name and hash. Project
-  covers and galleries, and the home page's three background photos, are not labelled yet.
+- **Editing.** Every photo on the site is labelled: the about and services photos, the home
+  page's three background photos (while editing, clicks in the empty space over them reach
+  the photo, `home.css`), each project's cover (on its page and on the project cards) and each
+  project's gallery (a `gallery` field: add from the library, remove, reorder). Clients only
+  choose photos from the library; Parti uploads. An upload from a field goes into that field's
+  folder (a project's photos into `grove/vtw/projects/<slug>/`), otherwise under
+  `grove/vtw/<year>/<month>/`, with the copies `modules.image.variants` lists (the editor
+  leaves out any wider than the photo). The **Media** panel lists every photo and where it is
+  used, found by searching the repo's text files for the name and hash. Photos inside article
+  text are part of the article body and can't be picked from the library yet.
 - **The move.** Until November 2026 the photos were JPEGs in `assets/images/projects-final/`
   (about 290 MB), with WebP copies in `assets/images/derived/` made by
   `tools/build-images.py`. On 2026-11-18 all 183 went to `grove/vtw/projects/<project>/`:
