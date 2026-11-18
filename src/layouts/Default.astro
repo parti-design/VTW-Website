@@ -1,0 +1,99 @@
+---
+// Every page but the home page: nav, the page in <main>, the closing call to action
+// (not on the contact page itself), footer. Was _layouts/default.html.
+import EditBridge from '../components/EditBridge.astro'
+import Head from '../components/Head.astro'
+import SiteFooter from '../components/SiteFooter.astro'
+import SiteHeader from '../components/SiteHeader.astro'
+import type { SeoInput } from '../lib/seo'
+
+interface Props extends SeoInput {
+  bodyClass?: string | null
+}
+const { bodyClass, ...seo } = Astro.props
+
+const stylesheets = [
+  '/assets/css/brand-tokens.css',
+  '/assets/css/main.css',
+  '/assets/css/home.css',
+  '/assets/css/interior-editorial.css',
+  '/assets/css/editorial-pages.css',
+  '/assets/css/brand.css',
+]
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <Head stylesheets={stylesheets} {...seo} />
+</head>
+<body class={bodyClass || 'page-interior'}>
+
+  <SiteHeader current={seo.path} />
+
+  <main class="im" id="main-content">
+    <slot />
+  </main>
+
+  {seo.path !== '/contact/' && (
+    <section class="ip ip--site-cta">
+      <div class="ip__inner ip__inner--wide">
+        <div class="ip__cta">
+          <p class="ip__cta-text">Have a project in mind and want a grounded second set of eyes?</p>
+          <a class="ip__cta-link" href="/contact/">Start a conversation</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <SiteFooter />
+
+  <script is:inline>
+    const nav = document.getElementById('hn');
+    if (nav) {
+      const syncNav = () => {
+        nav.classList.toggle('hn--scrolled', window.scrollY > 80);
+      };
+      syncNav();
+      window.addEventListener('scroll', syncNav, { passive: true });
+    }
+
+    // Mobile menu toggle
+    const navToggle = document.getElementById('hn-toggle');
+    const navMenu = document.getElementById('hn-nav');
+    if (navToggle && navMenu) {
+      const setMenu = (open) => {
+        navToggle.setAttribute('aria-expanded', String(open));
+        navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        navMenu.classList.toggle('is-open', open);
+        document.body.classList.toggle('nav-open', open);
+      };
+      navToggle.addEventListener('click', () => {
+        setMenu(navToggle.getAttribute('aria-expanded') !== 'true');
+      });
+      navMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMenu(false));
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setMenu(false);
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 760) setMenu(false);
+      });
+    }
+
+    // Scroll-reveal for editorial sections
+    const revealEls = document.querySelectorAll('[data-animate]');
+    if (revealEls.length) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+      revealEls.forEach((el) => io.observe(el));
+    }
+  </script>
+
+  <EditBridge />
+
+</body>
+</html>

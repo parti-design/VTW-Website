@@ -1,0 +1,7 @@
+---
+// The visual editor's bridge (public/edit-bridge.js, a copy of grove-editor's
+// bridge/edit-bridge.js). It does nothing for visitors; ?edit on any page opens that
+// page in the editor. It only talks to the editor named here. See docs/editor.md.
+import { site } from '../site.config'
+---
+<script is:inline src="/edit-bridge.js" data-editor={site.editorUrl} async></script>
