@@ -14,7 +14,7 @@ against the old site, and the main pages compared pixel for pixel at desktop and
 | Where | What |
 |---|---|
 | `_projects/`, `_posts/`, `_pages/`, `index.md`, `_data/` | Content, where Jekyll had it, and every text on the site (below). Loaded in place by `src/content.config.ts` (glob and file loaders, zod schemas). |
-| `assets/` | CSS, the mark, photographs. Served at `/assets/` as-is (`src/integrations/passthrough.ts` says why not `public/`). |
+| `assets/` | CSS, the mark, the icons. Served at `/assets/` as-is (`src/integrations/passthrough.ts` says why not `public/`). Photographs are not in the repo (below). |
 | `public/` | `favicon.ico`, `robots.txt`, `edit-bridge.js`. |
 | `src/site.config.ts` | What `_config.yml` held that is not text: URL, Umami, the editor's address. |
 | `src/pages/` | One file per kind of page. `[...page].astro` renders each `_pages` file at its `permalink`, in the layout it names. |
@@ -99,18 +99,49 @@ On a project page, town, year and the description always render, even when empty
 can be clicked; on the live site CSS hides an empty town or year and the dot beside it
 (`main.css`, "Project meta").
 
-Photos: the about and services photos are labelled as images (replace, or edit the
-description). Uploads land in `assets/images/uploads/`, and `edit.json`'s
-`modules.image.variants` has the editor store copies at 400, 800, 1200 and 1600 pixels next to
-each as `<name>-<width>.<ext>`, the naming `src/lib/images.ts` reads. Photos already in
-`assets/images/` keep their copies in `assets/images/derived/`, made by
-`python3 tools/build-images.py` (ImageMagick) and committed; a photo whose copies are missing
-shows its original and the build warns. Project covers and galleries, and the home page's
-three background photos, are not labelled yet.
-
 The projects page keeps its curated order and card sizes (`src/layouts/Projects.astro`), and
 lists any project missing from that order after it as a third-width card, so a project added
 in the editor shows up.
+
+## Photographs
+
+Every photograph is in Grove's media library, the R2 bucket `grove-media` served at
+https://media.parti.design/, and the content files hold its full address. The repo holds no
+photos; `assets/images/` has only the mark, the wave, the cursors and the icons.
+
+- **Masters and copies.** Each photo is a WebP master with copies 400, 800, 1200 and 1600
+  pixels wide next to it, same format, the width added to the name:
+
+  ```
+  https://media.parti.design/grove/vtw/projects/f-s-barn/barn-3f9a1c2b7d4e.webp
+  https://media.parti.design/grove/vtw/projects/f-s-barn/barn-3f9a1c2b7d4e-800.webp
+  ```
+
+  `src/lib/images.ts` writes `srcset` from that naming (it can't see the bucket, so it
+  trusts the copies are there); the page shows a copy and the lightbox opens the master. The
+  12 characters before the width are the start of the master's SHA-256, so a stored file
+  never changes and is sent with `Cache-Control: public, max-age=31536000, immutable`.
+- **Editing.** The about and services photos are labelled as images (replace, or edit the
+  description). With `media-s3` and `media-library` on in `edit.json`, an upload goes to the
+  bucket under `grove/vtw/<year>/<month>/`, with the copies `modules.image.variants` lists
+  (the editor leaves out any wider than the photo). The **Media** panel lists every photo and
+  where it is used, found by searching the repo's text files for the name and hash. Project
+  covers and galleries, and the home page's three background photos, are not labelled yet.
+- **The move.** Until November 2026 the photos were JPEGs in `assets/images/projects-final/`
+  (about 290 MB), with WebP copies in `assets/images/derived/` made by
+  `tools/build-images.py`. On 2026-11-18 all 183 went to `grove/vtw/projects/<project>/`:
+  the master re-encoded from the JPEG at its own size (1743 to 2048 pixels wide, quality 90),
+  the copies the site already served reused byte for byte (400 and 800 for every photo, 1200
+  and 1600 for the 18 shown large), and the missing 1200 and 1600 copies made with the old
+  script's settings. The about, services and home photos are project photos, so they are
+  stored once, in their project's folder. `docs/media-manifest.json` lists every object; it
+  keeps folder, name and hash apart so the media library doesn't count it as a use.
+- **Rolling the move back.** Revert the commit that made it (the photos and the script come
+  back from git), deploy, then delete the objects the manifest lists, and the rows for
+  `grove/vtw/projects/` in the editor's `media_s3_objects` table.
+- **Open Graph.** No page sets `og:image` (jekyll-seo-tag had no image configured, and the
+  Astro port kept that). To add one, store a JPEG as its own master in the library (its own
+  name and hash), since copies must share their master's format, and point the tag at it.
 
 ## Running it locally
 

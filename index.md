@@ -4,9 +4,9 @@ title: "Von Trapp Winter"
 description: >-
   Hudson Valley building specialist working in owner's representation,
   renovation, and the restoration of historic barns and homes.
-hero_image: "/assets/images/projects-final/triform-office/87-P1240067.jpg"
-statement_image: "/assets/images/projects-final/me-k-potting-shed/02-P1140001.jpg"
-advocate_image: "/assets/images/projects-final/c-m-kitchen/02-CM1071.jpg"
+hero_image: "https://media.parti.design/grove/vtw/projects/triform-office/87-p1240067-b708a7fd794f.webp"
+statement_image: "https://media.parti.design/grove/vtw/projects/me-k-potting-shed/02-p1140001-88036582194e.webp"
+advocate_image: "https://media.parti.design/grove/vtw/projects/c-m-kitchen/02-cm1071-e1d4b387aa13.webp"
 
 hero_label: Hudson Valley — Building Specialist
 hero_heading: Your advocate on every decision.

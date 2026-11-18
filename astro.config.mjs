@@ -19,8 +19,9 @@ export default defineConfig({
   // Every photograph is pre-sized (src/lib/images.ts); nothing for Astro to optimise.
   image: { service: passthroughImageService() },
 
-  // The CSS, fonts and photographs stay in assets/ and are served from /assets/
-  // (src/integrations/passthrough.ts says why not public/).
+  // The CSS, the mark and the icons stay in assets/ and are served from /assets/
+  // (src/integrations/passthrough.ts says why not public/). Photographs are in the
+  // media library at https://media.parti.design/.
   integrations: [passthrough(['assets'])],
 
   // Screenshots compared against the old site kept catching the toolbar.

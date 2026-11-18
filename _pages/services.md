@@ -19,7 +19,7 @@ areas:
     title: Design & Planning
     lead: For clients in the early stages, Severin works with owners and their architects to develop a project from concept to a buildable, budgeted plan.
     image:
-      src: /assets/images/projects-final/p-f-nyc-residence/02-Flah_23.jpg
+      src: https://media.parti.design/grove/vtw/projects/p-f-nyc-residence/02-flah-23-002351852326.webp
       alt: Design and planning work on a Hudson Valley residence
     points:
       - Programming and scope definition
@@ -31,7 +31,7 @@ areas:
     title: New Construction
     lead: Whether a primary residence, a guest house, or a working farm structure, the earliest decisions carry the largest impact on outcome and cost.
     image:
-      src: /assets/images/projects-final/m-p-house-addition/02-M-P552.jpg
+      src: https://media.parti.design/grove/vtw/projects/m-p-house-addition/02-m-p552-e431e7603e6d.webp
       alt: A Hudson Valley new-construction project
     points:
       - Evaluate sites and assess buildability before committing
@@ -45,7 +45,7 @@ areas:
     title: Renovation
     lead: Renovating an existing structure — especially an older one — carries risks that are difficult to anticipate without experience.
     image:
-      src: /assets/images/projects-final/s-sc-kitchen/01-IMG_0032.jpg
+      src: https://media.parti.design/grove/vtw/projects/s-sc-kitchen/01-img-0032-563d4c044ab4.webp
       alt: A renovated Hudson Valley kitchen
     points:
       - Assess existing conditions before purchase or scope
@@ -59,7 +59,7 @@ areas:
     title: Historical Restoration & Preservation
     lead: Severin’s specialty. Restoring the Hudson Valley’s historic domestic and agricultural architecture well requires knowledge most contractors simply don’t have.
     image:
-      src: /assets/images/projects-final/f-s-barn/54-07-68.jpg
+      src: https://media.parti.design/grove/vtw/projects/f-s-barn/54-07-68-60eb91aeeb96.webp
       alt: A restored Hudson Valley timber-frame barn
     points:
       - Structural assessment of timber-frame and masonry

@@ -1,57 +1,49 @@
-// The resized-copy naming contract. Content names one image (the original); the build
+// The resized-copy naming contract. Content names one image (the master); the build
 // never resizes anything, it only works out where the smaller copies live and writes
-// them into srcset. Two conventions are in use:
+// them into srcset. The copies sit next to the master, in its format, with the width
+// added to the name:
 //
-//   Local photographs, resized by tools/build-images.py into a mirror tree:
-//     /assets/images/projects-final/f-s-barn/54-07-68.jpg
-//     /assets/images/derived/projects-final/f-s-barn/54-07-68-800.webp
+//   https://media.parti.design/grove/vtw/projects/f-s-barn/barn-3f9a1c2b7d4e.webp
+//   https://media.parti.design/grove/vtw/projects/f-s-barn/barn-3f9a1c2b7d4e-800.webp
 //
-//   Everything else (Grove uploads in /assets/images/uploads/, and the media library at
-//   https://media.parti.design/), copies stored next to the file, same format:
-//     https://media.parti.design/vtw/barn.jpg
-//     https://media.parti.design/vtw/barn-800.jpg
+// Every photograph is in the media library at https://media.parti.design/ (the visual
+// editor's media-s3 module), which stores them that way. Grove uploads committed to the
+// repo instead (/assets/images/uploads/) use the same naming.
 //
-// The original stays the <img src>: it is the fallback, and it is what the lightbox
+// The master stays the <img src>: it is the fallback, and it is what the lightbox
 // opens, since clicking a photo is a request to see it properly.
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 
-/** Cards and gallery thumbnails. Every local photograph has these. */
+/** Cards and gallery thumbnails. */
 export const SMALL = [400, 800] as const
-/** Anything shown large: covers, the home page panels, the about and services photos. */
+/** Anything shown large: covers, the home page panels, the about and services photos.
+ *  The photos moved into the media library have all four. The editor makes them for an
+ *  upload (edit.json `modules.image.variants`) but leaves out any wider than the photo. */
 export const LARGE = [400, 800, 1200, 1600] as const
 
-const LOCAL = '/assets/images/'
-const DERIVED = '/assets/images/derived/'
 const UPLOADS = '/assets/images/uploads/'
 
 const isRemote = (src: string) => /^https?:\/\//.test(src)
 
 /** The URL of the `width`-pixel copy of `src`, or null when the contract says there is none. */
 export function variantUrl(src: string, width: number): string | null {
-  if (isRemote(src) || src.startsWith(UPLOADS)) {
-    const [path, query = ''] = src.split(/(?=[?#])/)
-    if (!/\.\w+$/.test(path)) return null
-    return path.replace(/\.(\w+)$/, `-${width}.$1`) + query
-  }
-  if (src.startsWith(LOCAL)) {
-    return DERIVED + src.slice(LOCAL.length).replace(/\.(jpe?g|png)$/i, '') + `-${width}.webp`
-  }
-  return null
+  if (!isRemote(src) && !src.startsWith(UPLOADS)) return null
+  const [path, query = ''] = src.split(/(?=[?#])/)
+  if (!/\.\w+$/.test(path)) return null
+  return path.replace(/\.(\w+)$/, `-${width}.$1`) + query
 }
 
-// Local copies are checked on disk, so a photograph added without running
-// tools/build-images.py falls back to its original instead of a broken srcset. Remote
-// copies cannot be checked without fetching them; the media library makes them on
-// upload, so they are trusted.
+// Copies in the repo are checked on disk, so an upload whose copies are missing falls
+// back to its master instead of a broken srcset. Remote copies cannot be checked without
+// fetching them; the media library makes them on upload, so they are trusted.
 const missing = new Set<string>()
 function exists(url: string): boolean {
   if (isRemote(url)) return true
   if (existsSync(join(process.cwd(), url))) return true
   if (!missing.has(url)) {
     missing.add(url)
-    const fix = url.startsWith(DERIVED) ? 'run tools/build-images.py' : "the editor makes these when edit.json sets modules.image.variants"
-    console.warn(`[images] missing resized copy ${url} (${fix}); serving the original`)
+    console.warn(`[images] missing resized copy ${url} (the editor makes these when edit.json sets modules.image.variants); serving the original`)
   }
   return false
 }

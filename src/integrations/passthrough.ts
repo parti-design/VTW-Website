@@ -3,8 +3,9 @@
 // Why not public/: the visual editor commits uploads into the repo at the path they are
 // served from (edit.json "media": "assets/images/uploads" becomes /assets/images/uploads/
 // in front matter). Under public/ the two would differ, and every upload would point at
-// a file that does not exist. Keeping assets/ where it is also leaves every image path
-// in the content and tools/build-images.py as they were.
+// a file that does not exist. Keeping assets/ where it is also leaves the paths of the
+// CSS, the mark and the icons as they were. (Photographs are in the media library at
+// https://media.parti.design/, not in the repo; see src/lib/images.ts.)
 //
 // Build: copied into dist/ once the pages are written. Dev needs nothing: Vite already
 // serves files under the project root at their own path.

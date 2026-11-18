@@ -13,7 +13,7 @@ hero:
   name: Severin Winter
   role: Independent Building Specialist
   image:
-    src: /assets/images/projects-final/c-m-residence/79-CM1142.jpg
+    src: https://media.parti.design/grove/vtw/projects/c-m-residence/79-cm1142-061a09a4cf72.webp
     alt: A Hudson Valley residence built and overseen by Severin Winter
   caption: C. M. Residence — Hudson Valley, NY
 
