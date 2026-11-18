@@ -1,7 +1,8 @@
 ---
 // A plain page: label, title, subtitle, body. Was _layouts/page.html, Jekyll's default
 // for pages. No current page uses it, but a new one without a layout gets it.
-import type { Page } from '../lib/content'
+import { getSite, SITE_FILE, type Page } from '../lib/content'
+import { edit } from '../lib/edit'
 import Default from './Default.astro'
 
 interface Props {
@@ -10,18 +11,20 @@ interface Props {
 }
 const { page, html } = Astro.props
 const d = page.data
+const file = page.filePath
 const slug = d.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+const { page_label } = await getSite()
 ---
-<Default path={d.permalink} title={d.title} description={d.description} bodyClass={d.body_class}>
+<Default path={d.permalink} title={d.title} description={d.description} bodyClass={d.body_class} file={file}>
 <section class={`ip ip--generic ip--${slug}`}>
   <div class="ip__inner ip__inner--wide">
     <header class="ip__head">
-      <p class="ip__label">Hudson Valley &mdash; Building Specialist</p>
-      {d.title && <h1 class="ip__title">{d.title}</h1>}
-      {d.subtitle ? <p class="ip__subtitle">{d.subtitle}</p> : d.description && <p class="ip__subtitle">{d.description}</p>}
+      <p class="ip__label" {...edit(SITE_FILE, '/page_label', { label: 'Plain pages: small line above the title' })}>{page_label}</p>
+      {d.title && <h1 class="ip__title" {...edit(file, '/title', { label: 'Page title' })}>{d.title}</h1>}
+      {d.subtitle ? <p class="ip__subtitle" {...edit(file, '/subtitle', { label: 'Subtitle' })}>{d.subtitle}</p> : d.description && <p class="ip__subtitle" {...edit(file, '/description', { label: 'Description' })}>{d.description}</p>}
     </header>
 
-    <div class="ip__content">
+    <div class="ip__content" {...edit(file, 'body', { type: 'rich', label: 'Page text', headings: '2 3' })}>
       <Fragment set:html={html} />
     </div>
   </div>

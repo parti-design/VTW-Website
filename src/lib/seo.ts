@@ -1,6 +1,7 @@
 // What jekyll-seo-tag 2.8 printed, worked out the same way, so titles, descriptions,
 // canonicals, Open Graph, Twitter and JSON-LD stay as search engines know them.
 import { site } from '../site.config'
+import type { SiteTexts } from './content'
 import { xmlschema } from './dates'
 import { plainText } from './jekyll'
 
@@ -14,6 +15,8 @@ export interface SeoInput {
   /** Posts and projects have one; it makes the page an article. */
   date?: Date
   author?: string | null
+  /** The content file the title and description come from, for the editor's labels. */
+  file?: string
 }
 
 export interface Seo {
@@ -32,17 +35,17 @@ const firstParagraph = (body?: string | null) => body?.trim().split(/\n\s*\n/)[0
 
 const HOMEPAGE_OR_ABOUT = /^\/(about\/)?(index\.html?)?$/
 
-export function seo(input: SeoInput): Seo {
-  const siteTitle = plainText(site.title)!
-  const siteDescription = plainText(site.description)!
+export function seo(input: SeoInput, texts: SiteTexts): Seo {
+  const siteTitle = plainText(texts.name)!
+  const siteDescription = plainText(texts.description)!
   const pageTitle = plainText(input.title) ?? siteTitle
   const title =
     pageTitle !== siteTitle
       ? `${pageTitle} | ${siteTitle}`
-      : `${siteTitle} | ${plainText(site.tagline) ?? siteDescription}`
+      : `${siteTitle} | ${plainText(texts.tagline) ?? siteDescription}`
   const description = plainText(input.description ?? firstParagraph(input.body)) ?? siteDescription
   const canonical = site.url + input.path.replace(/\/index\.html$/, '/')
-  const author = input.author || site.author.name
+  const author = input.author || texts.author
   const homepageOrAbout = HOMEPAGE_OR_ABOUT.test(input.path)
   const type = homepageOrAbout ? 'WebSite' : input.date ? 'BlogPosting' : 'WebPage'
   const date = input.date && xmlschema(input.date)

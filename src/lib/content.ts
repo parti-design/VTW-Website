@@ -1,6 +1,6 @@
 // What the templates ask of the content: which entries exist, in which order, and at
 // which URL. URLs are the old site's, character for character.
-import { getCollection, type CollectionEntry } from 'astro:content'
+import { getCollection, getEntry, type CollectionEntry } from 'astro:content'
 import { buildTime, datePath } from './dates'
 
 export type Project = CollectionEntry<'projects'>
@@ -34,6 +34,17 @@ export async function getPosts(): Promise<Post[]> {
 /** _pages/*.md in file-name order (the order jekyll-sitemap listed them in). */
 export async function getPages(): Promise<Page[]> {
   return (await getCollection('pages')).sort((a, b) => a.id.localeCompare(b.id))
+}
+
+/** The file the shared texts live in, for editor labels. */
+export const SITE_FILE = '_data/site.yml'
+export type SiteTexts = CollectionEntry<'site'>['data']
+
+/** The texts every page shares (_data/site.yml). */
+export async function getSite(): Promise<SiteTexts> {
+  const entry = await getEntry('site', 'site')
+  if (!entry) throw new Error(`${SITE_FILE} is missing`)
+  return entry.data
 }
 
 export async function getHome() {

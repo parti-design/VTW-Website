@@ -4,10 +4,12 @@
 // Labelled for the visual editor: type, title, town, year and the description (the
 // Markdown body). Town, year and the description render even when empty so they can be
 // clicked; on the live site CSS hides an empty town or year and the dot beside it
-// (main.css, "Project meta"). The photos are not labelled yet (see docs/editor.md).
+// (main.css, "Project meta"). The photos are not labelled yet (see docs/editor.md); their
+// alt text is the project title. The frame's texts (Gallery, Back to projects) are in
+// _data/site.yml.
 import Img from '../../components/Img.astro'
 import Default from '../../layouts/Default.astro'
-import { galleryImages, getProjects, projectCover, projectUrl, type Project } from '../../lib/content'
+import { galleryImages, getProjects, getSite, projectCover, projectUrl, SITE_FILE, type Project } from '../../lib/content'
 import { buildTime } from '../../lib/dates'
 import { edit } from '../../lib/edit'
 import { LARGE } from '../../lib/images'
@@ -23,6 +25,7 @@ const file = project.filePath
 const cover = projectCover(project, true)
 const gallery = galleryImages(project)
 const body = renderBody(project)
+const t = (await getSite()).project
 
 const TYPES = ['New Construction', 'Renovation', 'Historical Restoration']
 ---
@@ -32,19 +35,20 @@ const TYPES = ['New Construction', 'Renovation', 'Historical Restoration']
   description={d.description}
   body={project.body}
   date={buildTime}
+  file={file}
 >
 <section class="ip ip--project">
   <div class="ip__inner ip__inner--wide">
     <article class="project-page">
       <header class="ip__head">
-        <p class="ip__label" {...edit(file, '/type', { type: 'choice', label: 'Type of project', options: TYPES, optional: true })}>{d.type || 'Project'}</p>
+        <p class="ip__label" {...edit(file, '/type', { type: 'choice', label: 'Type of project', options: TYPES, optional: true })}>{d.type || t.default_type}</p>
         <h1 class="ip__title" {...edit(file, '/title', { label: 'Project title' })}>{d.title}</h1>
         <p class="ip__meta"><span {...edit(file, '/location', { label: 'Town', placeholder: 'Add the town', optional: true })}>{d.location}</span><span class="ip__sep">&middot;</span><span {...edit(file, '/year', { label: 'Year finished', placeholder: 'Add the year', optional: true })}>{d.year}</span></p>
       </header>{cover && (
       <figure class="project-cover"><Img src={cover} alt={d.title} sizes="(max-width: 980px) calc(100vw - 2.8rem), 1160px" widths={LARGE} loading="eager" decoding="sync" fetchpriority="high" />
       </figure>)}<div class="project-page__body ip__content" {...edit(file, 'body', { type: 'rich', label: 'Project description', placeholder: 'Add a description: what was there, what you did, what makes it special' })} set:html={body} />{gallery.length > 0 && (
       <section class="project-gallery" aria-label="Project photo gallery" data-project-lightbox>
-        <h2 class="project-gallery__title">Gallery</h2>
+        <h2 class="project-gallery__title" {...edit(SITE_FILE, '/project/gallery', { label: 'Project pages: gallery heading' })}>{t.gallery}</h2>
         <div class="project-gallery__grid">{gallery.map((src, i) => (
           <button
             class="project-gallery__item"
@@ -67,7 +71,7 @@ const TYPES = ['New Construction', 'Renovation', 'Historical Restoration']
       </section>)}
 
       <footer class="ip__foot">
-        <a class="ip__back" href="/projects/">Back to projects</a>
+        <a class="ip__back" href="/projects/" {...edit(SITE_FILE, '/project/back', { label: 'Project pages: link back to the list' })}>{t.back}</a>
       </footer>
     </article>
   </div>

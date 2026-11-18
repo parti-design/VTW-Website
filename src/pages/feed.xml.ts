@@ -1,7 +1,7 @@
 // /feed.xml: the Atom feed jekyll-feed made, entry for entry: the ten newest live
 // articles, full text, description as the summary.
 import type { APIRoute } from 'astro'
-import { getPosts, postUrl } from '../lib/content'
+import { getPosts, getSite, postUrl } from '../lib/content'
 import { buildTime, xmlschema } from '../lib/dates'
 import { normalizeWhitespace, plainText, renderBody, stripHtml } from '../lib/jekyll'
 import { site } from '../site.config'
@@ -12,6 +12,7 @@ const cdata = (s: string) => `<![CDATA[${s.replaceAll(']]>', ']]]]><![CDATA[>')}
 
 export const GET: APIRoute = async () => {
   const posts = (await getPosts()).slice(0, 10)
+  const texts = await getSite()
   const self = `${site.url}/feed.xml`
 
   const entries = posts.map((post) => {
@@ -28,7 +29,7 @@ export const GET: APIRoute = async () => {
       `<updated>${date}</updated>` +
       `<id>${xml(url.replace(/\/$/, ''))}</id>` +
       `<content type="html" xml:base="${xml(url)}">${cdata(renderBody(post))}</content>` +
-      `<author><name>${xml(post.data.author || site.author.name)}</name></author>` +
+      `<author><name>${xml(post.data.author || texts.author)}</name></author>` +
       (summary ? `<summary type="html">${cdata(summary)}</summary>` : '') +
       `</entry>`
     )
@@ -42,9 +43,9 @@ export const GET: APIRoute = async () => {
     `<link href="${site.url}/" rel="alternate" type="text/html" />` +
     `<updated>${xmlschema(buildTime)}</updated>` +
     `<id>${self}</id>` +
-    `<title type="html">${xml(plainText(site.title)!)}</title>` +
-    `<subtitle>${xml(site.description)}</subtitle>` +
-    `<author><name>${xml(site.author.name)}</name></author>` +
+    `<title type="html">${xml(plainText(texts.name)!)}</title>` +
+    `<subtitle>${xml(texts.description)}</subtitle>` +
+    `<author><name>${xml(texts.author)}</name></author>` +
     entries.join('') +
     `</feed>`
 

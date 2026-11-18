@@ -1,18 +1,21 @@
 ---
-// The nav bar on every page. `current` is the page's URL, for the active link.
-import { site } from '../site.config'
+// The nav bar on every page. `current` is the page's URL, for the active link. The
+// name and the menu come from _data/site.yml.
+import { getSite, SITE_FILE } from '../lib/content'
+import { edit } from '../lib/edit'
 
 interface Props {
   current: string
 }
 const { current } = Astro.props
+const texts = await getSite()
 ---
 <header class="hn" id="hn">
   <div class="hn__inner">
-    <a class="hn__logo" href="/" aria-label="Von Trapp Winter &mdash; home">
+    <a class="hn__logo" href="/" aria-label={`${texts.name} — home`}>
       <span class="lk-w" aria-hidden="true">
         <span class="lk-w__band"></span>
-        <span class="lk-w__n">Von Trapp Winter</span>
+        <span class="lk-w__n" {...edit(SITE_FILE, '/name', { label: 'Site name (top of every page, browser tabs)' })}>{texts.name}</span>
         <span class="lk-w__band"></span>
       </span>
     </a>
@@ -22,9 +25,9 @@ const { current } = Astro.props
       <span class="hn__toggle-bar"></span>
     </button>
     <nav class="hn__nav" id="hn-nav" aria-label="Main navigation">
-      <ul class="hn__list">{site.nav.map((link) => (
+      <ul class="hn__list">{texts.nav.map((link, i) => (
         <li>
-          <a class:list={['hn__link', { 'hn__link--active': current === link.url }]} href={link.url}>{link.title}</a>
+          <a class:list={['hn__link', { 'hn__link--active': current === link.url }]} href={link.url} {...edit(SITE_FILE, `/nav/${i}/title`, { label: `Menu item ${i + 1}` })}>{link.title}</a>
         </li>
       ))}</ul>
     </nav>

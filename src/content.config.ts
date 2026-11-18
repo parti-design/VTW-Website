@@ -117,4 +117,35 @@ const testimonials = defineCollection({
   }),
 })
 
-export const collections = { projects, posts, pages, home, testimonials }
+// _data/site.yml: the texts every page shares (name, menu, footer, page frames). One
+// entry, id "site".
+const link = z.object({ title: z.string(), url: z.string() })
+const site = defineCollection({
+  loader: file('_data/site.yml', {
+    parser: (text) => [{ ...(yaml.load(text) as object), id: 'site' }],
+  }),
+  schema: z.object({
+    name: z.string(),
+    tagline: z.string(),
+    description: z.string(),
+    author: z.string(),
+    nav: z.array(link),
+    footer: z.object({
+      entity: z.string(),
+      office_heading: z.string(),
+      office: z.string(),
+      area_heading: z.string(),
+      area: z.string(),
+      links_heading: z.string(),
+      links: z.array(link),
+      copyright: z.string(),
+    }),
+    cta: z.object({ text: z.string(), link: z.string() }),
+    page_label: z.string(),
+    post: z.object({ label: z.string(), back: z.string() }),
+    project: z.object({ default_type: z.string(), gallery: z.string(), back: z.string() }),
+    not_found: z.object({ title: z.string(), heading: z.string(), text: z.string(), link: z.string() }),
+  }),
+})
+
+export const collections = { projects, posts, pages, home, testimonials, site }

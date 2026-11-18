@@ -28,6 +28,10 @@ export interface EditOptions {
   max?: number
   /** Allow line breaks in a text field. */
   multiline?: boolean
+  /** Rich text: which formatting may be used ("bold italic"); the editor's default is all. */
+  marks?: string
+  /** Rich text: heading levels allowed ("2 3"); none unless given. */
+  headings?: string
 }
 
 export function edit(file: string | undefined, pointer: string, o: EditOptions = {}): Record<string, string> {
@@ -42,6 +46,8 @@ export function edit(file: string | undefined, pointer: string, o: EditOptions =
   if (o.options) attrs['data-edit-options'] = o.options.join('|')
   if (o.max) attrs['data-edit-max'] = String(o.max)
   if (o.multiline) attrs['data-edit-multiline'] = ''
+  if (o.marks) attrs['data-edit-marks'] = o.marks
+  if (o.headings !== undefined) attrs['data-edit-headings'] = o.headings
   if (o.optional) attrs['data-edit-optional'] = ''
   return attrs
 }

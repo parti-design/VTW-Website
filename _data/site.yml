@@ -1,0 +1,75 @@
+# Texts every page shares: the site's name, the menu, the footer, the closing call to
+# action, the article and project page frames, and the page-not-found page.
+# Edited in the visual editor (click the text on any page); each page's own texts live
+# in its file (index.md, _pages/*.md, _projects/*.md, _posts/*.md).
+
+# Shown in the header, in every browser tab title, and in search results.
+name: Von Trapp Winter
+# The home page's browser tab title: "Von Trapp Winter | Building Specialist".
+tagline: Building Specialist
+# Search results show this for pages without their own description.
+description: >-
+  Building specialist in new construction, renovation, and the restoration
+  of historical barns and houses in the Hudson Valley, NY.
+author: Severin Winter
+
+# The menu at the top of every page. The address (url) is where each item goes.
+nav:
+  - title: About
+    url: /about/
+  - title: Services
+    url: /services/
+  - title: Projects
+    url: /projects/
+  - title: FAQ
+    url: /faq/
+  - title: Contact
+    url: /contact/
+
+footer:
+  entity: "Enterprises LLC"
+  office_heading: Office
+  office: |-
+    P.O. Box 310
+    West Hurley, NY 12491
+  area_heading: Working across
+  area: |-
+    Columbia, Dutchess, Greene
+    and Ulster counties, New York
+  links_heading: More
+  links:
+    - title: Articles
+      url: /articles/
+    - title: FAQ
+      url: /faq/
+    - title: Contact
+      url: /contact/
+  # Printed after "© <this year>".
+  copyright: Von Trapp Winter Enterprises LLC. Hudson Valley, NY.
+
+# The box at the bottom of every page except home and contact.
+cta:
+  text: Have a project in mind and want a grounded second set of eyes?
+  link: Start a conversation
+
+# The small line above the title on a plain page.
+page_label: Hudson Valley — Building Specialist
+
+# Around every article.
+post:
+  label: Articles
+  back: Back to articles
+
+# Around every project.
+project:
+  # Shown above the title when a project has no type.
+  default_type: Project
+  gallery: Gallery
+  back: Back to projects
+
+# The page shown for an address that does not exist.
+not_found:
+  title: Page Not Found
+  heading: Page not found
+  text: Sorry, the page you were looking for doesn't exist or has been moved.
+  link: ← Return to the homepage
