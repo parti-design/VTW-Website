@@ -13,6 +13,7 @@
     "collections": {
       "projects": {
         "label": "Projects", "singular": "project", "folder": "_projects", "url": "/projects/{slug}/",
+        "offline": { "published": false },
         "fields": [
           { "name": "title", "label": "Project title", "type": "text", "required": true },
           { "name": "type", "label": "Type of project", "type": "choice", "options": ["New Construction", "Renovation", "Historical Restoration"] },
