@@ -18,9 +18,12 @@ export const postSlug = (p: Post) => p.id.replace(/^\d{4}-\d{2}-\d{2}-/, '')
 /** /:year/:month/:day/:title/ */
 export const postUrl = (p: Post) => `/${datePath(p.data.date)}/${postSlug(p)}/`
 
-/** Projects in file-name order, as Jekyll listed site.projects. */
+/**
+ * Live projects in file-name order, as Jekyll listed site.projects. Ones taken offline in the
+ * editor (published: false) get no page, no card and no sitemap entry.
+ */
 export async function getProjects(): Promise<Project[]> {
-  return (await getCollection('projects')).sort((a, b) => a.id.localeCompare(b.id))
+  return (await getCollection('projects', (p) => p.data.published)).sort((a, b) => a.id.localeCompare(b.id))
 }
 
 /**

@@ -47,6 +47,8 @@ const projects = defineCollection({
     cover_image: text,
     photo: text,
     gallery: z.array(galleryItem).nullish(),
+    // Taken offline in the editor: published: false. No page, card or sitemap entry.
+    published: z.boolean().default(true),
   }),
 })
 
